@@ -6,6 +6,11 @@ type Props = {
   cameraRef: RefObject<Camera>;
 };
 
+/**
+ * カメラをまとめたコンポーネント
+ * @param param0 
+ * @returns 
+ */
 const CameraContainer = ({ cameraRef }: Props) => {
   return (
     <>

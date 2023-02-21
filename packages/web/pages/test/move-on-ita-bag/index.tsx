@@ -1,7 +1,7 @@
 import DecorateCanvas from "@/components/decorate/DecorateCanvas";
 import { NextPage } from "next";
 
-const TestMoveOnBag: NextPage = () => {
+const TestMoveOnItaBag: NextPage = () => {
   return <>
     <div>
       <DecorateCanvas />
@@ -9,4 +9,4 @@ const TestMoveOnBag: NextPage = () => {
   </>
 }
 
-export default TestMoveOnBag
+export default TestMoveOnItaBag

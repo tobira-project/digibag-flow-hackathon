@@ -3,8 +3,7 @@ import { useEffect } from "react";
 import { Color } from "three";
 
 /**
- * バッグの装飾画面
- * webgl上の環境光などを設定
+ * webgl上の環境光などをまとめたコンポーネント
  * @returns jsx
  */
 const Environments = () => {

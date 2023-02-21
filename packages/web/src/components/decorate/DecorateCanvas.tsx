@@ -1,7 +1,7 @@
 import { Camera, Canvas } from "@react-three/fiber";
 import { Mesh, Object3D, Raycaster } from "three";
 import { useMemo, useRef } from "react";
-import BagModel from "./BagModel";
+import ItaBagModel from "./ItaBagModel";
 import Environments from "./Environments";
 import { useGesture } from "@use-gesture/react";
 import useDirectMove from "@/libs/hooks/useDirectMove";
@@ -10,18 +10,21 @@ import TestRayPoint from "./test/TestRayPoint";
 import getWindowSize from "@/libs/hooks/getWindowSize";
 import { Stage, PerspectiveCamera } from "@react-three/drei";
 
-// バッグの装飾画面
+/**
+ * 痛バッグ装飾画面のCanvasのコンポーネント。
+ * @returns jsx
+ */
 const DecorateCanvas = () => {
   const { innerWidth, innerHeight } = getWindowSize();
 
   // 各ユーザー操作のための定義
   const raycaster = useMemo(() => new Raycaster(), []);
   const cameraRef = useRef<Camera>(null);
-  const pointerTargetRef = useRef<Mesh>(null);
+  const itaBagRef = useRef<Mesh>(null);
   const { handleDirectMove } = useDirectMove(
     raycaster,
     cameraRef,
-    pointerTargetRef
+    itaBagRef
   );
 
   const bind = useGesture({
@@ -43,7 +46,7 @@ const DecorateCanvas = () => {
           <CameraContainer cameraRef={cameraRef} />
           {/* 勝手にカメラ位置を調整するのを止められれば、Stageは便利そう
            <Stage adjustCamera={false} center={{ disable: true }}> */}
-          <BagModel pointerTargetRef={pointerTargetRef} />
+          <ItaBagModel itaBagRef={itaBagRef} />
           <TestRayPoint />
           {/* </Stage> */}
         </Canvas>

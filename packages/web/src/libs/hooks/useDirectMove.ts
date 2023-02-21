@@ -13,10 +13,17 @@ type DragState = (state: Omit<FullGestureState<"drag">, "event"> & {
 type HookType = (
   raycaster: Raycaster,
   cameraRef: RefObject<Camera>,
-  pointerTargetRef: RefObject<Object3D> // バッグの3Dモデル
+  itaBagRef: RefObject<Object3D> // 痛バッグの3Dモデル
 ) => { handleDirectMove: DragState }
 
-const useDirectMove: HookType = (raycaster, cameraRef, pointerTargetRef) => {
+/**
+ * 缶バッジ移動操作の処理をまとめたhook
+ * @param raycaster CanvasのRaycaster
+ * @param cameraRef Cameraのref
+ * @param itaBagRef 痛バッグのref
+ * @returns 
+ */
+const useDirectMove: HookType = (raycaster, cameraRef, itaBagRef) => {
   const { setRayHitPos, setModelLookDir } = useDecorateStore((state) => ({
     setRayHitPos: state.setRayHitPos,
     setModelLookDir: state.setModelLookDir
@@ -40,13 +47,13 @@ const useDirectMove: HookType = (raycaster, cameraRef, pointerTargetRef) => {
     raycaster.setFromCamera(pointer, cameraRef.current)
 
     // raycastのターゲットを取得
-    if (!pointerTargetRef.current) return;
-    const intersects = raycaster.intersectObject(pointerTargetRef.current);
+    if (!itaBagRef.current) return;
+    const intersects = raycaster.intersectObject(itaBagRef.current);
     if (intersects.length === 0) return; // 衝突なしなら処理終了
     const pointerTarget = intersects[0];
 
     // 接地面（法線ベクトル）の制限が必要であればここに書く。
-    // バッグの裏には付けられない など
+    // 痛バッグの裏には付けられない など
 
     if (pointerTarget.face) {
       setModelLookDir(pointerTarget.face.normal)
