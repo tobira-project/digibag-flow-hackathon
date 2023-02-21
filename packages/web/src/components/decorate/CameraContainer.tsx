@@ -10,7 +10,11 @@ const CameraContainer = ({ cameraRef }: Props) => {
   return (
     <>
       <PerspectiveCamera makeDefault ref={cameraRef} position={[0, 10, -20]} />
-      <OrbitControls enableRotate={false} />
+      <OrbitControls
+        // enableRotate={false}
+        // enablePan={false}
+        enabled={false}
+      />
     </>
   );
 };

@@ -12,6 +12,7 @@ type Props = {
  */
 const BagModel = ({ pointerTargetRef }: Props) => {
   return (
+    // 一旦meshで表示。後でバッグに差し替える
     <mesh ref={pointerTargetRef as RefObject<Mesh>} position={[0, 0, 0]}>
       <boxGeometry args={[10, 10, 10]} />
       <meshStandardMaterial color={"blue"} />

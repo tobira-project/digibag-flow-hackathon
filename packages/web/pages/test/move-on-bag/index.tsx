@@ -1,4 +1,4 @@
-import DecorateCanvas from "@/components/decorateBag/DecorateCanvas";
+import DecorateCanvas from "@/components/decorate/DecorateCanvas";
 import { NextPage } from "next";
 
 const TestMoveOnBag: NextPage = () => {

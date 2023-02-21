@@ -41,10 +41,11 @@ const DecorateCanvas = () => {
         >
           <Environments />
           <CameraContainer cameraRef={cameraRef} />
-          <Stage adjustCamera={false}>
-            <BagModel pointerTargetRef={pointerTargetRef} />
-          </Stage>
+          {/* 勝手にカメラ位置を調整するのを止められれば、Stageは便利そう
+           <Stage adjustCamera={false} center={{ disable: true }}> */}
+          <BagModel pointerTargetRef={pointerTargetRef} />
           <TestRayPoint />
+          {/* </Stage> */}
         </Canvas>
       </div>
     </>

@@ -10,12 +10,13 @@ import { Color } from "three";
 const Environments = () => {
   const { scene } = useThree();
   useEffect(() => {
+    // SkyBoxの色設定
     scene.background = new Color("grey");
   }, []);
 
   return (
     <>
-      <ambientLight intensity={1.0} />
+      <ambientLight intensity={1} />
     </>
   );
 };
