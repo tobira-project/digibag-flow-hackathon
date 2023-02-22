@@ -10,6 +10,11 @@ type Props = {
   children: ReactNode;
 };
 
+/**
+ * 痛バッグ上に設置するグッズについて、実際に表示処理を実行するコンポーネント。
+ * @param param0
+ * @returns
+ */
 const PlacedItemImpl = ({ itemData, handleDirectDown, children }: Props) => {
   const modelGroupRef = useRef<Group>(null);
 

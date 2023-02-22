@@ -20,6 +20,12 @@ type Props = {
   handleDirectDown: DirectDownType;
 };
 
+/**
+ * 痛バッグ上に設置するグッズについて、ロードされた3Dモデルデータを引数として受け、表示するコンポーネント
+ * 3Dモデルの形式ごとにこのコンポーネントをラップして実装する。
+ * @param param0
+ * @returns
+ */
 const ModelItemImpl = ({ itemData, srcModel, handleDirectDown }: Props) => {
   const { itemSizeData, setItemSize } = useDecorationStore((state) => ({
     itemSizeData: state.itemSizeData,
@@ -74,7 +80,7 @@ const ModelItemImpl = ({ itemData, srcModel, handleDirectDown }: Props) => {
 
     // テクスチャが逆さになるのを修正
     mat.map.flipY = false;
-  }
+  };
 
   // 3Dモデルをcloneし、テクスチャの設定を行う
   const setupModel = (newMap: Texture) => {
@@ -84,7 +90,7 @@ const ModelItemImpl = ({ itemData, srcModel, handleDirectDown }: Props) => {
         const mesh = o as Mesh;
         const mat = new MeshStandardMaterial();
         mat.map = newMap;
-        transformMat(mat, itemData.cropData)
+        transformMat(mat, itemData.cropData);
         mesh.material = mat;
       });
       return newModel;

@@ -9,7 +9,7 @@ type Props = {
 };
 
 /**
- * 痛バッグ上に設置しているグッズを表示するコンポーネント
+ * 痛バッグ上に設置するグッズ表示をまとめたコンポーネント
  * @returns jsx
  */
 const PlacedItemContainer = ({ handleDirectDown }: Props) => {
