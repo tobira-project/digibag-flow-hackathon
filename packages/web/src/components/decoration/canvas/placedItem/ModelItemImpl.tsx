@@ -1,5 +1,5 @@
 import useDecorationStore from "@/stores/decorationStore";
-import { PlacedItemData } from "@/types/decorationItemType";
+import { CropData, PlacedItemData } from "@/types/decorationItemType";
 import { DirectDownType } from "@/types/directMoveType";
 import { useTexture } from "@react-three/drei";
 import { useEffect, useState } from "react";
@@ -31,6 +31,51 @@ const ModelItemImpl = ({ itemData, srcModel, handleDirectDown }: Props) => {
   // テクスチャのロード。指定されたurlをロードしたことがある場合、ロードは省略される。
   const srcMap = useTexture(itemData.srcUrl);
 
+  // クロップのプレビューと同じ見た目にするために、テクスチャを変形する
+  const transformMat = (mat: MeshStandardMaterial, crop: CropData) => {
+    if (!mat.map) return;
+
+    // テクスチャの重心を中央に。これ大事
+    mat.map.center = new Vector2(0.5, 0.5);
+
+    // scaling
+    let repeatW;
+    let repeatH;
+    const cropRate = 0.773;
+    let cropScale;
+    if (crop.srcW > crop.srcH) {
+      // 横長の場合
+      const badgeScale = crop.srcH / crop.srcW;
+      cropScale = crop.h / crop.srcH;
+      repeatW = (badgeScale * cropScale) / cropRate;
+      repeatH = cropScale / cropRate;
+    } else {
+      // 縦長の場合
+      const badgeScale = crop.srcW / crop.srcH;
+      cropScale = crop.w / crop.srcW;
+      repeatW = cropScale / cropRate;
+      repeatH = (badgeScale * cropScale) / cropRate;
+    }
+    mat.map.repeat = new Vector2(repeatW, repeatH);
+
+    // offset x
+    const srcX = crop.srcW / 2.0;
+    const offX = crop.x - srcX;
+    const offsetX = offX / crop.srcW;
+    const badgeOffsetX = -0.1025 * cropScale;
+    mat.map.offset.x = offsetX + badgeOffsetX;
+
+    // offset y
+    const srcY = crop.srcH / 2.0;
+    const offY = crop.y - srcY;
+    const offsetY = offY / crop.srcH;
+    const badgeOffsetY = 0.0915 * cropScale;
+    mat.map.offset.y = offsetY + badgeOffsetY;
+
+    // テクスチャが逆さになるのを修正
+    mat.map.flipY = false;
+  }
+
   // 3Dモデルをcloneし、テクスチャの設定を行う
   const setupModel = (newMap: Texture) => {
     const newModel = srcModel.clone();
@@ -38,13 +83,8 @@ const ModelItemImpl = ({ itemData, srcModel, handleDirectDown }: Props) => {
       newModel.traverse((o: any) => {
         const mesh = o as Mesh;
         const mat = new MeshStandardMaterial();
-        const crop = itemData.cropData; // クロップは後で
-
         mat.map = newMap;
-        mat.map.center = new Vector2(0.5, 0.5); // テクスチャの重心を中央に。これ大事
-        // クロップ処理をここに書く
-        //
-        mat.map.flipY = false;
+        transformMat(mat, itemData.cropData)
         mesh.material = mat;
       });
       return newModel;

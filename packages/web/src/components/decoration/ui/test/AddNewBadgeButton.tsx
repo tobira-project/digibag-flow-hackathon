@@ -15,10 +15,10 @@ const AddNewBadgeButton = () => {
   const handleClick = () => {
     // 缶バッジを追加する
     const newCropData: CropData = {
-      x: Math.random() * 100 - 100,
-      y: 0,
-      w: 100,
-      h: 100,
+      x: 110 + Math.random() * 60 - 30,
+      y: 110 + Math.random() * 60 - 30,
+      w: 220,
+      h: 220,
       srcW: 220,
       srcH: 220,
     };
