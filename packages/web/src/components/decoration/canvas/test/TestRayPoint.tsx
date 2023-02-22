@@ -2,6 +2,8 @@ import useDecorationStore from "@/stores/decorationStore";
 import { useGLTF, useTexture } from "@react-three/drei";
 import { useEffect, useRef } from "react";
 import { Group, Mesh, MeshStandardMaterial } from "three";
+import decorationData from "../../../../data/decorationData.json"
+
 
 /**
  * テスト用に作成。raycast衝突点に缶バッジを表示するコンポーネント。
@@ -12,7 +14,7 @@ const TestRayPoint = () => {
     rayHitPos: state.rayHitPos,
     modelLookDir: state.modelLookDir,
   }));
-  const { scene: model } = useGLTF("/decoration/can-badge/can-badge.glb");
+  const { scene: model } = useGLTF<string>(decorationData.modelSrc["CAN_BADGE"]);
   const { map, metalic, roughness } = useTexture({
     map: "/decoration/can-badge/can-badge_baseColor.png",
     metalic: "/decoration/can-badge/can-badge_metallic.png",

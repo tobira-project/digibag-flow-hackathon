@@ -22,7 +22,7 @@ const DecorationCanvas = () => {
   const raycaster = useMemo(() => new Raycaster(), []);
   const cameraRef = useRef<Camera>(null);
   const itaBagRef = useRef<Object3D>(null);
-  const { handleDirectMove } = useDirectMove(raycaster, cameraRef, itaBagRef);
+  const { handleDirectDown, handleDirectMove } = useDirectMove(raycaster, cameraRef, itaBagRef);
 
   const bind = useGesture({
     onDrag: (state) => {
@@ -44,7 +44,7 @@ const DecorationCanvas = () => {
           {/* 勝手にカメラ位置を調整するのを止められれば、Stageは便利そう
            <Stage adjustCamera={false} center={{ disable: true }}> */}
           <ItaBagModel itaBagRef={itaBagRef} />
-          <PlacedItemContainer />
+          <PlacedItemContainer handleDirectDown={handleDirectDown} />
           <TestRayPoint />
           {/* </Stage> */}
         </Canvas>

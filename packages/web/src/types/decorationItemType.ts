@@ -19,7 +19,9 @@ export type PlacedItemData = {
   srcUrl: string;
   itemType: ItemType;
   position: Vector3;
-  rotation: Quaternion;
+  // rotation設定用。設置面の法線方向を元に設定する。
+  // lookAtを使う想定だが、これでは上下逆さまに貼るようなことができないので改善の余地あり。
+  lookDir: Vector3;
   scale: number;
   cropData: CropData;
 };

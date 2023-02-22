@@ -1,2 +1,2 @@
 // テスト用テクスチャソース
-export const TEST_IMAGE_SRC = "/decoration/test/toruto.png";
+// export const TEST_IMAGE_SRC = "/decoration/test/toruto.png";

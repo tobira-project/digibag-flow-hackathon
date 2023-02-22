@@ -57,8 +57,8 @@ const useDecorationStore = create<DecorationState>((set) => ({
         id: newId,
         srcUrl,
         itemType,
-        position: new Vector3(), // 要デフォルト値。バッグの表面というのが少し厄介そう
-        rotation: new Quaternion(), // 要デフォルト値。バッグの表面というのが少し厄介そう
+        position: new Vector3(Math.random() * 6 - 3, Math.random() * 6 - 3, -7), // 要デフォルト値。バッグの表面というのが少し厄介そう
+        lookDir: new Vector3(0, 1, 0), // 要デフォルト値。バッグの表面というのが少し厄介そう
         scale: 1.0, // 要デフォルト値。
         cropData,
       });
@@ -66,6 +66,8 @@ const useDecorationStore = create<DecorationState>((set) => ({
       // サイズデータについて、ここでは追加だけ行う。
       const newSizeData = state.itemSizeData;
       newSizeData[newId] = new Vector3();
+
+      console.log(newItems);
 
       return { placedItems: newItems, itemSizeData: newSizeData };
     }),

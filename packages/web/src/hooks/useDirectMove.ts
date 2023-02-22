@@ -1,4 +1,5 @@
-import { Camera } from "@react-three/fiber";
+import { DirectDownType } from "@/types/directMoveType";
+import { Camera, ThreeEvent } from "@react-three/fiber";
 import { FullGestureState } from "@use-gesture/react";
 import { RefObject, useState } from "react";
 import {
@@ -13,7 +14,7 @@ import useDecorationStore from "../stores/decorationStore";
 import getWindowSize from "./getWindowSize";
 
 // use-gestureの型に沿って定義
-type DragState = (
+type DragType = (
   state: Omit<FullGestureState<"drag">, "event"> & {
     event: PointerEvent | MouseEvent | TouchEvent | KeyboardEvent;
   }
@@ -23,7 +24,10 @@ type HookType = (
   raycaster: Raycaster,
   cameraRef: RefObject<Camera>,
   itaBagRef: RefObject<Object3D> // 痛バッグの3Dモデル
-) => { handleDirectMove: DragState };
+) => {
+  handleDirectDown: DirectDownType;
+  handleDirectMove: DragType;
+};
 
 /**
  * 缶バッジ移動操作の処理をまとめたhook
@@ -40,11 +44,11 @@ const useDirectMove: HookType = (raycaster, cameraRef, itaBagRef) => {
 
   const { innerWidth, innerHeight } = getWindowSize();
 
-  const handleDirectMove = (
-    state: Omit<FullGestureState<"drag">, "event"> & {
-      event: PointerEvent | MouseEvent | TouchEvent | KeyboardEvent;
-    }
-  ) => {
+  const handleDirectDown: DirectDownType = (e, itemId) => {
+
+  }
+
+  const handleDirectMove: DragType = (state) => {
     state.event.preventDefault();
 
     // raycastのために画面w,hを(-1~1, -1~1)に正規化
@@ -71,7 +75,7 @@ const useDirectMove: HookType = (raycaster, cameraRef, itaBagRef) => {
     setRayHitPos(pointerTarget.point);
   };
 
-  return { handleDirectMove };
+  return { handleDirectDown, handleDirectMove };
 };
 
 export default useDirectMove;

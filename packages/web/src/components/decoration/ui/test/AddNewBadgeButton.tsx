@@ -1,6 +1,7 @@
-import { TEST_IMAGE_SRC } from "@/constants/decorationConstants";
+// import { TEST_IMAGE_SRC } from "@/constants/decorationConstants";
 import useDecorationStore from "@/stores/decorationStore";
 import { CropData } from "@/types/decorationItemType";
+import decorationData from "../../../../data/decorationData.json"
 
 /**
  * テスト用に作成。缶バッジを追加するボタン
@@ -14,14 +15,18 @@ const AddNewBadgeButton = () => {
   const handleClick = () => {
     // 缶バッジを追加する
     const newCropData: CropData = {
-      x: 0,
+      x: Math.random() * 100 - 100,
       y: 0,
-      w: 0,
-      h: 0,
-      srcW: 0,
-      srcH: 0,
+      w: 100,
+      h: 100,
+      srcW: 220,
+      srcH: 220,
     };
-    placeNewItem(TEST_IMAGE_SRC, "CAN_BADGE", newCropData);
+    placeNewItem(
+      decorationData.testImageSrc,
+      "CAN_BADGE",
+      newCropData
+    );
   };
   return (
     <>
