@@ -37,40 +37,70 @@ type HookType = (
  * @returns
  */
 const useDirectMove: HookType = (raycaster, cameraRef, itaBagRef) => {
-  const { setRayHitPos, setModelLookDir } = useDecorationStore((state) => ({
-    setRayHitPos: state.setRayHitPos,
-    setModelLookDir: state.setModelLookDir,
+  const { selectedItemId, setItemPos, setItemLookDir, interactState, setInteractState } = useDecorationStore((state) => ({
+    selectedItemId: state.selectedItemId,
+    setItemPos: state.setItemPos,
+    setItemLookDir: state.setItemLookDir,
+    interactState: state.interactState,
+    setInteractState: state.setInteractState,
   }));
 
   const { innerWidth, innerHeight } = getWindowSize();
 
-  const handleDirectDown: DirectDownType = (e, itemId) => {};
+  const handleDirectDown: DirectDownType = (ev, itemId) => {
+    if (ev.button !== 0) return; // 左クリックでない
+    if (selectedItemId !== itemId) return; // 選択状態のグッズでない
+    if (interactState !== "NONE") return; // 他の操作中
+
+    setInteractState("DIRECT_START")
+  };
 
   const handleDirectMove: DragType = (state) => {
     state.event.preventDefault();
+
+    if (state.pinching) {
+      // ピンチ操作中はイベント発火をキャンセル
+      state.cancel();
+      return;
+    }
+    // refが紐づいていない
+    if (!cameraRef.current || !itaBagRef.current) return;
+    // ドラッグ操作開始or操作中
+    if (interactState !== "DIRECT_START" && interactState !== "DIRECT_MOVING") return;
+    // 移動終了処理
+    if (state.last) {
+      // 必要であれば、バッグにしまう処理を行う
+      //
+      setInteractState("NONE")
+      return;
+    }
+    // 左クリックでない
+    if (state.buttons !== 1) return;
+    // 初回（要らない気がする）
+    if (state.first) return;
 
     // raycastのために画面w,hを(-1~1, -1~1)に正規化
     const pointer = new Vector2(
       (state.xy[0] / innerWidth) * 2 - 1,
       -(state.xy[1] / innerHeight) * 2 + 1
     );
-
-    if (!cameraRef.current) return;
     raycaster.setFromCamera(pointer, cameraRef.current);
 
     // raycastのターゲットを取得
-    if (!itaBagRef.current) return;
     const intersects = raycaster.intersectObject(itaBagRef.current);
-    if (intersects.length === 0) return; // 衝突なしなら処理終了
+    // 衝突なし
+    if (intersects.length === 0) return;
+
     const pointerTarget = intersects[0];
 
     // 接地面（法線ベクトル）の制限が必要であればここに書く。
     // 痛バッグの裏には付けられない など
 
     if (pointerTarget.face) {
-      setModelLookDir(pointerTarget.face.normal);
+      setItemLookDir(selectedItemId, pointerTarget.face.normal);
     }
-    setRayHitPos(pointerTarget.point);
+    setItemPos(selectedItemId, pointerTarget.point);
+    setInteractState("DIRECT_MOVING")
   };
 
   return { handleDirectDown, handleDirectMove };

@@ -30,7 +30,6 @@ const DecorationCanvas = () => {
 
   const bind = useGesture({
     onDrag: (state) => {
-      // ドラッグ操作をしたとき、モデル上にオブジェクトを表示する
       handleDirectMove(state);
     },
   });

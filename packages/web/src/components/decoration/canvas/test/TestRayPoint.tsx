@@ -9,10 +9,10 @@ import decorationData from "../../../../data/decorationData.json";
  * @returns jsx
  */
 const TestRayPoint = () => {
-  const { rayHitPos, modelLookDir } = useDecorationStore((state) => ({
-    rayHitPos: state.rayHitPos,
-    modelLookDir: state.modelLookDir,
-  }));
+  // const { rayHitPos, modelLookDir } = useDecorationStore((state) => ({
+  //   rayHitPos: state.rayHitPos,
+  //   modelLookDir: state.modelLookDir,
+  // }));
   const { scene: model } = useGLTF<string>(
     decorationData.modelSrc["CAN_BADGE"]
   );
@@ -34,15 +34,19 @@ const TestRayPoint = () => {
     });
   }, [model, map, metalic, roughness]);
 
-  useEffect(() => {
-    // 缶バッジをraycast衝突点の法線方向に向ける
-    if (!groupRef.current) return;
-    groupRef.current.lookAt(rayHitPos.sub(modelLookDir));
-  }, [modelLookDir]);
+  // useEffect(() => {
+  //   // 缶バッジをraycast衝突点の法線方向に向ける
+  //   if (!groupRef.current) return;
+  //   groupRef.current.lookAt(rayHitPos.sub(modelLookDir));
+  // }, [modelLookDir]);
 
   return (
     <>
-      <group ref={groupRef} position={rayHitPos} scale={[1, 1, 1]}>
+      <group
+        ref={groupRef}
+        // position={rayHitPos}
+        scale={[1, 1, 1]}
+      >
         <primitive object={model} />
       </group>
     </>
