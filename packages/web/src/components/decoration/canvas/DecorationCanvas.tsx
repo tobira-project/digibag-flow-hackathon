@@ -28,11 +28,19 @@ const DecorationCanvas = () => {
     itaBagRef
   );
 
-  const bind = useGesture({
-    onDrag: (state) => {
-      handleDirectMove(state);
+  const bind = useGesture(
+    {
+      onDrag: (state) => {
+        console.log('hoge')
+        if (state.pinching) {
+          state.cancel();
+          return;
+        }
+        handleDirectMove(state);
+      },
     },
-  });
+    { drag: { pointer: { buttons: [1, 2] } } } // 右ドラッグも許可（スケール用）
+  );
 
   return (
     <>
