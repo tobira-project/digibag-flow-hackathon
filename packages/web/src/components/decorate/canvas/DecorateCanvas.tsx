@@ -4,10 +4,10 @@ import { useMemo, useRef } from "react";
 import ItaBagModel from "./ItaBagModel";
 import Environments from "./Environments";
 import { useGesture } from "@use-gesture/react";
-import useDirectMove from "@/libs/hooks/useDirectMove";
+import useDirectMove from "@/hooks/useDirectMove";
 import CameraContainer from "./CameraContainer";
 import TestRayPoint from "./test/TestRayPoint";
-import getWindowSize from "@/libs/hooks/getWindowSize";
+import getWindowSize from "@/hooks/getWindowSize";
 import { Stage, PerspectiveCamera } from "@react-three/drei";
 
 /**

@@ -1,10 +1,10 @@
-import useDecorateStore from "@/libs/stores/decorateStore";
+import useDecorateStore from "@/stores/decorateStore";
 import { useGLTF, useTexture } from "@react-three/drei";
 import { useEffect, useRef } from "react";
 import { Group, Mesh, MeshStandardMaterial } from "three";
 
 /**
- * 検証用に作成。raycast衝突点に缶バッジを表示するコンポーネント。
+ * テスト用に作成。raycast衝突点に缶バッジを表示するコンポーネント。
  * @returns jsx
  */
 const TestRayPoint = () => {
