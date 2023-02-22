@@ -5,6 +5,7 @@ import { useTexture } from "@react-three/drei";
 import { useEffect, useState } from "react";
 import {
   Box3,
+  Color,
   Group,
   Mesh,
   MeshStandardMaterial,
@@ -27,10 +28,13 @@ type Props = {
  * @returns
  */
 const ModelItemImpl = ({ itemData, srcModel, handleDirectDown }: Props) => {
-  const { itemSizeData, setItemSize } = useDecorationStore((state) => ({
-    itemSizeData: state.itemSizeData,
-    setItemSize: state.setItemSize,
-  }));
+  const { itemSizeData, setItemSize, selectedItemId } = useDecorationStore(
+    (state) => ({
+      itemSizeData: state.itemSizeData,
+      setItemSize: state.setItemSize,
+      selectedItemId: state.selectedItemId,
+    })
+  );
   const [model, setModel] = useState<Group>();
   const [colorMap, setColorMap] = useState<Texture>(); // もしかしたらstate管理要らないかも
 
@@ -87,6 +91,7 @@ const ModelItemImpl = ({ itemData, srcModel, handleDirectDown }: Props) => {
     const newModel = srcModel.clone();
     if (itemData.itemType === "CAN_BADGE") {
       newModel.traverse((o: any) => {
+        if (o.type !== "Mesh") return;
         const mesh = o as Mesh;
         const mat = new MeshStandardMaterial();
         mat.map = newMap;
@@ -119,6 +124,19 @@ const ModelItemImpl = ({ itemData, srcModel, handleDirectDown }: Props) => {
     const boundBox = new Box3().setFromObject(srcModel);
     setItemSize(itemData.id, boundBox.getSize(new Vector3()));
   }, []);
+
+  // グッズの選択状態が変化したとき、見た目を更新する
+  useEffect(() => {
+    if (!model) return;
+    model.traverse((o: any) => {
+      if (o.type !== "Mesh") return;
+      const mesh = o as Mesh;
+      const mat = mesh.material as MeshStandardMaterial;
+      // 選択されているときだけ、色を変化させる
+      const color = selectedItemId === itemData.id ? "#ffa" : "#fff";
+      mat.color = new Color(color);
+    });
+  }, [selectedItemId]);
 
   return (
     <>
