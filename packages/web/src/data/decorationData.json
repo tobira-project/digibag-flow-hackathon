@@ -1,0 +1,6 @@
+{
+  "testImageSrc": "/decoration/test/toruto.png",
+  "modelSrc": {
+    "CAN_BADGE": "/decoration/can-badge/can-badge.glb"
+  }
+}

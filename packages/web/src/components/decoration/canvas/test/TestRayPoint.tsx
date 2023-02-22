@@ -1,22 +1,25 @@
-import useDecorateStore from "@/libs/stores/decorateStore";
+import useDecorationStore from "@/stores/decorationStore";
 import { useGLTF, useTexture } from "@react-three/drei";
 import { useEffect, useRef } from "react";
 import { Group, Mesh, MeshStandardMaterial } from "three";
+import decorationData from "../../../../data/decorationData.json";
 
 /**
- * 検証用に作成。raycast衝突点に缶バッジを表示するコンポーネント。
+ * テスト用に作成。raycast衝突点に缶バッジを表示するコンポーネント。
  * @returns jsx
  */
 const TestRayPoint = () => {
-  const { rayHitPos, modelLookDir } = useDecorateStore((state) => ({
+  const { rayHitPos, modelLookDir } = useDecorationStore((state) => ({
     rayHitPos: state.rayHitPos,
     modelLookDir: state.modelLookDir,
   }));
-  const { scene: model } = useGLTF("/decorate/kan-badge.glb");
+  const { scene: model } = useGLTF<string>(
+    decorationData.modelSrc["CAN_BADGE"]
+  );
   const { map, metalic, roughness } = useTexture({
-    map: "/decorate/kan-badge_baseColor.png",
-    metalic: "/decorate/kan-badge_metallic.png",
-    roughness: "/decorate/kan-badge_roughness.png",
+    map: "/decoration/can-badge/can-badge_baseColor.png",
+    metalic: "/decoration/can-badge/can-badge_metallic.png",
+    roughness: "/decoration/can-badge/can-badge_roughness.png",
   });
   const groupRef = useRef<Group>(null);
 

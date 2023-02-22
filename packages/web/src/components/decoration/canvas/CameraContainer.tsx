@@ -8,8 +8,8 @@ type Props = {
 
 /**
  * カメラをまとめたコンポーネント
- * @param param0 
- * @returns 
+ * @param param0
+ * @returns
  */
 const CameraContainer = ({ cameraRef }: Props) => {
   return (
