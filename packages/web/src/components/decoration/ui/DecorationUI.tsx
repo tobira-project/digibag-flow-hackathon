@@ -2,7 +2,7 @@ import AddNewBadgeButton from "./test/AddNewBadgeButton";
 
 /**
  * 装飾画面のUIを表示するコンポーネント
- * @returns 
+ * @returns
  */
 const DecorationUI = () => {
   return (

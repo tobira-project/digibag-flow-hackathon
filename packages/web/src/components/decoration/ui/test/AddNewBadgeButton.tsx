@@ -1,7 +1,7 @@
 // import { TEST_IMAGE_SRC } from "@/constants/decorationConstants";
 import useDecorationStore from "@/stores/decorationStore";
 import { CropData } from "@/types/decorationItemType";
-import decorationData from "../../../../data/decorationData.json"
+import decorationData from "../../../../data/decorationData.json";
 
 /**
  * テスト用に作成。缶バッジを追加するボタン
@@ -22,11 +22,7 @@ const AddNewBadgeButton = () => {
       srcW: 220,
       srcH: 220,
     };
-    placeNewItem(
-      decorationData.testImageSrc,
-      "CAN_BADGE",
-      newCropData
-    );
+    placeNewItem(decorationData.testImageSrc, "CAN_BADGE", newCropData);
   };
   return (
     <>

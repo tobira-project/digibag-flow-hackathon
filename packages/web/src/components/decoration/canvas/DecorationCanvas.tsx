@@ -22,7 +22,11 @@ const DecorationCanvas = () => {
   const raycaster = useMemo(() => new Raycaster(), []);
   const cameraRef = useRef<Camera>(null);
   const itaBagRef = useRef<Object3D>(null);
-  const { handleDirectDown, handleDirectMove } = useDirectMove(raycaster, cameraRef, itaBagRef);
+  const { handleDirectDown, handleDirectMove } = useDirectMove(
+    raycaster,
+    cameraRef,
+    itaBagRef
+  );
 
   const bind = useGesture({
     onDrag: (state) => {

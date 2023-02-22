@@ -5,8 +5,8 @@ import { useEffect } from "react";
 import GLBItem from "./GLBItem";
 
 type Props = {
-  handleDirectDown: DirectDownType
-}
+  handleDirectDown: DirectDownType;
+};
 
 /**
  * 痛バッグ上に設置しているグッズを表示するコンポーネント
@@ -17,15 +17,17 @@ const PlacedItemContainer = ({ handleDirectDown }: Props) => {
     placedItems: state.placedItems,
   }));
 
-  return <>
-    {placedItems.map((item) => {
-      const params = {
-        key: `${item.id}`,
-        itemData: item,
-      }
-      return <GLBItem {...params} handleDirectDown={handleDirectDown} />
-    })}
-  </>;
+  return (
+    <>
+      {placedItems.map((item) => {
+        const params = {
+          key: `${item.id}`,
+          itemData: item,
+        };
+        return <GLBItem {...params} handleDirectDown={handleDirectDown} />;
+      })}
+    </>
+  );
 };
 
 export default PlacedItemContainer;

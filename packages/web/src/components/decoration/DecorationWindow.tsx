@@ -3,7 +3,7 @@ import DecorationUI from "./ui/DecorationUI";
 
 /**
  * 装飾作業を行う画面を表示するコンポーネント
- * @returns 
+ * @returns
  */
 const DecorationWindow = () => {
   return (

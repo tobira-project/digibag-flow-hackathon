@@ -44,9 +44,7 @@ const useDirectMove: HookType = (raycaster, cameraRef, itaBagRef) => {
 
   const { innerWidth, innerHeight } = getWindowSize();
 
-  const handleDirectDown: DirectDownType = (e, itemId) => {
-
-  }
+  const handleDirectDown: DirectDownType = (e, itemId) => {};
 
   const handleDirectMove: DragType = (state) => {
     state.event.preventDefault();
