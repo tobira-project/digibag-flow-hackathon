@@ -4,7 +4,7 @@ import {
   CropData,
   ItemSizeData,
 } from "@/types/decorationItemType";
-import { Euler, Quaternion, Vector, Vector3 } from "three";
+import { Vector3 } from "three";
 import { create } from "zustand";
 
 type DecorationState = {
@@ -30,6 +30,10 @@ type DecorationState = {
   // アイテムのサイズデータ。アイテム生成時にwebgl側で寸法を取得・データを設定する。
   itemSizeData: ItemSizeData;
   setItemSize: (itemId: string, size: Vector3) => void;
+
+  // placedItems中の選択状態のid
+  selectedItemId: string;
+  selectItem: (itemId: string) => void;
 };
 
 /**
@@ -79,14 +83,19 @@ const useDecorationStore = create<DecorationState>((set) => ({
 
   // グッズのサイズデータ
   itemSizeData: {},
-  setItemSize: (itemId, size) =>
-    set((state) => {
-      const newSizeData = state.itemSizeData;
-      newSizeData[itemId] = size;
-      return {
-        itemSizeData: newSizeData,
-      };
-    }),
+  setItemSize: (itemId, size) => set((state) => {
+    const newSizeData = state.itemSizeData;
+    newSizeData[itemId] = size;
+    return {
+      itemSizeData: newSizeData,
+    };
+  }),
+
+  // placedItems中の選択状態のid
+  selectedItemId: '',
+  selectItem: (itemId) => set((state) => ({
+    selectedItemId: itemId
+  }))
 }));
 
 export default useDecorationStore;
