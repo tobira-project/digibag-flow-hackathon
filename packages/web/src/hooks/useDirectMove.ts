@@ -37,7 +37,13 @@ type HookType = (
  * @returns
  */
 const useDirectMove: HookType = (raycaster, cameraRef, itaBagRef) => {
-  const { selectedItemId, setItemPos, setItemLookDir, interactState, setInteractState } = useDecorationStore((state) => ({
+  const {
+    selectedItemId,
+    setItemPos,
+    setItemLookDir,
+    interactState,
+    setInteractState,
+  } = useDecorationStore((state) => ({
     selectedItemId: state.selectedItemId,
     setItemPos: state.setItemPos,
     setItemLookDir: state.setItemLookDir,
@@ -52,7 +58,7 @@ const useDirectMove: HookType = (raycaster, cameraRef, itaBagRef) => {
     if (selectedItemId !== itemId) return; // 選択状態のグッズでない
     if (interactState !== "NONE") return; // 他の操作中
 
-    setInteractState("DIRECT_START")
+    setInteractState("DIRECT_START");
   };
 
   const handleDirectMove: DragType = (state) => {
@@ -66,17 +72,18 @@ const useDirectMove: HookType = (raycaster, cameraRef, itaBagRef) => {
     // refが紐づいていない
     if (!cameraRef.current || !itaBagRef.current) return;
     // ドラッグ操作開始or操作中
-    if (interactState !== "DIRECT_START" && interactState !== "DIRECT_MOVING") return;
+    if (interactState !== "DIRECT_START" && interactState !== "DIRECT_MOVING")
+      return;
     // 移動終了処理
     if (state.last) {
       // 必要であれば、バッグにしまう処理を行う
       //
-      setInteractState("NONE")
+      setInteractState("NONE");
       return;
     }
     // 左クリックでない
     if (state.buttons !== 1) return;
-    // 初回（要らない気がする）
+    // // 初回（要らない気がする）
     if (state.first) return;
 
     // raycastのために画面w,hを(-1~1, -1~1)に正規化
@@ -100,7 +107,7 @@ const useDirectMove: HookType = (raycaster, cameraRef, itaBagRef) => {
       setItemLookDir(selectedItemId, pointerTarget.face.normal);
     }
     setItemPos(selectedItemId, pointerTarget.point);
-    setInteractState("DIRECT_MOVING")
+    setInteractState("DIRECT_MOVING");
   };
 
   return { handleDirectDown, handleDirectMove };

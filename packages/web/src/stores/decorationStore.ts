@@ -63,11 +63,9 @@ const useDecorationStore = create<DecorationState>((set, get) => ({
         cropData,
       });
 
-      // サイズデータについて、ここでは追加だけ行う。
+      // サイズデータについて、ここでは追加だけ行う。設定処理はモデル生成時
       const newSizeData = state.itemSizeData;
       newSizeData[newId] = new Vector3();
-
-      // console.log(newItems);
 
       return { placedItems: newItems, itemSizeData: newSizeData };
     }),
@@ -78,41 +76,43 @@ const useDecorationStore = create<DecorationState>((set, get) => ({
     }),
 
   // 配置されたグッズのデータ更新系
-  setItemPos: (itemId, pos) => set((state) => {
-    const index = state.placedItems.findIndex((v) => v.id === itemId);
-    const newItems = state.placedItems;
-    newItems[index].position = pos;
-    return { placedItems: newItems }
-  }),
-  setItemLookDir: (itemId, dir) => set((state) => {
-    const index = state.placedItems.findIndex((v) => v.id === itemId);
-    const newItems = state.placedItems;
-    newItems[index].lookDir = dir.clone();
-    return { placedItems: newItems }
-  }),
+  setItemPos: (itemId, pos) =>
+    set((state) => {
+      const index = state.placedItems.findIndex((v) => v.id === itemId);
+      const newItems = state.placedItems;
+      newItems[index].position = pos;
+      return { placedItems: newItems };
+    }),
+  setItemLookDir: (itemId, dir) =>
+    set((state) => {
+      const index = state.placedItems.findIndex((v) => v.id === itemId);
+      const newItems = state.placedItems;
+      newItems[index].lookDir = dir.clone();
+      return { placedItems: newItems };
+    }),
 
   // グッズのサイズデータ
   itemSizeData: {},
-  setItemSize: (itemId, size) => set((state) => {
-    const newSizeData = state.itemSizeData;
-    newSizeData[itemId] = size;
-    return {
-      itemSizeData: newSizeData,
-    };
-  }),
+  setItemSize: (itemId, size) =>
+    set((state) => {
+      const newSizeData = state.itemSizeData;
+      newSizeData[itemId] = size;
+      return {
+        itemSizeData: newSizeData,
+      };
+    }),
 
   // placedItems中の選択状態のid
-  selectedItemId: '',
-  selectItem: (itemId) => set((state) => ({
-    selectedItemId: itemId,
-    selectedItem: state.placedItems.find(v => v.id === itemId)
-  })),
+  selectedItemId: "",
+  selectItem: (itemId) =>
+    set((state) => ({
+      selectedItemId: itemId,
+      selectedItem: state.placedItems.find((v) => v.id === itemId),
+    })),
 
   // ユーザーの操作状態を管理する
-  interactState: 'NONE',
-  setInteractState: (interact) => set((state) => ({ interactState: interact }))
+  interactState: "NONE",
+  setInteractState: (interact) => set((state) => ({ interactState: interact })),
 }));
-
-
 
 export default useDecorationStore;

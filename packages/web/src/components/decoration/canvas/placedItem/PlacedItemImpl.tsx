@@ -18,22 +18,22 @@ type Props = {
  */
 const PlacedItemImpl = ({ itemData, handleDirectDown, children }: Props) => {
   const { selectItem } = useDecorationStore((state) => ({
-    selectItem: state.selectItem
-  }))
+    selectItem: state.selectItem,
+  }));
   const modelGroupRef = useRef<Group>(null);
 
   // モデルを接地面の法線方向に向ける
   useEffect(() => {
     if (!modelGroupRef.current) return;
     modelGroupRef.current.lookAt(itemData.position.sub(itemData.lookDir));
-    console.log(itemData.lookDir, itemData.position)
+    console.log(itemData.lookDir, itemData.position);
   }, [itemData.lookDir]);
 
   // グッズの選択
   const handleOnClick = (e: ThreeEvent<MouseEvent>) => {
     e.stopPropagation();
-    selectItem(itemData.id)
-  }
+    selectItem(itemData.id);
+  };
 
   return (
     <>
