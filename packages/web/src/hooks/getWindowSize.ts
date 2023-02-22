@@ -4,7 +4,7 @@ type HookType = () => {
   innerWidth: number;
   innerHeight: number;
   devicePixelRatio: number;
-}
+};
 
 /**
  * 画面情報を取得するためのhook
@@ -19,7 +19,7 @@ const getWindowSize: HookType = () => {
 
   useEffect(() => {
     if (typeof window === "undefined") {
-      return () => { };
+      return () => {};
     }
     const handleResize = () => {
       setWindowSize({

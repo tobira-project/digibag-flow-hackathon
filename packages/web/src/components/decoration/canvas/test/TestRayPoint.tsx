@@ -12,11 +12,11 @@ const TestRayPoint = () => {
     rayHitPos: state.rayHitPos,
     modelLookDir: state.modelLookDir,
   }));
-  const { scene: model } = useGLTF("/decoration/kan-badge.glb");
+  const { scene: model } = useGLTF("/decoration/can-badge/can-badge.glb");
   const { map, metalic, roughness } = useTexture({
-    map: "/decoration/kan-badge_baseColor.png",
-    metalic: "/decoration/kan-badge_metallic.png",
-    roughness: "/decoration/kan-badge_roughness.png",
+    map: "/decoration/can-badge/can-badge_baseColor.png",
+    metalic: "/decoration/can-badge/can-badge_metallic.png",
+    roughness: "/decoration/can-badge/can-badge_roughness.png",
   });
   const groupRef = useRef<Group>(null);
 

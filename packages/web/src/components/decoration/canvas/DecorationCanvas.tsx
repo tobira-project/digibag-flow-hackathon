@@ -8,7 +8,8 @@ import useDirectMove from "@/hooks/useDirectMove";
 import CameraContainer from "./CameraContainer";
 import TestRayPoint from "./test/TestRayPoint";
 import getWindowSize from "@/hooks/getWindowSize";
-import { Stage, PerspectiveCamera } from "@react-three/drei";
+import { Stage } from "@react-three/drei";
+import PlacedItemContainer from "./placedItem/PlacedItemContainer";
 
 /**
  * 痛バッグ装飾画面のCanvasのコンポーネント。
@@ -20,12 +21,8 @@ const DecorationCanvas = () => {
   // 各ユーザー操作のための定義
   const raycaster = useMemo(() => new Raycaster(), []);
   const cameraRef = useRef<Camera>(null);
-  const itaBagRef = useRef<Mesh>(null);
-  const { handleDirectMove } = useDirectMove(
-    raycaster,
-    cameraRef,
-    itaBagRef
-  );
+  const itaBagRef = useRef<Object3D>(null);
+  const { handleDirectMove } = useDirectMove(raycaster, cameraRef, itaBagRef);
 
   const bind = useGesture({
     onDrag: (state) => {
@@ -47,6 +44,7 @@ const DecorationCanvas = () => {
           {/* 勝手にカメラ位置を調整するのを止められれば、Stageは便利そう
            <Stage adjustCamera={false} center={{ disable: true }}> */}
           <ItaBagModel itaBagRef={itaBagRef} />
+          <PlacedItemContainer />
           <TestRayPoint />
           {/* </Stage> */}
         </Canvas>
