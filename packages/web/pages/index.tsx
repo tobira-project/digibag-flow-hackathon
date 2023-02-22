@@ -5,9 +5,9 @@ export default function Home() {
     <>
       <div>hello world</div>
       <div className='w-20'>
-        <Link href={'/decorate'}>
+        <Link href={'/decoration'}>
           <div className='flex justify-center font-bold bg-green-100 h-10 grid content-center rounded-full'>
-            decorate
+            decoration
           </div>
         </Link>
       </div>

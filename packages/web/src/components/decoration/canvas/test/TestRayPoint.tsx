@@ -1,4 +1,4 @@
-import useDecorateStore from "@/stores/decorateStore";
+import useDecorationStore from "@/stores/decorationStore";
 import { useGLTF, useTexture } from "@react-three/drei";
 import { useEffect, useRef } from "react";
 import { Group, Mesh, MeshStandardMaterial } from "three";
@@ -8,15 +8,15 @@ import { Group, Mesh, MeshStandardMaterial } from "three";
  * @returns jsx
  */
 const TestRayPoint = () => {
-  const { rayHitPos, modelLookDir } = useDecorateStore((state) => ({
+  const { rayHitPos, modelLookDir } = useDecorationStore((state) => ({
     rayHitPos: state.rayHitPos,
     modelLookDir: state.modelLookDir,
   }));
-  const { scene: model } = useGLTF("/decorate/kan-badge.glb");
+  const { scene: model } = useGLTF("/decoration/kan-badge.glb");
   const { map, metalic, roughness } = useTexture({
-    map: "/decorate/kan-badge_baseColor.png",
-    metalic: "/decorate/kan-badge_metallic.png",
-    roughness: "/decorate/kan-badge_roughness.png",
+    map: "/decoration/kan-badge_baseColor.png",
+    metalic: "/decoration/kan-badge_metallic.png",
+    roughness: "/decoration/kan-badge_roughness.png",
   });
   const groupRef = useRef<Group>(null);
 

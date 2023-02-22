@@ -1,7 +1,8 @@
+import { PlacedItemData, ItemType, CropData } from "@/types/decorationItemType";
 import { Euler, Vector3 } from "three";
 import { create } from "zustand";
 
-type DecorateState = {
+type DecorationState = {
   // raycasterの衝突点
   // 検証用に作成。缶バッジの配置には不要になるかも。
   rayHitPos: Vector3;
@@ -12,13 +13,13 @@ type DecorateState = {
   setModelLookDir: (v: Vector3) => void;
 }
 
-const useDecorateStore = create<DecorateState>((set) => ({
+const useDecorationStore = create<DecorationState>((set) => ({
   // raycasterの衝突点
   rayHitPos: new Vector3(0),
   setRayHitPos: (v) => set(() => ({ rayHitPos: v.clone() })),
   // 缶バッジの向き
   modelLookDir: new Vector3(),
-  setModelLookDir: (v) => set(() => ({ modelLookDir: v.clone() }))
+  setModelLookDir: (v) => set(() => ({ modelLookDir: v.clone() })),
 }))
 
-export default useDecorateStore
+export default useDecorationStore

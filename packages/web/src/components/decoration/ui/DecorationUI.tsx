@@ -1,13 +1,13 @@
 import AddNewBadgeButton from "./test/AddNewBadgeButton"
 
-const DecorateUI = () => {
+const DecorationUI = () => {
   return <>
     <div>
-      <div>
+      <div className="absolute bottom-0 left-0">
         <AddNewBadgeButton />
       </div>
     </div>
   </>
 }
 
-export default DecorateUI
+export default DecorationUI

@@ -2,7 +2,7 @@ import { Camera } from "@react-three/fiber";
 import { FullGestureState } from "@use-gesture/react";
 import { RefObject, useState } from "react";
 import { Euler, Mesh, Object3D, PerspectiveCamera, Raycaster, Vector2 } from "three";
-import useDecorateStore from "../stores/decorateStore";
+import useDecorationStore from "../stores/decorationStore";
 import getWindowSize from "./getWindowSize";
 
 // use-gestureの型に沿って定義
@@ -24,7 +24,7 @@ type HookType = (
  * @returns 
  */
 const useDirectMove: HookType = (raycaster, cameraRef, itaBagRef) => {
-  const { setRayHitPos, setModelLookDir } = useDecorateStore((state) => ({
+  const { setRayHitPos, setModelLookDir } = useDecorationStore((state) => ({
     setRayHitPos: state.setRayHitPos,
     setModelLookDir: state.setModelLookDir
   }))

@@ -14,7 +14,7 @@ import { Stage, PerspectiveCamera } from "@react-three/drei";
  * 痛バッグ装飾画面のCanvasのコンポーネント。
  * @returns jsx
  */
-const DecorateCanvas = () => {
+const DecorationCanvas = () => {
   const { innerWidth, innerHeight } = getWindowSize();
 
   // 各ユーザー操作のための定義
@@ -55,4 +55,4 @@ const DecorateCanvas = () => {
   );
 };
 
-export default DecorateCanvas;
+export default DecorationCanvas;
