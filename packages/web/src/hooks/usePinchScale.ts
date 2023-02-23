@@ -1,6 +1,7 @@
 import useDecorationStore from "@/stores/decorationStore";
 import { PinchType } from "@/types/gestureType";
 import { useState } from "react";
+import decorationData from "../data/decorationData.json";
 
 type HookType = () => {
   handleScalePinch: PinchType;
@@ -59,7 +60,7 @@ const usePinchScale: HookType = () => {
 
     // 実際の拡縮処理
     const offset = state.da[0] - startDist;
-    let newScale = startScale + offset / 100.0;
+    let newScale = startScale + offset * decorationData.scaleRate.pinch;
 
     // 最大値設定はここで行う
     //

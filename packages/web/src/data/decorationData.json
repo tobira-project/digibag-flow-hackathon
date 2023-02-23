@@ -2,5 +2,10 @@
   "testImageSrc": "/decoration/test/toruto.png",
   "modelSrc": {
     "CAN_BADGE": "/decoration/can-badge/can-badge.glb"
+  },
+  "scaleRate": {
+    "drag": 0.01,
+    "pinch": 0.01,
+    "wheel": 0.001
   }
 }

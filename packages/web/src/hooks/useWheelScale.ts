@@ -1,6 +1,7 @@
 import useDecorationStore from "@/stores/decorationStore";
 import { WheelType } from "@/types/gestureType";
 import { useState } from "react";
+import decorationData from "../data/decorationData.json";
 
 type HookType = () => {
   handleScaleWheel: WheelType;
@@ -52,7 +53,7 @@ const useWheelScale: HookType = () => {
 
     // 実際の拡縮処理
     const offset = -state.delta[1];
-    let newScale = startScale + offset / 1000.0;
+    let newScale = startScale + offset * decorationData.scaleRate.wheel;
 
     // 最大値設定はここで行う
     //

@@ -2,6 +2,7 @@ import useDecorationStore from "@/stores/decorationStore";
 import { DragType } from "@/types/gestureType";
 import * as GESTURE from "@use-gesture/react";
 import { useState } from "react";
+import decorationData from "../data/decorationData.json";
 
 /**
  * マウスの右ドラッグ操作による缶バッジ拡縮操作の処理をまとめたhook
@@ -58,7 +59,7 @@ const useMouseScale = () => {
     // 実際の拡縮処理
     const offset = [state.xy[0] - startPos[0], -(state.xy[1] - startPos[1])];
     const scaleValue = (1 / Math.sqrt(2)) * (offset[0] + offset[1]);
-    let newScale = startScale + scaleValue / 100.0;
+    let newScale = startScale + scaleValue * decorationData.scaleRate.drag;
 
     // 最大値設定はここで行う
     //
