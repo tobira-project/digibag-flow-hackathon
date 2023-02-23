@@ -13,16 +13,18 @@ const AddNewBadgeButton = () => {
   }));
 
   const handleClick = () => {
-    // 缶バッジを追加する
-    const newCropData: CropData = {
-      x: 110 + Math.random() * 60 - 30,
-      y: 110 + Math.random() * 60 - 30,
-      w: 220,
-      h: 220,
-      srcW: 220,
-      srcH: 220,
-    };
-    placeNewItem(decorationData.testImageSrc, "CAN_BADGE", newCropData);
+    // クロップ画面を表示
+
+    // // 缶バッジを追加する
+    // const newCropData: CropData = {
+    //   x: 110 + Math.random() * 60 - 30,
+    //   y: 110 + Math.random() * 60 - 30,
+    //   w: 220,
+    //   h: 220,
+    //   srcW: 220,
+    //   srcH: 220,
+    // };
+    // placeNewItem(decorationData.testImageSrc, "CAN_BADGE", newCropData);
   };
   return (
     <>

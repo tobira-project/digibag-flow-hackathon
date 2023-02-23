@@ -1,3 +1,4 @@
+import CropWindow from "./crop/CropWindow";
 import AddNewBadgeButton from "./test/AddNewBadgeButton";
 
 /**
@@ -11,6 +12,7 @@ const DecorationUI = () => {
         <div className="absolute bottom-0 left-0">
           <AddNewBadgeButton />
         </div>
+        <CropWindow />
       </div>
     </>
   );
