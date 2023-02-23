@@ -19,3 +19,9 @@ export type PinchType = (
     event: PointerEvent | TouchEvent | WheelEvent | WebKitGestureEvent;
   }
 ) => void;
+
+export type WheelType = (
+  state: Omit<FullGestureState<"wheel">, "event"> & {
+    event: WheelEvent;
+  }
+) => void;

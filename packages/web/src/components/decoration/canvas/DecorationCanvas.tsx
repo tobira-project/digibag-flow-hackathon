@@ -13,6 +13,7 @@ import PlacedItemContainer from "./placedItem/PlacedItemContainer";
 import useMouseScale from "@/hooks/useMouseScale";
 import useDecorationStore from "@/stores/decorationStore";
 import usePinchScale from "@/hooks/usePinchScale";
+import useWheelScale from "@/hooks/useWheelScale";
 
 /**
  * 痛バッグ装飾画面のCanvasのコンポーネント。
@@ -36,6 +37,7 @@ const DecorationCanvas = () => {
   );
   const { handleScaleMove } = useMouseScale();
   const { handleScalePinch } = usePinchScale();
+  const { handleScaleWheel } = useWheelScale();
 
   const bind = useGesture(
     {
@@ -49,6 +51,7 @@ const DecorationCanvas = () => {
         handleScaleMove(state);
       },
       onPinch: handleScalePinch,
+      onWheel: handleScaleWheel,
     },
     { drag: { pointer: { buttons: [1, 2] } } } // 右ドラッグも許可（スケール用）
   );

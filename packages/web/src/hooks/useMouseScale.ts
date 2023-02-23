@@ -55,6 +55,7 @@ const useMouseScale = () => {
     )
       return;
 
+    // 実際の拡縮処理
     const offset = [state.xy[0] - startPos[0], -(state.xy[1] - startPos[1])];
     const scaleValue = (1 / Math.sqrt(2)) * (offset[0] + offset[1]);
     let newScale = startScale + scaleValue / 100.0;
@@ -62,12 +63,9 @@ const useMouseScale = () => {
     // 最大値設定はここで行う
     //
 
-    // スケールの更新
     setItemScale(selectedItemId, newScale);
 
-    // 拡大による移動可能範囲からのはみ出しの制限が必要であればここで行う
-    //
-
+    // 操作状態の更新
     setInteractState("MOUSE_SCALING");
   };
 

@@ -15,7 +15,9 @@ type InteractState =
   | "MOUSE_SCALE_START"
   | "MOUSE_SCALING"
   | "PINCH_SCALE_START"
-  | "PINCH_SCALING";
+  | "PINCH_SCALING"
+  | "WHEEL_SCALE_START"
+  | "WHEEL_SCALING";
 
 type DecorationState = {
   // 配置されたグッズのデータ
