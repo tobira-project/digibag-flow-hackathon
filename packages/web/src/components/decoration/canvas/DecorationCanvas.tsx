@@ -11,12 +11,17 @@ import getWindowSize from "@/hooks/getWindowSize";
 import { Stage } from "@react-three/drei";
 import PlacedItemContainer from "./placedItem/PlacedItemContainer";
 import useMouseScale from "@/hooks/useMouseScale";
+import useDecorationStore from "@/stores/decorationStore";
 
 /**
  * 痛バッグ装飾画面のCanvasのコンポーネント。
  * @returns jsx
  */
 const DecorationCanvas = () => {
+  const { selectItem } = useDecorationStore((state) => ({
+    selectItem: state.selectItem
+  }))
+
   const { innerWidth, innerHeight } = getWindowSize();
 
   // 各ユーザー操作のための定義
@@ -52,6 +57,7 @@ const DecorationCanvas = () => {
           raycaster={raycaster}
           flat // テクスチャを元画像に近い色味で表示するための設定
           {...bind()}
+          onPointerMissed={() => selectItem('')}
         >
           <Environments />
           <CameraContainer cameraRef={cameraRef} />
