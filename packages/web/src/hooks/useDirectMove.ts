@@ -1,24 +1,14 @@
-import { DirectDownType } from "@/types/directMoveType";
-import { Camera, ThreeEvent } from "@react-three/fiber";
-import { FullGestureState } from "@use-gesture/react";
-import { RefObject, useState } from "react";
+import { DirectDownType } from "@/types/gestureType";
+import { DragType } from "@/types/gestureType";
+import { Camera } from "@react-three/fiber";
+import { RefObject } from "react";
 import {
-  Euler,
-  Mesh,
   Object3D,
-  PerspectiveCamera,
   Raycaster,
   Vector2,
 } from "three";
 import useDecorationStore from "../stores/decorationStore";
 import getWindowSize from "./getWindowSize";
-
-// use-gestureの型に沿って定義
-type DragType = (
-  state: Omit<FullGestureState<"drag">, "event"> & {
-    event: PointerEvent | MouseEvent | TouchEvent | KeyboardEvent;
-  }
-) => void;
 
 type HookType = (
   raycaster: Raycaster,
@@ -69,11 +59,13 @@ const useDirectMove: HookType = (raycaster, cameraRef, itaBagRef) => {
       state.cancel();
       return;
     }
+
     // refが紐づいていない
     if (!cameraRef.current || !itaBagRef.current) return;
-    // ドラッグ操作開始or操作中
+    // 移動操作開始or操作中が必要
     if (interactState !== "DIRECT_START" && interactState !== "DIRECT_MOVING")
       return;
+
     // 移動終了処理
     if (state.last) {
       // 必要であれば、バッグにしまう処理を行う
@@ -81,9 +73,10 @@ const useDirectMove: HookType = (raycaster, cameraRef, itaBagRef) => {
       setInteractState("NONE");
       return;
     }
+
     // 左クリックでない
     if (state.buttons !== 1) return;
-    // // 初回（要らない気がする）
+    // 最初のクリックでは移動しない（触り心地の良さと、他の操作との衝突避け用）
     if (state.first) return;
 
     // raycastのために画面w,hを(-1~1, -1~1)に正規化
@@ -102,11 +95,15 @@ const useDirectMove: HookType = (raycaster, cameraRef, itaBagRef) => {
 
     // 接地面（法線ベクトル）の制限が必要であればここに書く。
     // 痛バッグの裏には付けられない など
+    // 
 
     if (pointerTarget.face) {
+      // 姿勢の更新
       setItemLookDir(selectedItemId, pointerTarget.face.normal);
     }
+    // 座標の更新
     setItemPos(selectedItemId, pointerTarget.point);
+
     setInteractState("DIRECT_MOVING");
   };
 

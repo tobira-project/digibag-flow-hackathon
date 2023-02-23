@@ -10,6 +10,7 @@ import TestRayPoint from "./test/TestRayPoint";
 import getWindowSize from "@/hooks/getWindowSize";
 import { Stage } from "@react-three/drei";
 import PlacedItemContainer from "./placedItem/PlacedItemContainer";
+import useMouseScale from "@/hooks/useMouseScale";
 
 /**
  * 痛バッグ装飾画面のCanvasのコンポーネント。
@@ -27,6 +28,7 @@ const DecorationCanvas = () => {
     cameraRef,
     itaBagRef
   );
+  const { handleScaleMove } = useMouseScale();
 
   const bind = useGesture(
     {
@@ -37,6 +39,7 @@ const DecorationCanvas = () => {
           return;
         }
         handleDirectMove(state);
+        handleScaleMove(state);
       },
     },
     { drag: { pointer: { buttons: [1, 2] } } } // 右ドラッグも許可（スケール用）

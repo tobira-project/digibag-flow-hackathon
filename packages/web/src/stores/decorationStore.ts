@@ -8,7 +8,9 @@ import { Vector, Vector3 } from "three";
 import { create } from "zustand";
 
 // ユーザーによるグッズの操作状態
-type InteractState = "NONE" | "DIRECT_START" | "DIRECT_MOVING";
+type InteractState = "NONE"
+  | "DIRECT_START" | "DIRECT_MOVING"
+  | "MOUSE_SCALE_START" | "MOUSE_SCALING";
 
 type DecorationState = {
   // 配置されたグッズのデータ
@@ -24,6 +26,7 @@ type DecorationState = {
   // 配置されたグッズのデータ更新系
   setItemPos: (itemId: string, pos: Vector3) => void;
   setItemLookDir: (itemId: string, dir: Vector3) => void;
+  setItemScale: (itemId: string, scale: number) => void;
 
   // アイテムのサイズデータ。アイテム生成時にwebgl側で寸法を取得・データを設定する。
   itemSizeData: ItemSizeData;
@@ -33,6 +36,9 @@ type DecorationState = {
   // 更新の検知はidで行いたいが、item自体にアクセスする機会も頻繁にある
   selectedItemId: string;
   selectItem: (itemId: string) => void;
+  getSelectedItem: () => (PlacedItemData | undefined);
+  // placedItems中の配列のインデックスを取得する
+  getPlacedItemIndex: (itemId: string) => number;
 
   // ユーザーの操作状態を管理する
   interactState: InteractState;
@@ -78,17 +84,24 @@ const useDecorationStore = create<DecorationState>((set, get) => ({
   // 配置されたグッズのデータ更新系
   setItemPos: (itemId, pos) =>
     set((state) => {
-      const index = state.placedItems.findIndex((v) => v.id === itemId);
+      const index = state.getPlacedItemIndex(itemId);
       const newItems = state.placedItems;
       newItems[index].position = pos;
       return { placedItems: newItems };
     }),
   setItemLookDir: (itemId, dir) =>
     set((state) => {
-      const index = state.placedItems.findIndex((v) => v.id === itemId);
+      const index = state.getPlacedItemIndex(itemId);
       const newItems = state.placedItems;
       newItems[index].lookDir = dir.clone();
       return { placedItems: newItems };
+    }),
+  setItemScale: (itemId, scale) =>
+    set((state) => {
+      const index = state.getPlacedItemIndex(itemId);
+      const newItems = state.placedItems;
+      newItems[index].scale = scale;
+      return { placedItems: newItems }
     }),
 
   // グッズのサイズデータ
@@ -109,6 +122,13 @@ const useDecorationStore = create<DecorationState>((set, get) => ({
       selectedItemId: itemId,
       selectedItem: state.placedItems.find((v) => v.id === itemId),
     })),
+  getSelectedItem: () => {
+    return get().placedItems.find((v) => v.id === get().selectedItemId);
+  },
+  // placedItems中の配列のインデックスを取得する
+  getPlacedItemIndex: (itemId) => {
+    return get().placedItems.findIndex((v) => v.id === get().selectedItemId);
+  },
 
   // ユーザーの操作状態を管理する
   interactState: "NONE",
