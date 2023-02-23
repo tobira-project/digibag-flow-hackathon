@@ -7,11 +7,15 @@ import useDecorationStore from "@/stores/decorationStore";
 
 const CropWindow = () => {
   const {
+    placeNewItem,
+    cropSrc,
     isCropWindowOpen,
     closeCropWindow,
     hideCropWindow,
   } = useDecorationStore(
     (state) => ({
+      placeNewItem: state.placeNewItem,
+      cropSrc: state.cropSrc,
       isCropWindowOpen: state.isCropWindowOpen,
       closeCropWindow: state.closeCropWindow,
       hideCropWindow: state.hideCropWindow,
@@ -30,7 +34,12 @@ const CropWindow = () => {
 
   const handleCrop = (cropData: CropData) => {
     // クロップデータの設定
-    //
+    if (cropSrc) {
+      placeNewItem(cropSrc.imageUrl, cropSrc.itemType, cropData)
+    } else {
+      console.warn("cropSrc is undefined");
+    }
+    // クロップウィンドウを閉じる
     closeCropWindow();
   }
 

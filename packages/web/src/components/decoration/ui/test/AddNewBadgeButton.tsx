@@ -15,17 +15,10 @@ const AddNewBadgeButton = () => {
 
   const handleClick = () => {
     // クロップ画面を表示
-    openCropWindow(decorationData.testImageSrc)
-    // // 缶バッジを追加する
-    // const newCropData: CropData = {
-    //   x: 110 + Math.random() * 60 - 30,
-    //   y: 110 + Math.random() * 60 - 30,
-    //   w: 220,
-    //   h: 220,
-    //   srcW: 220,
-    //   srcH: 220,
-    // };
-    // placeNewItem(decorationData.testImageSrc, "CAN_BADGE", newCropData);
+    openCropWindow({
+      imageUrl: decorationData.testImageSrc,
+      itemType: "CAN_BADGE"
+    })
   };
   return (
     <>

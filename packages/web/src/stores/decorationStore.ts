@@ -19,6 +19,12 @@ type InteractState =
   | "WHEEL_SCALE_START"
   | "WHEEL_SCALING";
 
+// クロップウィンドウに渡されるソースデータ
+type CropSrc = {
+  imageUrl: string;
+  itemType: ItemType;
+};
+
 type DecorationState = {
   // 配置されたグッズのデータ
   placedItems: PlacedItemData[];
@@ -52,9 +58,10 @@ type DecorationState = {
   setInteractState: (interact: InteractState) => void;
 
   // クロップウィンドウの状態管理
+  cropSrc: CropSrc | null;
   isCropWindowOpen: boolean;
   isCropWindowVisible: boolean;
-  openCropWindow: (cropSrc: string) => void;
+  openCropWindow: (cropSrc: CropSrc) => void;
   closeCropWindow: () => void; // 閉じるアニメーション開始する
   hideCropWindow: () => void; // 非表示にする
 };
@@ -149,6 +156,7 @@ const useDecorationStore = create<DecorationState>((set, get) => ({
   setInteractState: (interact) => set((state) => ({ interactState: interact })),
 
   // クロップウィンドウの状態管理
+  cropSrc: null,
   isCropWindowOpen: false,
   isCropWindowVisible: false,
   openCropWindow: (cropSrc) =>
