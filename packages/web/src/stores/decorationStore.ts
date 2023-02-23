@@ -50,6 +50,13 @@ type DecorationState = {
   // ユーザーの操作状態を管理する
   interactState: InteractState;
   setInteractState: (interact: InteractState) => void;
+
+  // クロップウィンドウの状態管理
+  isCropWindowOpen: boolean;
+  isCropWindowVisible: boolean;
+  openCropWindow: (cropSrc: string) => void;
+  closeCropWindow: () => void; // 閉じるアニメーション開始する
+  hideCropWindow: () => void; // 非表示にする
 };
 
 /**
@@ -140,6 +147,15 @@ const useDecorationStore = create<DecorationState>((set, get) => ({
   // ユーザーの操作状態を管理する
   interactState: "NONE",
   setInteractState: (interact) => set((state) => ({ interactState: interact })),
+
+  // クロップウィンドウの状態管理
+  isCropWindowOpen: false,
+  isCropWindowVisible: false,
+  openCropWindow: (cropSrc) =>
+    set(() => ({ isCropWindowOpen: true, isCropWindowVisible: true, cropSrc })),
+  closeCropWindow: () =>
+    set(() => ({ isCropWindowOpen: false, cropSrc: null })),
+  hideCropWindow: () => set(() => ({ isCropWindowVisible: false })),
 }));
 
 export default useDecorationStore;

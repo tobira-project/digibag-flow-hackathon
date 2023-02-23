@@ -1,7 +1,11 @@
-const CloseButton = () => {
+type Props = {
+  handleClick: () => void;
+}
+
+const CloseButton = ({ handleClick }: Props) => {
   return <>
     <div className="absolute top-6 right-4">
-      <button className="crop-close-btn">
+      <button className="crop-close-btn" onClick={handleClick}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6"

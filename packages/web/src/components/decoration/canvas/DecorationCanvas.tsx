@@ -58,7 +58,7 @@ const DecorationCanvas = () => {
 
   return (
     <>
-      <div style={{ width: innerWidth, height: innerHeight }}>
+      <div className="w-[100vw] h-[100vh]">
         <Canvas
           raycaster={raycaster}
           flat // テクスチャを元画像に近い色味で表示するための設定
