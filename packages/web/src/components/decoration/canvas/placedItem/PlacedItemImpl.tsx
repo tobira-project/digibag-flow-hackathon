@@ -17,8 +17,10 @@ type Props = {
  * @returns
  */
 const PlacedItemImpl = ({ itemData, handleDirectDown, children }: Props) => {
-  const { selectItem } = useDecorationStore((state) => ({
+  const { selectItem, isCameraMode, toggleCameraMode } = useDecorationStore((state) => ({
     selectItem: state.selectItem,
+    isCameraMode: state.isCameraMode,
+    toggleCameraMode: state.toggleCameraMode,
   }));
   const modelGroupRef = useRef<Group>(null);
 
@@ -32,6 +34,12 @@ const PlacedItemImpl = ({ itemData, handleDirectDown, children }: Props) => {
   // グッズの選択
   const handleOnClick = (e: ThreeEvent<MouseEvent>) => {
     e.stopPropagation();
+
+    // カメラモードで選択した場合、グッズ操作モードへ切り替える
+    if (isCameraMode) {
+      toggleCameraMode();
+    }
+
     selectItem(itemData.id);
   };
 

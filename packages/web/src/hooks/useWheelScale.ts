@@ -14,12 +14,14 @@ const useWheelScale: HookType = () => {
     selectedItemId,
     getSelectedItem,
     setItemScale,
+    isCameraMode,
   } = useDecorationStore((state) => ({
     interactState: state.interactState,
     setInteractState: state.setInteractState,
     selectedItemId: state.selectedItemId,
     getSelectedItem: state.getSelectedItem,
     setItemScale: state.setItemScale,
+    isCameraMode: state.isCameraMode,
   }));
 
   const [startScale, setStartScale] = useState<number>(0);
@@ -30,6 +32,8 @@ const useWheelScale: HookType = () => {
       setInteractState("NONE");
       return;
     }
+    // カメラモードの時
+    if (isCameraMode) return;
     // 選択状態でない
     if (selectedItemId === "") return;
 

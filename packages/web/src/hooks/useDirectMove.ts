@@ -29,18 +29,21 @@ const useDirectMove: HookType = (raycaster, cameraRef, itaBagRef) => {
     setItemLookDir,
     interactState,
     setInteractState,
+    isCameraMode,
   } = useDecorationStore((state) => ({
     selectedItemId: state.selectedItemId,
     setItemPos: state.setItemPos,
     setItemLookDir: state.setItemLookDir,
     interactState: state.interactState,
     setInteractState: state.setInteractState,
+    isCameraMode: state.isCameraMode,
   }));
 
   const { innerWidth, innerHeight } = getWindowSize();
 
   const handleDirectDown: DirectDownType = (ev, itemId) => {
     if (ev.button !== 0) return; // 左クリックでない
+    if (isCameraMode) return; // カメラモードの時
     if (selectedItemId !== itemId) return; // 選択状態のグッズでない
     if (interactState !== "NONE") return; // 他の操作中
 
@@ -58,6 +61,8 @@ const useDirectMove: HookType = (raycaster, cameraRef, itaBagRef) => {
 
     // refが紐づいていない
     if (!cameraRef.current || !itaBagRef.current) return;
+    // カメラモードの時
+    if (isCameraMode) return;
     // 移動操作開始or操作中が必要
     if (interactState !== "DIRECT_START" && interactState !== "DIRECT_MOVING")
       return;

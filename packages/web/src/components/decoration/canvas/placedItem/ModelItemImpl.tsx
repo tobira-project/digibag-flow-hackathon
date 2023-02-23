@@ -28,11 +28,12 @@ type Props = {
  * @returns
  */
 const ModelItemImpl = ({ itemData, srcModel, handleDirectDown }: Props) => {
-  const { itemSizeData, setItemSize, selectedItemId } = useDecorationStore(
+  const { itemSizeData, setItemSize, selectedItemId, isCameraMode } = useDecorationStore(
     (state) => ({
       itemSizeData: state.itemSizeData,
       setItemSize: state.setItemSize,
       selectedItemId: state.selectedItemId,
+      isCameraMode: state.isCameraMode,
     })
   );
   const [model, setModel] = useState<Group>();
@@ -133,10 +134,10 @@ const ModelItemImpl = ({ itemData, srcModel, handleDirectDown }: Props) => {
       const mesh = o as Mesh;
       const mat = mesh.material as MeshStandardMaterial;
       // 選択されているときだけ、色を変化させる
-      const color = selectedItemId === itemData.id ? "#ffa" : "#fff";
+      const color = !isCameraMode && selectedItemId === itemData.id ? "#ffa" : "#fff";
       mat.color = new Color(color);
     });
-  }, [selectedItemId]);
+  }, [selectedItemId, isCameraMode]);
 
   return (
     <>

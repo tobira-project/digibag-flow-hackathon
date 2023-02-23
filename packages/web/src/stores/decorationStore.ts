@@ -57,6 +57,10 @@ type DecorationState = {
   interactState: InteractState;
   setInteractState: (interact: InteractState) => void;
 
+  // グッズ操作/カメラ操作 モードの切り替え状態を管理する
+  isCameraMode: boolean;
+  toggleCameraMode: () => void;
+
   // クロップウィンドウの状態管理
   cropSrc: CropSrc | null;
   isCropWindowOpen: boolean;
@@ -154,6 +158,12 @@ const useDecorationStore = create<DecorationState>((set, get) => ({
   // ユーザーの操作状態を管理する
   interactState: "NONE",
   setInteractState: (interact) => set((state) => ({ interactState: interact })),
+
+  // グッズ操作/カメラ操作 モードの切り替え状態を管理する
+  isCameraMode: false,
+  toggleCameraMode: () => set((state) => ({
+    isCameraMode: !state.isCameraMode,
+  })),
 
   // クロップウィンドウの状態管理
   cropSrc: null,
