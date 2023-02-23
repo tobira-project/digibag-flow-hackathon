@@ -40,7 +40,6 @@ const DecorationCanvas = () => {
   const bind = useGesture(
     {
       onDrag: (state) => {
-        console.log("hoge");
         if (state.pinching) {
           state.cancel();
           return;

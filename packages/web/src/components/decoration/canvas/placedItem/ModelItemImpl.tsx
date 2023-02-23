@@ -95,8 +95,14 @@ const ModelItemImpl = ({ itemData, srcModel, handleDirectDown }: Props) => {
         if (o.type !== "Mesh") return;
         const mesh = o as Mesh;
         const mat = new MeshStandardMaterial();
+        // テクスチャの設定
         mat.map = newMap;
+        // クロップに沿ってテクスチャを変形
         transformMat(mat, itemData.cropData);
+        // 設置した最初に選択状態の色にする。
+        const color = "#ffa";
+        mat.color = new Color(color);
+        // メッシュにマテリアルを適用
         mesh.material = mat;
       });
       return newModel;

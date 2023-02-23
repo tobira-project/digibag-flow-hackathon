@@ -98,7 +98,7 @@ const useDecorationStore = create<DecorationState>((set, get) => ({
       const newSizeData = state.itemSizeData;
       newSizeData[newId] = new Vector3();
 
-      return { placedItems: newItems, itemSizeData: newSizeData };
+      return { placedItems: newItems, itemSizeData: newSizeData, selectedItemId: newId, isCameraMode: false };
     }),
   putBackItem: (id) =>
     set((state) => {

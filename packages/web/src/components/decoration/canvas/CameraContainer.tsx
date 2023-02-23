@@ -27,7 +27,14 @@ const CameraContainer = ({ cameraRef }: Props) => {
         enableZoom={isCameraMode}
         enableRotate={isCameraMode}
         enablePan={false}
-        
+        target={[0, 0, 0]}
+        rotateSpeed={0.3}
+        // 距離制限
+        minDistance={10}
+        maxDistance={20}
+        // 上下方向の回り込み制限
+        minPolarAngle={Math.PI * 0.8 / 3}
+        maxPolarAngle={(Math.PI * 1.5) / 3}
       />
     </>
   );

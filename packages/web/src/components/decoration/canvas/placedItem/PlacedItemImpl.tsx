@@ -28,7 +28,6 @@ const PlacedItemImpl = ({ itemData, handleDirectDown, children }: Props) => {
   useEffect(() => {
     if (!modelGroupRef.current) return;
     modelGroupRef.current.lookAt(itemData.position.sub(itemData.lookDir));
-    console.log(itemData.lookDir, itemData.position);
   }, [itemData.lookDir]);
 
   // グッズの選択
