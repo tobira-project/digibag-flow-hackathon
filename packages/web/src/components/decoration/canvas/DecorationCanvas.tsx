@@ -24,8 +24,6 @@ const DecorationCanvas = () => {
     selectItem: state.selectItem,
   }));
 
-  const { innerWidth, innerHeight } = getWindowSize();
-
   // 各ユーザー操作のための定義
   const raycaster = useMemo(() => new Raycaster(), []);
   const cameraRef = useRef<Camera>(null);

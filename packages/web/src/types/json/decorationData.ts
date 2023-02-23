@@ -8,7 +8,7 @@ declare module "*/decorationData.json" {
       drag: number;
       pinch: number;
       wheel: number;
-    }
+    };
   };
   const value: JSONType;
   export = value;

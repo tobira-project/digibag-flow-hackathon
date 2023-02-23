@@ -7,13 +7,9 @@ import AddNewBadgeButton from "./test/AddNewBadgeButton";
  * @returns
  */
 const DecorationUI = () => {
-  const {
-    isCropWindowVisible,
-  } = useDecorationStore(
-    (state) => ({
-      isCropWindowVisible: state.isCropWindowVisible,
-    })
-  );
+  const { isCropWindowVisible } = useDecorationStore((state) => ({
+    isCropWindowVisible: state.isCropWindowVisible,
+  }));
 
   return (
     <>
