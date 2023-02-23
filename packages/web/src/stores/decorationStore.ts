@@ -8,9 +8,12 @@ import { Vector, Vector3 } from "three";
 import { create } from "zustand";
 
 // ユーザーによるグッズの操作状態
-type InteractState = "NONE"
-  | "DIRECT_START" | "DIRECT_MOVING"
-  | "MOUSE_SCALE_START" | "MOUSE_SCALING";
+type InteractState =
+  | "NONE"
+  | "DIRECT_START"
+  | "DIRECT_MOVING"
+  | "MOUSE_SCALE_START"
+  | "MOUSE_SCALING";
 
 type DecorationState = {
   // 配置されたグッズのデータ
@@ -36,7 +39,7 @@ type DecorationState = {
   // 更新の検知はidで行いたいが、item自体にアクセスする機会も頻繁にある
   selectedItemId: string;
   selectItem: (itemId: string) => void;
-  getSelectedItem: () => (PlacedItemData | undefined);
+  getSelectedItem: () => PlacedItemData | undefined;
   // placedItems中の配列のインデックスを取得する
   getPlacedItemIndex: (itemId: string) => number;
 
@@ -101,7 +104,7 @@ const useDecorationStore = create<DecorationState>((set, get) => ({
       const index = state.getPlacedItemIndex(itemId);
       const newItems = state.placedItems;
       newItems[index].scale = scale;
-      return { placedItems: newItems }
+      return { placedItems: newItems };
     }),
 
   // グッズのサイズデータ

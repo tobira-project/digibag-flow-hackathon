@@ -2,11 +2,7 @@ import { DirectDownType } from "@/types/gestureType";
 import { DragType } from "@/types/gestureType";
 import { Camera } from "@react-three/fiber";
 import { RefObject } from "react";
-import {
-  Object3D,
-  Raycaster,
-  Vector2,
-} from "three";
+import { Object3D, Raycaster, Vector2 } from "three";
 import useDecorationStore from "../stores/decorationStore";
 import getWindowSize from "./getWindowSize";
 
@@ -95,7 +91,7 @@ const useDirectMove: HookType = (raycaster, cameraRef, itaBagRef) => {
 
     // 接地面（法線ベクトル）の制限が必要であればここに書く。
     // 痛バッグの裏には付けられない など
-    // 
+    //
 
     if (pointerTarget.face) {
       // 姿勢の更新

@@ -19,8 +19,8 @@ import useDecorationStore from "@/stores/decorationStore";
  */
 const DecorationCanvas = () => {
   const { selectItem } = useDecorationStore((state) => ({
-    selectItem: state.selectItem
-  }))
+    selectItem: state.selectItem,
+  }));
 
   const { innerWidth, innerHeight } = getWindowSize();
 
@@ -38,7 +38,7 @@ const DecorationCanvas = () => {
   const bind = useGesture(
     {
       onDrag: (state) => {
-        console.log('hoge')
+        console.log("hoge");
         if (state.pinching) {
           state.cancel();
           return;
@@ -57,7 +57,7 @@ const DecorationCanvas = () => {
           raycaster={raycaster}
           flat // テクスチャを元画像に近い色味で表示するための設定
           {...bind()}
-          onPointerMissed={() => selectItem('')}
+          onPointerMissed={() => selectItem("")}
         >
           <Environments />
           <CameraContainer cameraRef={cameraRef} />
