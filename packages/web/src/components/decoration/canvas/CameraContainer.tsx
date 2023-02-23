@@ -14,8 +14,8 @@ type Props = {
  */
 const CameraContainer = ({ cameraRef }: Props) => {
   const { isCameraMode } = useDecorationStore((state) => ({
-    isCameraMode: state.isCameraMode
-  }))
+    isCameraMode: state.isCameraMode,
+  }));
 
   return (
     <>
@@ -33,7 +33,7 @@ const CameraContainer = ({ cameraRef }: Props) => {
         minDistance={10}
         maxDistance={20}
         // 上下方向の回り込み制限
-        minPolarAngle={Math.PI * 0.8 / 3}
+        minPolarAngle={(Math.PI * 0.8) / 3}
         maxPolarAngle={(Math.PI * 1.5) / 3}
       />
     </>

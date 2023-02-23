@@ -7,7 +7,7 @@ import useDecorationStore from "@/stores/decorationStore";
 
 /**
  * グッズのクロップ作業画面を表示するコンポーネント
- * @returns 
+ * @returns
  */
 const CropWindow = () => {
   const {

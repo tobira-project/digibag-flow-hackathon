@@ -98,7 +98,12 @@ const useDecorationStore = create<DecorationState>((set, get) => ({
       const newSizeData = state.itemSizeData;
       newSizeData[newId] = new Vector3();
 
-      return { placedItems: newItems, itemSizeData: newSizeData, selectedItemId: newId, isCameraMode: false };
+      return {
+        placedItems: newItems,
+        itemSizeData: newSizeData,
+        selectedItemId: newId,
+        isCameraMode: false,
+      };
     }),
   putBackItem: (id) =>
     set((state) => {
@@ -161,9 +166,10 @@ const useDecorationStore = create<DecorationState>((set, get) => ({
 
   // グッズ操作/カメラ操作 モードの切り替え状態を管理する
   isCameraMode: false,
-  toggleCameraMode: () => set((state) => ({
-    isCameraMode: !state.isCameraMode,
-  })),
+  toggleCameraMode: () =>
+    set((state) => ({
+      isCameraMode: !state.isCameraMode,
+    })),
 
   // クロップウィンドウの状態管理
   cropSrc: null,

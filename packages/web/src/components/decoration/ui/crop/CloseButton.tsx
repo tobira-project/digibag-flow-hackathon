@@ -4,8 +4,8 @@ type Props = {
 
 /**
  * クロップウィンドウの閉じるボタン
- * @param param0 
- * @returns 
+ * @param param0
+ * @returns
  */
 const CloseButton = ({ handleClick }: Props) => {
   return (

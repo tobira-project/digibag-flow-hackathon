@@ -17,11 +17,13 @@ type Props = {
  * @returns
  */
 const PlacedItemImpl = ({ itemData, handleDirectDown, children }: Props) => {
-  const { selectItem, isCameraMode, toggleCameraMode } = useDecorationStore((state) => ({
-    selectItem: state.selectItem,
-    isCameraMode: state.isCameraMode,
-    toggleCameraMode: state.toggleCameraMode,
-  }));
+  const { selectItem, isCameraMode, toggleCameraMode } = useDecorationStore(
+    (state) => ({
+      selectItem: state.selectItem,
+      isCameraMode: state.isCameraMode,
+      toggleCameraMode: state.toggleCameraMode,
+    })
+  );
   const modelGroupRef = useRef<Group>(null);
 
   // モデルを接地面の法線方向に向ける
