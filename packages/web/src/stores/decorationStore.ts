@@ -13,7 +13,9 @@ type InteractState =
   | "DIRECT_START"
   | "DIRECT_MOVING"
   | "MOUSE_SCALE_START"
-  | "MOUSE_SCALING";
+  | "MOUSE_SCALING"
+  | "PINCH_SCALE_START"
+  | "PINCH_SCALING";
 
 type DecorationState = {
   // 配置されたグッズのデータ

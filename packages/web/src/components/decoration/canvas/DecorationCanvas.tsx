@@ -3,7 +3,7 @@ import { Mesh, Object3D, Raycaster } from "three";
 import { useMemo, useRef } from "react";
 import ItaBagModel from "./ItaBagModel";
 import Environments from "./Environments";
-import { useGesture } from "@use-gesture/react";
+import { useGesture, usePinch } from "@use-gesture/react";
 import useDirectMove from "@/hooks/useDirectMove";
 import CameraContainer from "./CameraContainer";
 import TestRayPoint from "./test/TestRayPoint";
@@ -12,6 +12,7 @@ import { Stage } from "@react-three/drei";
 import PlacedItemContainer from "./placedItem/PlacedItemContainer";
 import useMouseScale from "@/hooks/useMouseScale";
 import useDecorationStore from "@/stores/decorationStore";
+import usePinchScale from "@/hooks/usePinchScale";
 
 /**
  * 痛バッグ装飾画面のCanvasのコンポーネント。
@@ -34,6 +35,7 @@ const DecorationCanvas = () => {
     itaBagRef
   );
   const { handleScaleMove } = useMouseScale();
+  const { handleScalePinch } = usePinchScale();
 
   const bind = useGesture(
     {
@@ -46,6 +48,7 @@ const DecorationCanvas = () => {
         handleDirectMove(state);
         handleScaleMove(state);
       },
+      onPinch: handleScalePinch,
     },
     { drag: { pointer: { buttons: [1, 2] } } } // 右ドラッグも許可（スケール用）
   );

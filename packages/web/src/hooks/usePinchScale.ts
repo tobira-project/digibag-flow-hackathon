@@ -1,13 +1,16 @@
 import useDecorationStore from "@/stores/decorationStore";
-import { DragType } from "@/types/gestureType";
-import * as GESTURE from "@use-gesture/react";
+import { PinchType } from "@/types/gestureType";
 import { useState } from "react";
 
+type HookType = () => {
+  handleScalePinch: PinchType;
+};
+
 /**
- * マウスの右ドラッグ操作による缶バッジ拡縮操作の処理をまとめたhook
+ * スマホのピンチ操作による缶バッジの拡縮操作の処理をまとめたhook
  * @returns
  */
-const useMouseScale = () => {
+const usePinchScale: HookType = () => {
   const {
     interactState,
     setInteractState,
@@ -21,10 +24,11 @@ const useMouseScale = () => {
     getSelectedItem: state.getSelectedItem,
     setItemScale: state.setItemScale,
   }));
-  const [startPos, setStartPos] = useState<GESTURE.Vector2>([0, 0]);
+
+  const [startDist, setStartDist] = useState<number>(0);
   const [startScale, setStartScale] = useState<number>(0);
 
-  const handleScaleMove: DragType = (state) => {
+  const handleScalePinch: PinchType = (state) => {
     state.event.preventDefault();
     // 拡縮終了処理
     if (state.last) {
@@ -33,8 +37,6 @@ const useMouseScale = () => {
     }
     // 選択状態でない
     if (selectedItemId === "") return;
-    // 右クリックでない
-    if (state.buttons !== 2 || interactState === "DIRECT_START") return;
 
     const selectedItem = getSelectedItem();
     // 選択状態が不正
@@ -42,22 +44,21 @@ const useMouseScale = () => {
 
     // 初回処理
     if (state.first) {
-      setStartPos(state.xy);
+      setStartDist(state.da[0]);
       setStartScale(selectedItem.scale);
-      setInteractState("MOUSE_SCALE_START");
+      setInteractState("PINCH_SCALE_START");
       return;
     }
 
     // 拡縮操作開始or操作中が必要
     if (
-      interactState !== "MOUSE_SCALE_START" &&
-      interactState !== "MOUSE_SCALING"
+      interactState !== "PINCH_SCALE_START" &&
+      interactState !== "PINCH_SCALING"
     )
       return;
 
-    const offset = [state.xy[0] - startPos[0], -(state.xy[1] - startPos[1])];
-    const scaleValue = (1 / Math.sqrt(2)) * (offset[0] + offset[1]);
-    let newScale = startScale + scaleValue / 100.0;
+    const offset = state.da[0] - startDist;
+    let newScale = startScale + offset / 100.0;
 
     // 最大値設定はここで行う
     //
@@ -65,13 +66,10 @@ const useMouseScale = () => {
     // スケールの更新
     setItemScale(selectedItemId, newScale);
 
-    // 拡大による移動可能範囲からのはみ出しの制限が必要であればここで行う
-    //
-
-    setInteractState("MOUSE_SCALING");
+    setInteractState("PINCH_SCALING");
   };
 
-  return { handleScaleMove };
+  return { handleScalePinch };
 };
 
-export default useMouseScale;
+export default usePinchScale;
