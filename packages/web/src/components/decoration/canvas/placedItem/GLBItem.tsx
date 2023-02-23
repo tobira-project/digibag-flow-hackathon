@@ -1,8 +1,8 @@
 import { PlacedItemData } from "@/types/decorationItemType";
-import { DirectDownType } from "@/types/directMoveType";
+import { DirectDownType } from "@/types/gestureType";
 import { useGLTF } from "@react-three/drei";
 import ModelItemImpl from "./ModelItemImpl";
-import decorationData from "../../../../data/decorationData.json";
+import decorationData from "@/data/decorationData.json";
 
 type Props = {
   itemData: PlacedItemData;

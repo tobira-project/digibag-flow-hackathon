@@ -1,6 +1,6 @@
 import useDecorationStore from "@/stores/decorationStore";
 import { CropData, PlacedItemData } from "@/types/decorationItemType";
-import { DirectDownType } from "@/types/directMoveType";
+import { DirectDownType } from "@/types/gestureType";
 import { useTexture } from "@react-three/drei";
 import { useEffect, useState } from "react";
 import {
@@ -28,13 +28,13 @@ type Props = {
  * @returns
  */
 const ModelItemImpl = ({ itemData, srcModel, handleDirectDown }: Props) => {
-  const { itemSizeData, setItemSize, selectedItemId } = useDecorationStore(
-    (state) => ({
+  const { itemSizeData, setItemSize, selectedItemId, isCameraMode } =
+    useDecorationStore((state) => ({
       itemSizeData: state.itemSizeData,
       setItemSize: state.setItemSize,
       selectedItemId: state.selectedItemId,
-    })
-  );
+      isCameraMode: state.isCameraMode,
+    }));
   const [model, setModel] = useState<Group>();
   const [colorMap, setColorMap] = useState<Texture>(); // もしかしたらstate管理要らないかも
 
@@ -94,8 +94,14 @@ const ModelItemImpl = ({ itemData, srcModel, handleDirectDown }: Props) => {
         if (o.type !== "Mesh") return;
         const mesh = o as Mesh;
         const mat = new MeshStandardMaterial();
+        // テクスチャの設定
         mat.map = newMap;
+        // クロップに沿ってテクスチャを変形
         transformMat(mat, itemData.cropData);
+        // 設置した最初に選択状態の色にする。
+        const color = "#ffa";
+        mat.color = new Color(color);
+        // メッシュにマテリアルを適用
         mesh.material = mat;
       });
       return newModel;
@@ -133,10 +139,11 @@ const ModelItemImpl = ({ itemData, srcModel, handleDirectDown }: Props) => {
       const mesh = o as Mesh;
       const mat = mesh.material as MeshStandardMaterial;
       // 選択されているときだけ、色を変化させる
-      const color = selectedItemId === itemData.id ? "#ffa" : "#fff";
+      const color =
+        !isCameraMode && selectedItemId === itemData.id ? "#ffa" : "#fff";
       mat.color = new Color(color);
     });
-  }, [selectedItemId]);
+  }, [selectedItemId, isCameraMode]);
 
   return (
     <>

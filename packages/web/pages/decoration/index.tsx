@@ -4,7 +4,7 @@ import { NextPage } from "next";
 const DecorationPage: NextPage = () => {
   return (
     <>
-      <div>
+      <div className="overflow-hidden">
         <DecorationWindow />
       </div>
     </>

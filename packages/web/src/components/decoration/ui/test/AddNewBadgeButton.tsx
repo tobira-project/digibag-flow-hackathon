@@ -8,22 +8,19 @@ import decorationData from "../../../../data/decorationData.json";
  * @returns
  */
 const AddNewBadgeButton = () => {
-  const { placeNewItem } = useDecorationStore((state) => ({
-    placeNewItem: state.placeNewItem,
+  const { openCropWindow } = useDecorationStore((state) => ({
+    openCropWindow: state.openCropWindow,
   }));
 
+  // クリック時の処理
   const handleClick = () => {
-    // 缶バッジを追加する
-    const newCropData: CropData = {
-      x: 110 + Math.random() * 60 - 30,
-      y: 110 + Math.random() * 60 - 30,
-      w: 220,
-      h: 220,
-      srcW: 220,
-      srcH: 220,
-    };
-    placeNewItem(decorationData.testImageSrc, "CAN_BADGE", newCropData);
+    // クロップ画面を表示
+    openCropWindow({
+      imageUrl: decorationData.testImageSrc,
+      itemType: "CAN_BADGE",
+    });
   };
+
   return (
     <>
       <div className="bg-white rounded-full h-10 grid content-center">

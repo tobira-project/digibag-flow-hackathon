@@ -1,3 +1,46 @@
+// メディアクエリのメソッド定義
+$breakpoint: (
+  tab: "screen and (min-width: 520px)",
+  pc: "screen and (min-width: 960px)",
+);
+
+@mixin mq($bp) {
+  @media #{map-get($breakpoint, $bp)} {
+    @content;
+  }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  // クロップウィンドウ
+  .crop {
+    &-window {
+      @apply h-full;
+      @apply bg-[#f5f5f5];
+      @apply rounded-t-[10px];
+    }
+
+    &-close-btn {
+      @apply btn btn-circle;
+      @apply border-none;
+      @apply text-white;
+      @apply bg-[#414142] hover:bg-[#343434];
+    }
+
+    &-submit-btn {
+      @apply btn btn-square;
+      @apply border-none;
+      @apply text-white;
+      @apply bg-[#1879DE] hover:bg-[#146ac4];
+      @apply rounded-[30px];
+      @apply mt-4;
+      @apply w-[140px] h-[20px];
+      @include mq(tab) {
+        @apply w-[400px] h-[60px];
+      }
+    }
+  }
+}

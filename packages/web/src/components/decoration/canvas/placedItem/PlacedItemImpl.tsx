@@ -1,6 +1,6 @@
 import useDecorationStore from "@/stores/decorationStore";
 import { PlacedItemData } from "@/types/decorationItemType";
-import { DirectDownType } from "@/types/directMoveType";
+import { DirectDownType } from "@/types/gestureType";
 import { ThreeEvent } from "@react-three/fiber";
 import { ReactNode, Suspense, useEffect, useRef } from "react";
 import { Group } from "three";
@@ -17,21 +17,30 @@ type Props = {
  * @returns
  */
 const PlacedItemImpl = ({ itemData, handleDirectDown, children }: Props) => {
-  const { selectItem } = useDecorationStore((state) => ({
-    selectItem: state.selectItem,
-  }));
+  const { selectItem, isCameraMode, toggleCameraMode } = useDecorationStore(
+    (state) => ({
+      selectItem: state.selectItem,
+      isCameraMode: state.isCameraMode,
+      toggleCameraMode: state.toggleCameraMode,
+    })
+  );
   const modelGroupRef = useRef<Group>(null);
 
   // モデルを接地面の法線方向に向ける
   useEffect(() => {
     if (!modelGroupRef.current) return;
     modelGroupRef.current.lookAt(itemData.position.sub(itemData.lookDir));
-    console.log(itemData.lookDir, itemData.position);
   }, [itemData.lookDir]);
 
   // グッズの選択
   const handleOnClick = (e: ThreeEvent<MouseEvent>) => {
     e.stopPropagation();
+
+    // カメラモードで選択した場合、グッズ操作モードへ切り替える
+    if (isCameraMode) {
+      toggleCameraMode();
+    }
+
     selectItem(itemData.id);
   };
 
