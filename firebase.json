@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "packages/web/build",
+    "public": "packages/web/out",
     "cleanUrls": true,
     "ignore": [
       "firebase.json",

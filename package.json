@@ -12,7 +12,8 @@
     "build:web": "yarn workspace web build",
     "start:web": "yarn workspace web start",
     "lint:web": "yarn workspace web lint",
+    "export:web": "yarn workspace web export",
     "deploy:firestore": "firebase deploy --only firestore",
-    "deploy:web": "firebase deploy --only hosting:web"
+    "deploy:web": "firebase deploy --only hosting"
   }
 }
