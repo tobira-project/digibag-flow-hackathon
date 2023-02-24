@@ -1,13 +1,17 @@
 import useDecorationStore from "@/stores/decorationStore";
-import { WheelType } from "@/types/gestureType";
+import { PinchType } from "@/types/decoration/gestureType";
 import { useState } from "react";
 import decorationData from "../data/decorationData.json";
 
 type HookType = () => {
-  handleScaleWheel: WheelType;
+  handleScalePinch: PinchType;
 };
 
-const useWheelScale: HookType = () => {
+/**
+ * スマホのピンチ操作による缶バッジの拡縮操作の処理をまとめたhook
+ * @returns
+ */
+const usePinchScale: HookType = () => {
   const {
     interactState,
     setInteractState,
@@ -24,9 +28,12 @@ const useWheelScale: HookType = () => {
     isCameraMode: state.isCameraMode,
   }));
 
+  const [startDist, setStartDist] = useState<number>(0);
   const [startScale, setStartScale] = useState<number>(0);
 
-  const handleScaleWheel: WheelType = (state) => {
+  // ピンチジェスチャーのイベントハンドル
+  const handleScalePinch: PinchType = (state) => {
+    state.event.preventDefault();
     // 拡縮終了処理
     if (state.last) {
       setInteractState("NONE");
@@ -43,21 +50,22 @@ const useWheelScale: HookType = () => {
 
     // 初回処理
     if (state.first) {
+      setStartDist(state.da[0]);
       setStartScale(selectedItem.scale);
-      setInteractState("WHEEL_SCALE_START");
+      setInteractState("PINCH_SCALE_START");
       return;
     }
 
     // 拡縮操作開始or操作中が必要
     if (
-      interactState !== "WHEEL_SCALE_START" &&
-      interactState !== "WHEEL_SCALING"
+      interactState !== "PINCH_SCALE_START" &&
+      interactState !== "PINCH_SCALING"
     )
       return;
 
     // 実際の拡縮処理
-    const offset = -state.delta[1];
-    let newScale = startScale + offset * decorationData.scaleRate.wheel;
+    const offset = state.da[0] - startDist;
+    let newScale = startScale + offset * decorationData.scaleRate.pinch;
 
     // 最大値設定はここで行う
     //
@@ -65,10 +73,10 @@ const useWheelScale: HookType = () => {
     setItemScale(selectedItemId, newScale);
 
     // 操作状態の更新
-    setInteractState("WHEEL_SCALING");
+    setInteractState("PINCH_SCALING");
   };
 
-  return { handleScaleWheel };
+  return { handleScalePinch };
 };
 
-export default useWheelScale;
+export default usePinchScale;
