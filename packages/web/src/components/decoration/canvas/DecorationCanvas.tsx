@@ -81,7 +81,7 @@ const DecorationCanvas = () => {
           <ItaBagModel itaBagRef={itaBagRef} />
           <DirectMoveContext.Provider value={handleDirectDown}>
             <RaycastContext.Provider value={{ raycaster, cameraRef, itaBagRef }} >
-              <PlacedItemContainer handleDirectDown={handleDirectDown} />
+              <PlacedItemContainer />
             </RaycastContext.Provider>
           </DirectMoveContext.Provider>
           <TestRayPoint />
