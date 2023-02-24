@@ -79,7 +79,7 @@ const PlacedItemImpl = ({ itemData, children }: Props) => {
             onClick={handleOnClick}
             onPointerDown={(e) => handleDirectDown(e, itemData.id)}
             position={itemData.position}
-            scale={[itemData.scale, itemData.scale, 1]}
+            scale={[itemData.scale, itemData.scale, 0.5]}
           >
             {children}
           </group>
