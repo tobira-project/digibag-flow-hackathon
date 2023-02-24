@@ -21,10 +21,9 @@ const PlacedItemContainer = ({ handleDirectDown }: Props) => {
     <>
       {placedItems.map((item) => {
         const params = {
-          key: `${item.id}`,
           itemData: item,
         };
-        return <GLBItem {...params} handleDirectDown={handleDirectDown} />;
+        return <GLBItem key={item.id} {...params} handleDirectDown={handleDirectDown} />;
       })}
     </>
   );

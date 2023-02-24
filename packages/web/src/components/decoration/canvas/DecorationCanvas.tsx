@@ -7,7 +7,7 @@ import { useGesture, usePinch } from "@use-gesture/react";
 import useDirectMove from "@/hooks/useDirectMove";
 import CameraContainer from "./CameraContainer";
 import TestRayPoint from "./test/TestRayPoint";
-import getWindowSize from "@/hooks/getWindowSize";
+import useWindowSize from "@/hooks/useWindowSize";
 import { Stage } from "@react-three/drei";
 import PlacedItemContainer from "./placedItem/PlacedItemContainer";
 import useMouseScale from "@/hooks/useMouseScale";

@@ -10,7 +10,7 @@ type HookType = () => {
  * 画面情報を取得するためのhook
  * @returns 画面情報のobject
  */
-const getWindowSize: HookType = () => {
+const useWindowSize: HookType = () => {
   const [windowSize, setWindowSize] = useState({
     innerWidth: 0,
     innerHeight: 0,
@@ -19,7 +19,7 @@ const getWindowSize: HookType = () => {
 
   useEffect(() => {
     if (typeof window === "undefined") {
-      return () => {};
+      return () => { };
     }
     const handleResize = () => {
       setWindowSize({
@@ -36,4 +36,4 @@ const getWindowSize: HookType = () => {
   return windowSize;
 };
 
-export default getWindowSize;
+export default useWindowSize;
