@@ -6,7 +6,6 @@ import decorationData from "@/data/decorationData.json";
 
 type Props = {
   itemData: PlacedItemData;
-  handleDirectDown: DirectDownType;
 };
 
 /**
@@ -14,14 +13,13 @@ type Props = {
  * @param param0
  * @returns
  */
-const GLBItem = ({ itemData, handleDirectDown }: Props) => {
+const GLBItem = ({ itemData }: Props) => {
   const { scene: model } = useGLTF(decorationData.modelSrc[itemData.itemType]);
   return (
     <>
       <ModelItemImpl
         itemData={itemData}
         srcModel={model}
-        handleDirectDown={handleDirectDown}
       />
     </>
   );
