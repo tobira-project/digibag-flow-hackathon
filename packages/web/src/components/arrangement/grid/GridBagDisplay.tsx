@@ -1,10 +1,9 @@
 /**
  * バッグのグリッド表示のコンポーネント
- * @returns 
+ * @returns
  */
 const GridBagDisplay = () => {
+  return <>グリッド</>;
+};
 
-  return <>グリッド</>
-}
-
-export default GridBagDisplay
+export default GridBagDisplay;

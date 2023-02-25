@@ -12,9 +12,9 @@ const PlacedItemContainer = () => {
 
   return (
     <>
-      {placedItems.map((item) =>
+      {placedItems.map((item) => (
         <GLBItem key={item.id} itemData={item} />
-      )}
+      ))}
     </>
   );
 };

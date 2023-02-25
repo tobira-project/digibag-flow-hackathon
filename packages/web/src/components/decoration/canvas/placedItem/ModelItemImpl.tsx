@@ -1,5 +1,8 @@
 import useDecorationStore from "@/stores/decorationStore";
-import { PlacedItemData, CropData } from "@/types/decoration/decorationItemType";
+import {
+  PlacedItemData,
+  CropData,
+} from "@/types/decoration/decorationItemType";
 import { useTexture } from "@react-three/drei";
 import { useEffect, useState } from "react";
 import {
@@ -146,7 +149,7 @@ const ModelItemImpl = ({ itemData, srcModel }: Props) => {
   return (
     <>
       {model && colorMap && (
-        <PlacedItemImpl itemData={itemData} >
+        <PlacedItemImpl itemData={itemData}>
           <primitive object={model} />
           {/** ↓なぜかこれを置くと、↑のテクスチャの色も濃くなる（テクスチャの初期化？） */}
           <mesh position={[0, 100, 100]}>

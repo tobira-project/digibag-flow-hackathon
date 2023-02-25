@@ -1,11 +1,11 @@
-import { create } from "zustand"
-import arrangementData from "@/data/arrangementData.json"
+import { create } from "zustand";
+import arrangementData from "@/data/arrangementData.json";
 
 type ItemData = {
   id: number;
   title: string;
   isDecorated: boolean;
-}
+};
 
 type BagData = {
   id: number;
@@ -14,7 +14,7 @@ type BagData = {
   thumbnailUrl: string; // メニューでの表示
   modelUrl: string; // 詳細での表示
   itemList: ItemData[]; // 内部のグッズ
-}
+};
 
 type ArrangementState = {
   // バッグをグリッド表示するかどうか
@@ -23,7 +23,7 @@ type ArrangementState = {
 
   // 何度も読み込みたくないので、読み込んだデータはここに保存したい
   bagDataList: BagData[];
-}
+};
 
 /**
  * バッグ管理画面の状態管理
@@ -33,7 +33,7 @@ const useArrangementStore = create<ArrangementState>((set, get) => ({
   isGridBags: false,
   toggleIsGridBags: () => set((state) => ({ isGridBags: !state.isGridBags })),
 
-  bagDataList: arrangementData.mockBagDataList
-}))
+  bagDataList: arrangementData.mockBagDataList,
+}));
 
-export default useArrangementStore
+export default useArrangementStore;
