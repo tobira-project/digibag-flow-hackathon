@@ -1,0 +1,19 @@
+{
+  "bgBag": [
+    {
+      "bagName": "bag01",
+      "width": 300,
+      "height": 300
+    },
+    {
+      "bagName": "bag02",
+      "width": 300,
+      "height": 300
+    },
+    {
+      "bagName": "bag03",
+      "width": 300,
+      "height": 300
+    }
+  ]
+}

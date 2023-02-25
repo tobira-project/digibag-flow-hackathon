@@ -6,8 +6,8 @@ import SignButton from "@/components/login/sign/SignButton";
 import SignIn from "@/components/login/sign/SignIn";
 import SignUp from "@/components/login/sign/SignUp";
 import Top from "@/components/login/Top";
-
-type Mode = "TOP" | "SIGN_IN" | "SIGN_UP" | "SUCCESS_SIGN_UP";
+import Background from "@/components/login/background/Background";
+import { LoginMode } from "@/types/login/LoginMode";
 
 /**
  * ログイン（Sign in/up)画面
@@ -16,7 +16,7 @@ type Mode = "TOP" | "SIGN_IN" | "SIGN_UP" | "SUCCESS_SIGN_UP";
 const Login = () => {
   // モードによって背景の動きが変わるためには、背景移動のspring用に数値の変数を用意する必要があるかも
   // useSpringで使っていたbooleanの数値バージョン
-  const [mode, setMode] = useState<Mode>('TOP')
+  const [mode, setMode] = useState<LoginMode>('TOP')
   const router = useRouter();
 
   // Sign inモードへ
@@ -51,6 +51,9 @@ const Login = () => {
   const handleNext = () => router.push('/');
 
   return <>
+    {/* バックグラウンドにバッグ画像を表示 */}
+    <Background mode={mode} />
+
     {mode !== "TOP" && <>
       <BackButton onClick={back} className={'login-back-btn'} />
     </>}
