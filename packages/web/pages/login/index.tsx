@@ -52,27 +52,35 @@ const Login = () => {
   const handleNext = () => router.push('/');
 
   return <>
+    {mode !== "NONE" && <>
+      <BackButton onClick={back} />
+    </>}
     {/* タイトルを中央にしつつ、ロゴをタイトルと左側でそろえるのは無理
     タイトルの幅を決定したほうが綺麗にはなりそうだ */}
-    <div className="mt-[18%] px-[10%]">
-      <div className="w-[30%]">
+    <div className="login-title-container">
+      <div className="login-tbr-logo">
         <TBRLogo />
       </div>
-      <h1 className="text-center text-[100px] text-[#707070]">DIGIBAG</h1>
+      <h1 className="login-title">DIGIBAG</h1>
     </div>
-    {mode === "NONE" && (<>
-      <ModeNone moveSignIn={moveSignIn} moveSignUp={moveSignUp} />
-    </>)}
-    {mode === "SIGN_IN" && (<>
-      <ModeSignIn back={back} handleSignIn={handleSignIn} moveSignUp={moveSignUp} />
-    </>)}
-    {mode === "SIGN_UP" && (<>
-      <ModeSignUp back={back} handleSignUp={handleSignUp} moveSignIn={moveSignIn} />
-    </>)}
-    {mode === "SUCCESS_SIGN_UP" && (<>
-      you are successfully registered!!
-      <SignButton text='Next' onClick={handleNext} />
-    </>)}
+
+    <div>
+      {mode === "NONE" && (<>
+        <ModeNone moveSignIn={moveSignIn} moveSignUp={moveSignUp} />
+      </>)}
+      <div className="mt-4 w-[100vw] flex justify-center ">
+        {mode === "SIGN_IN" && (<>
+          <ModeSignIn handleSignIn={handleSignIn} moveSignUp={moveSignUp} />
+        </>)}
+        {mode === "SIGN_UP" && (<>
+          <ModeSignUp handleSignUp={handleSignUp} moveSignIn={moveSignIn} />
+        </>)}
+      </div>
+      {mode === "SUCCESS_SIGN_UP" && (<>
+        you are successfully registered!!
+        <SignButton text='Next' onClick={handleNext} />
+      </>)}
+    </div>
   </>
 }
 

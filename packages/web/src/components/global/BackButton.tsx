@@ -12,7 +12,7 @@ type BackButtonProps = {
  */
 const BackButton = ({ onClick }: BackButtonProps) => (
   <button onClick={onClick}
-    className={'absolute top-[8%] left-[4%] btn btn-circle btn-ghost'}
+    className={'login-back-btn'}
   >
     <div className="text-[30px] text-[#707070]">
       <FontAwesomeIcon icon={faChevronLeft} />

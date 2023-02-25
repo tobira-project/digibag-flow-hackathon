@@ -17,14 +17,53 @@ $breakpoint: (
 @layer components {
   // loginページ
   .login {
+    // タイトルのコンテナ
+    &-title-container {
+      @apply mt-[10vh] px-[10%];
+      @include mq(tab) {
+        @apply mt-[5vh] px-[50px];
+      }
+    }
+    // ロゴ
+    &-tbr-logo {
+      @apply w-[120px];
+      @include mq(tab) {
+        @apply w-[150px];
+      }
+    }
+    // タイトル
+    &-title {
+      @apply text-center text-[70px] text-[#707070] ;
+      @include mq(tab) {
+        @apply text-[100px];
+      }  
+    }
+    // ログイントップ
+    &-top-container {
+      @apply px-[10%] w-full;
+      @include mq(tab) {
+        @apply max-w-[800px];
+      }
+    }
+    // sign in/upボタン
     &-btn {
       @apply btn btn-circle bg-white hover:bg-[#eee];
       @apply text-[#8C8C8C] border-none shadow-xl;
       @apply w-full text-xl;
     }
-
+    // sign in/upフォームのコンテナ
     &-sign-container {
-      @apply mx-[5%] p-[5%] bg-gray-200 rounded-[30px];
+      @apply mx-[20px] p-[20px] w-full bg-gray-200 rounded-[30px];
+      @include mq(tab) {
+        @apply max-w-[800px] p-[30px];
+      }
+    }
+    // 戻るボタン
+    &-back-btn {
+      @apply absolute top-[2vh] left-[4%] btn btn-circle btn-ghost;
+      @include mq(tab) {
+        @apply top-[10vh];
+      }
     }
   }
 

@@ -3,14 +3,12 @@ import SignButton from "./SignButton"
 import TextBox from "./TextBox"
 
 type Props = {
-  back: () => void;
   handleSignIn: () => void;
   moveSignUp: () => void;
 }
 
-const ModeSignIn = ({ back, handleSignIn, moveSignUp }: Props) => {
+const ModeSignIn = ({ handleSignIn, moveSignUp }: Props) => {
   return <>
-    <BackButton onClick={back} />
     <div className="login-sign-container">
       <TextBox />
       <div className="mt-4">
