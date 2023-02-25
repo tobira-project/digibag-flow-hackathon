@@ -2,15 +2,34 @@ import Head from "next/head";
 import "../flow/config";
 import { useState, useEffect, FC } from "react";
 import * as fcl from "@onflow/fcl";
+import * as types from "@onflow/types";
 
-const AuthedState: FC<{ user: any }> = ({ user }) => (
-  <div>
-    <div>Address: {user?.addr ?? "No Address"}</div>
-    <button onClick={fcl.unauthenticate} type="button">
-      Log Out
-    </button>
-  </div>
-);
+const AuthedState: FC<{ user: any }> = ({ user }) => {
+  useEffect(() => {
+    fcl.query({
+      cadence: `
+        import ExampleNFT from 0xProfile
+
+pub fun main(address: Address) {
+    let acct = getAccount(address)
+  let receiverRef = acct.getCapability<&{ExampleNFT.NFTReceiver}>(ExampleNFT.CollectionPublicPath)
+  .borrow()
+  ?? panic("Could not borrow receiver reference")
+}
+        `,
+      args: () => [fcl.arg(user.addr, types.Address)],
+    });
+  }, []);
+
+  return (
+    <div>
+      <div>Address: {user?.addr ?? "No Address"}</div>
+      <button onClick={fcl.unauthenticate} type="button">
+        Log Out
+      </button>
+    </div>
+  );
+};
 
 const UnauthenticatedState = () => (
   <div>
