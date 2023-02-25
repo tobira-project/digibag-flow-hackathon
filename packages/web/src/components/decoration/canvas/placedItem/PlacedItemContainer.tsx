@@ -4,28 +4,20 @@ import { ThreeEvent } from "@react-three/fiber";
 import { useEffect } from "react";
 import GLBItem from "./GLBItem";
 
-type Props = {
-  handleDirectDown: DirectDownType;
-};
-
 /**
  * 痛バッグ上に設置するグッズ表示をまとめたコンポーネント
  * @returns jsx
  */
-const PlacedItemContainer = ({ handleDirectDown }: Props) => {
+const PlacedItemContainer = () => {
   const { placedItems } = useDecorationStore((state) => ({
     placedItems: state.placedItems,
   }));
 
   return (
     <>
-      {placedItems.map((item) => {
-        const params = {
-          key: `${item.id}`,
-          itemData: item,
-        };
-        return <GLBItem {...params} handleDirectDown={handleDirectDown} />;
-      })}
+      {placedItems.map((item) =>
+        <GLBItem key={item.id} itemData={item} />
+      )}
     </>
   );
 };

@@ -1,18 +1,31 @@
 import { Camera, Canvas } from "@react-three/fiber";
 import { Mesh, Object3D, Raycaster } from "three";
-import { useMemo, useRef } from "react";
+import { createContext, RefObject, useMemo, useRef } from "react";
 import ItaBagModel from "./ItaBagModel";
 import Environments from "./Environments";
 import { useGesture, usePinch } from "@use-gesture/react";
 import useDirectMove from "@/hooks/useDirectMove";
 import CameraContainer from "./CameraContainer";
 import TestRayPoint from "./test/TestRayPoint";
+import useWindowSize from "@/hooks/useWindowSize";
 import { Stage } from "@react-three/drei";
 import PlacedItemContainer from "./placedItem/PlacedItemContainer";
 import useMouseScale from "@/hooks/useMouseScale";
 import useDecorationStore from "@/stores/decorationStore";
 import usePinchScale from "@/hooks/usePinchScale";
 import useWheelScale from "@/hooks/useWheelScale";
+import { DirectDownType } from "@/types/gestureType";
+
+// 移動操作のイベントハンドラをPlacedItemImplコンポーネントに伝えるためのcontext
+export const DirectMoveContext = createContext<DirectDownType>(() => { });
+
+// グッズの初期座標・姿勢設定に利用するraycastに関する情報を伝えるためのcontext
+type RaycastContextType = {
+  raycaster: Raycaster;
+  cameraRef: RefObject<Camera>;
+  itaBagRef: RefObject<Object3D>;
+} | undefined;
+export const RaycastContext = createContext<RaycastContextType>(undefined);
 
 /**
  * 痛バッグ装飾画面のCanvasのコンポーネント。
@@ -66,7 +79,11 @@ const DecorationCanvas = () => {
           {/* 勝手にカメラ位置を調整するのを止められれば、Stageは便利そう
            <Stage adjustCamera={false} center={{ disable: true }}> */}
           <ItaBagModel itaBagRef={itaBagRef} />
-          <PlacedItemContainer handleDirectDown={handleDirectDown} />
+          <DirectMoveContext.Provider value={handleDirectDown}>
+            <RaycastContext.Provider value={{ raycaster, cameraRef, itaBagRef }} >
+              <PlacedItemContainer />
+            </RaycastContext.Provider>
+          </DirectMoveContext.Provider>
           <TestRayPoint />
           {/* </Stage> */}
         </Canvas>

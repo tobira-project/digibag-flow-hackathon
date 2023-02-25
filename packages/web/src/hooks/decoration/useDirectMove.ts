@@ -4,7 +4,7 @@ import { Camera } from "@react-three/fiber";
 import { RefObject } from "react";
 import { Object3D, Raycaster, Vector2 } from "three";
 import useDecorationStore from "@/stores/decorationStore";
-import getWindowSize from "../getWindowSize";
+import useWindowSize from "@/hooks/useWindowSize";
 
 type HookType = (
   raycaster: Raycaster,
@@ -39,7 +39,7 @@ const useDirectMove: HookType = (raycaster, cameraRef, itaBagRef) => {
     isCameraMode: state.isCameraMode,
   }));
 
-  const { innerWidth, innerHeight } = getWindowSize();
+  const { innerWidth, innerHeight } = useWindowSize();
 
   // グッズのonPinterDownのイベントハンドラ
   const handleDirectDown: DirectDownType = (ev, itemId) => {
