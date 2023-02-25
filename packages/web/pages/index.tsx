@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import magicClient from "../src/lib/magic";
-import * as fcl from "@onflow/fcl";
-
-// CONFIGURE ACCESS NODE
-fcl.config().put("accessNode.api", "https://rest-testnet.onflow.org");
-
-const magic = magicClient();
+import { useMagic } from "context/magic";
 
 export default function Home() {
+  const { magic, fcl } = useMagic();
+  const [magicLoaded, setMagicLoaded] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [publicAddress, setPublicAddress] = useState("");
   const [email, setEmail] = useState("");
@@ -16,27 +12,34 @@ export default function Home() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    magic?.user.isLoggedIn().then(async (magicIsLoggedIn) => {
-      setIsLoggedIn(magicIsLoggedIn);
-      if (magicIsLoggedIn) {
-        const userMetadata = await magic.user.getMetadata();
-        console.log(userMetadata)
-        setPublicAddress(userMetadata.publicAddress || "");
-        setEmail(userMetadata.email || "");
-      }
-    });
-  }, [isLoggedIn]);
+    console.log("magicLoaded", magicLoaded);
+    if (magic) {
+      magic.user.isLoggedIn().then(async (magicIsLoggedIn) => {
+        if (magicIsLoggedIn) {
+          const userMetadata = await magic.user.getMetadata();
+          console.log(userMetadata)
+          setPublicAddress(userMetadata.publicAddress || "");
+          setEmail(userMetadata.email || "");
+          setMagicLoaded(true);
+          setIsLoggedIn(magicIsLoggedIn);
+        } else {
+          setMagicLoaded(true);
+        }
+      });
+    }
+  }, [magic]);
 
   const login = async () => {
-    await magic?.oauth.loginWithRedirect({
+    if (!magic) return;
+    await magic.oauth.loginWithRedirect({
       provider: "google",
       redirectURI: `${window.location.origin}`
     });
-    setIsLoggedIn(true);
   };
 
   const logout = async () => {
-    await magic?.user.logout();
+    if (!magic) return;
+    await magic.user.logout();
     setIsLoggedIn(false);
   };
 
@@ -96,7 +99,11 @@ export default function Home() {
           </div>
         </Link>
       </div>
-      {!isLoggedIn ? (
+      {!magicLoaded ? (
+        <div className="container">
+          <h1>Loading...</h1>
+        </div>
+      ): !isLoggedIn ? (
         <div className="container">
           <h1>Please sign up or login</h1>
           <button id="btn-send" className="google" onClick={login}>
