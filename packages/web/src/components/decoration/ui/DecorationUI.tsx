@@ -1,5 +1,6 @@
 import useDecorationStore from "@/stores/decorationStore";
 import CropWindow from "./crop/CropWindow";
+import InventoryBag from "./selectItem/InventoryBag";
 import AddNewBadgeButton from "./test/AddNewBadgeButton";
 import ToggleModeButton from "./test/ToggleModeButton";
 
@@ -8,8 +9,9 @@ import ToggleModeButton from "./test/ToggleModeButton";
  * @returns
  */
 const DecorationUI = () => {
-  const { isCropWindowVisible } = useDecorationStore((state) => ({
+  const { isCropWindowVisible, isInventoryBagOpen } = useDecorationStore((state) => ({
     isCropWindowVisible: state.isCropWindowVisible,
+    isInventoryBagOpen: state.isInventoryBagOpen,
   }));
 
   return (
@@ -21,6 +23,7 @@ const DecorationUI = () => {
         <div className="absolute bottom-0 right-0">
           <ToggleModeButton />
         </div>
+        {isInventoryBagOpen && <InventoryBag />}
         {isCropWindowVisible && <CropWindow />}
       </div>
     </>

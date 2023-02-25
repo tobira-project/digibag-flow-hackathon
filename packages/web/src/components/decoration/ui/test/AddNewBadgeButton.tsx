@@ -7,17 +7,19 @@ import decorationData from "../../../../data/decorationData.json";
  * @returns
  */
 const AddNewBadgeButton = () => {
-  const { openCropWindow } = useDecorationStore((state) => ({
+  const { openCropWindow, openInventoryBag } = useDecorationStore((state) => ({
     openCropWindow: state.openCropWindow,
+    openInventoryBag: state.openInventoryBag
   }));
 
   // クリック時の処理
   const handleClick = () => {
     // クロップ画面を表示
-    openCropWindow({
-      imageUrl: decorationData.testImageSrc,
-      itemType: "CAN_BADGE",
-    });
+    // openCropWindow({
+    //   imageUrl: decorationData.testImageSrc,
+    //   itemType: "CAN_BADGE",
+    // });
+    openInventoryBag();
   };
 
   return (
