@@ -1,14 +1,13 @@
 import { useState } from "react";
-import SignButton from '@/components/login/SignButton';
 import BackButton from "@/components/global/BackButton";
 import { useRouter } from "next/router";
-import ModeNone from "@/components/login/ModeNone";
-import TextBox from "@/components/login/TextBox";
 import TBRLogo from "../../public/login/tbr-logo.svg"
-import ModeSignIn from "@/components/login/ModeSignIn";
-import ModeSignUp from "@/components/login/ModeSignUp";
+import SignButton from "@/components/login/sign/SignButton";
+import SignIn from "@/components/login/sign/SignIn";
+import SignUp from "@/components/login/sign/SignUp";
+import Top from "@/components/login/Top";
 
-type Mode = "NONE" | "SIGN_IN" | "SIGN_UP" | "SUCCESS_SIGN_UP";
+type Mode = "TOP" | "SIGN_IN" | "SIGN_UP" | "SUCCESS_SIGN_UP";
 
 /**
  * ログイン（Sign in/up)画面
@@ -17,14 +16,14 @@ type Mode = "NONE" | "SIGN_IN" | "SIGN_UP" | "SUCCESS_SIGN_UP";
 const Login = () => {
   // モードによって背景の動きが変わるためには、背景移動のspring用に数値の変数を用意する必要があるかも
   // useSpringで使っていたbooleanの数値バージョン
-  const [mode, setMode] = useState<Mode>('NONE')
+  const [mode, setMode] = useState<Mode>('TOP')
   const router = useRouter();
 
   // Sign inモードへ
   const moveSignIn = () => setMode('SIGN_IN');
   const moveSignUp = () => setMode("SIGN_UP");
   // 初期表示へ戻る
-  const back = () => setMode("NONE")
+  const back = () => setMode("TOP")
 
   // Sign inの実行
   const handleSignIn = () => {
@@ -52,11 +51,9 @@ const Login = () => {
   const handleNext = () => router.push('/');
 
   return <>
-    {mode !== "NONE" && <>
-      <BackButton onClick={back} />
+    {mode !== "TOP" && <>
+      <BackButton onClick={back} className={'login-back-btn'} />
     </>}
-    {/* タイトルを中央にしつつ、ロゴをタイトルと左側でそろえるのは無理
-    タイトルの幅を決定したほうが綺麗にはなりそうだ */}
     <div className="login-title-container">
       <div className="login-tbr-logo">
         <TBRLogo />
@@ -65,22 +62,20 @@ const Login = () => {
     </div>
 
     <div>
-      {mode === "NONE" && (<>
-        <ModeNone moveSignIn={moveSignIn} moveSignUp={moveSignUp} />
+      {mode === "TOP" && (<>
+        <Top moveSignIn={moveSignIn} moveSignUp={moveSignUp} />
       </>)}
-      <div className="mt-4 w-[100vw] flex justify-center ">
-        {mode === "SIGN_IN" && (<>
-          <ModeSignIn handleSignIn={handleSignIn} moveSignUp={moveSignUp} />
-        </>)}
-        {mode === "SIGN_UP" && (<>
-          <ModeSignUp handleSignUp={handleSignUp} moveSignIn={moveSignIn} />
-        </>)}
-      </div>
-      {mode === "SUCCESS_SIGN_UP" && (<>
-        you are successfully registered!!
-        <SignButton text='Next' onClick={handleNext} />
+      {mode === "SIGN_IN" && (<>
+        <SignIn handleSignIn={handleSignIn} moveSignUp={moveSignUp} />
+      </>)}
+      {mode === "SIGN_UP" && (<>
+        <SignUp handleSignUp={handleSignUp} moveSignIn={moveSignIn} />
       </>)}
     </div>
+    {mode === "SUCCESS_SIGN_UP" && (<>
+      you are successfully registered!!
+      <SignButton text='Next' onClick={handleNext} />
+    </>)}
   </>
 }
 

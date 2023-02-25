@@ -3,6 +3,7 @@ import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 
 type BackButtonProps = {
   onClick: () => void;
+  className: string;
 }
 
 /**
@@ -10,9 +11,9 @@ type BackButtonProps = {
  * @param param0 
  * @returns 
  */
-const BackButton = ({ onClick }: BackButtonProps) => (
+const BackButton = ({ onClick, className }: BackButtonProps) => (
   <button onClick={onClick}
-    className={'login-back-btn'}
+    className={className}
   >
     <div className="text-[30px] text-[#707070]">
       <FontAwesomeIcon icon={faChevronLeft} />

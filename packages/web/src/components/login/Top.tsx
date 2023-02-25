@@ -1,4 +1,4 @@
-import SignButton from "./SignButton"
+import SignButton from "./sign/SignButton"
 
 type Props = {
   moveSignIn: () => void;
