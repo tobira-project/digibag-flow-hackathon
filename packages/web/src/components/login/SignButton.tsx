@@ -11,7 +11,7 @@ type SignButtonProps = {
 const SignButton = ({ onClick, text }: SignButtonProps) => (
   <button
     onClick={onClick}
-    className={'btn btn-circle'}
+    className={'login-btn'}
   >
     {text}
   </button>

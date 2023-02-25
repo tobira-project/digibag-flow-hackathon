@@ -15,6 +15,19 @@ $breakpoint: (
 @tailwind utilities;
 
 @layer components {
+  // loginページ
+  .login {
+    &-btn {
+      @apply btn btn-circle bg-white hover:bg-[#eee];
+      @apply text-[#8C8C8C] border-none shadow-xl;
+      @apply w-full text-xl;
+    }
+
+    &-sign-container {
+      @apply mx-[5%] p-[5%] bg-gray-200 rounded-[30px];
+    }
+  }
+
   // クロップウィンドウ
   .crop {
     &-window {

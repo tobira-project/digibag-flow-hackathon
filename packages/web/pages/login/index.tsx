@@ -2,6 +2,11 @@ import { useState } from "react";
 import SignButton from '@/components/login/SignButton';
 import BackButton from "@/components/global/BackButton";
 import { useRouter } from "next/router";
+import ModeNone from "@/components/login/ModeNone";
+import TextBox from "@/components/login/TextBox";
+import TBRLogo from "../../public/login/tbr-logo.svg"
+import ModeSignIn from "@/components/login/ModeSignIn";
+import ModeSignUp from "@/components/login/ModeSignUp";
 
 type Mode = "NONE" | "SIGN_IN" | "SIGN_UP" | "SUCCESS_SIGN_UP";
 
@@ -47,25 +52,22 @@ const Login = () => {
   const handleNext = () => router.push('/');
 
   return <>
-    <div>logo</div>
-    <h1>DIGIBAG</h1>
+    {/* タイトルを中央にしつつ、ロゴをタイトルと左側でそろえるのは無理
+    タイトルの幅を決定したほうが綺麗にはなりそうだ */}
+    <div className="mt-[18%] px-[10%]">
+      <div className="w-[30%]">
+        <TBRLogo />
+      </div>
+      <h1 className="text-center text-[100px] text-[#707070]">DIGIBAG</h1>
+    </div>
     {mode === "NONE" && (<>
-      <div>
-        <SignButton text='Sign in' onClick={moveSignIn} />
-      </div>
-      <div>
-        <SignButton text='Sign out' onClick={moveSignUp} />
-      </div>
+      <ModeNone moveSignIn={moveSignIn} moveSignUp={moveSignUp} />
     </>)}
     {mode === "SIGN_IN" && (<>
-      <BackButton onClick={back} />
-      signin
-      <SignButton text="Sign in" onClick={handleSignIn} />
+      <ModeSignIn back={back} handleSignIn={handleSignIn} moveSignUp={moveSignUp} />
     </>)}
     {mode === "SIGN_UP" && (<>
-      <BackButton onClick={back} />
-      signup
-      <SignButton text="Sign up" onClick={handleSignUp} />
+      <ModeSignUp back={back} handleSignUp={handleSignUp} moveSignIn={moveSignIn} />
     </>)}
     {mode === "SUCCESS_SIGN_UP" && (<>
       you are successfully registered!!

@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+
 type BackButtonProps = {
   onClick: () => void;
 }
@@ -9,9 +12,11 @@ type BackButtonProps = {
  */
 const BackButton = ({ onClick }: BackButtonProps) => (
   <button onClick={onClick}
-    className={'btn btn-circle'}
+    className={'absolute top-[8%] left-[4%] btn btn-circle btn-ghost'}
   >
-    {'<'}
+    <div className="text-[30px] text-[#707070]">
+      <FontAwesomeIcon icon={faChevronLeft} />
+    </div>
   </button>
 )
 
