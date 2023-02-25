@@ -2,8 +2,8 @@ import { a, useSpring } from "@react-spring/web";
 import BadgeCrop from "./BadgeCrop";
 import CloseButton from "./CloseButton";
 import decorationData from "@/data/decorationData.json";
-import { CropData } from "@/types/decorationItemType";
 import useDecorationStore from "@/stores/decorationStore";
+import { CropData } from "@/types/decoration/decorationItemType";
 
 /**
  * グッズのクロップ作業画面を表示するコンポーネント

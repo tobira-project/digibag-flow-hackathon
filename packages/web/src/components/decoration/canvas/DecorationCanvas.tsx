@@ -4,17 +4,17 @@ import { createContext, RefObject, useMemo, useRef } from "react";
 import ItaBagModel from "./ItaBagModel";
 import Environments from "./Environments";
 import { useGesture, usePinch } from "@use-gesture/react";
-import useDirectMove from "@/hooks/useDirectMove";
 import CameraContainer from "./CameraContainer";
 import TestRayPoint from "./test/TestRayPoint";
 import useWindowSize from "@/hooks/useWindowSize";
 import { Stage } from "@react-three/drei";
 import PlacedItemContainer from "./placedItem/PlacedItemContainer";
-import useMouseScale from "@/hooks/useMouseScale";
 import useDecorationStore from "@/stores/decorationStore";
-import usePinchScale from "@/hooks/usePinchScale";
-import useWheelScale from "@/hooks/useWheelScale";
-import { DirectDownType } from "@/types/gestureType";
+import useDirectMove from "@/hooks/decoration/useDirectMove";
+import useMouseScale from "@/hooks/decoration/useMouseScale";
+import usePinchScale from "@/hooks/decoration/usePinchScale";
+import useWheelScale from "@/hooks/decoration/useWheelScale";
+import { DirectDownType } from "@/types/decoration/gestureType";
 
 // 移動操作のイベントハンドラをPlacedItemImplコンポーネントに伝えるためのcontext
 export const DirectMoveContext = createContext<DirectDownType>(() => { });

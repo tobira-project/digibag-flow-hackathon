@@ -2,7 +2,7 @@ import useDecorationStore from "@/stores/decorationStore";
 import { DragType } from "@/types/decoration/gestureType";
 import * as GESTURE from "@use-gesture/react";
 import { useState } from "react";
-import decorationData from "../data/decorationData.json";
+import decorationData from "@/data/decorationData.json";
 
 /**
  * マウスの右ドラッグ操作による缶バッジ拡縮操作の処理をまとめたhook

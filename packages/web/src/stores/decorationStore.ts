@@ -1,9 +1,5 @@
-import {
-  PlacedItemData,
-  ItemType,
-  CropData,
-  ItemSizeData,
-} from "@/types/decorationItemType";
+
+import { ItemType, PlacedItemData, CropData, ItemSizeData } from "@/types/decoration/decorationItemType";
 import { Vector, Vector3 } from "three";
 import { create } from "zustand";
 

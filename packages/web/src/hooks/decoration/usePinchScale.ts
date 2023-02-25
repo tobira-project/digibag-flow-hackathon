@@ -1,7 +1,7 @@
 import useDecorationStore from "@/stores/decorationStore";
 import { PinchType } from "@/types/decoration/gestureType";
 import { useState } from "react";
-import decorationData from "../data/decorationData.json";
+import decorationData from "@/data/decorationData.json";
 
 type HookType = () => {
   handleScalePinch: PinchType;

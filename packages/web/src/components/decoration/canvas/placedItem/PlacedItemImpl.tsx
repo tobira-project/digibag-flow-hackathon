@@ -1,6 +1,5 @@
 import useDecorationStore from "@/stores/decorationStore";
-import { PlacedItemData } from "@/types/decorationItemType";
-import { DirectDownType } from "@/types/gestureType";
+import { PlacedItemData } from "@/types/decoration/decorationItemType";
 import { ThreeEvent } from "@react-three/fiber";
 import { ReactNode, Suspense, useContext, useEffect, useRef } from "react";
 import { Group, Vector2 } from "three";

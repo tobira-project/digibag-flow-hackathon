@@ -1,7 +1,4 @@
 import useDecorationStore from "@/stores/decorationStore";
-import { DirectDownType } from "@/types/gestureType";
-import { ThreeEvent } from "@react-three/fiber";
-import { useEffect } from "react";
 import GLBItem from "./GLBItem";
 
 /**
