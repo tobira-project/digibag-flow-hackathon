@@ -2,6 +2,7 @@ import useDecorationStore from "@/stores/decorationStore";
 import CropWindow from "./crop/CropWindow";
 import InventoryBag from "./selectItem/InventoryBag";
 import AddNewBadgeButton from "./uiButton/AddNewBadgeButton";
+import ExitButton from "./uiButton/ExitButton";
 import PutBackButton from "./uiButton/PutBackButton";
 import ToggleModeButton from "./uiButton/ToggleModeButton";
 
@@ -20,6 +21,9 @@ const DecorationUI = () => {
   return (
     <>
       <div>
+        <div className="absolute top-8">
+          <ExitButton />
+        </div>
         <div className="bottom-btn-container left-6">
           <PutBackButton />
         </div>
