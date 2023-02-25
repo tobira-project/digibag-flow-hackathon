@@ -15,6 +15,24 @@ $breakpoint: (
 @tailwind utilities;
 
 @layer components {
+  .bottom-btn {
+    &-container {
+      @apply absolute bottom-10 pointer-events-none;
+    }
+
+    &-sm {
+      @apply w-14 h-14;
+    }
+
+    &-md {
+      @apply w-[68px] h-[68px];
+    }
+
+    &-lg {
+      @apply w-[76px] h-[76px];
+    }
+  }
+
   // loginページ
   .login {
     // タイトルのコンテナ
