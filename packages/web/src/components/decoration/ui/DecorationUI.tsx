@@ -9,10 +9,12 @@ import ToggleModeButton from "./test/ToggleModeButton";
  * @returns
  */
 const DecorationUI = () => {
-  const { isCropWindowVisible, isInventoryBagOpen } = useDecorationStore((state) => ({
-    isCropWindowVisible: state.isCropWindowVisible,
-    isInventoryBagOpen: state.isInventoryBagOpen,
-  }));
+  const { isCropWindowVisible, isInventoryBagOpen } = useDecorationStore(
+    (state) => ({
+      isCropWindowVisible: state.isCropWindowVisible,
+      isInventoryBagOpen: state.isInventoryBagOpen,
+    })
+  );
 
   return (
     <>

@@ -33,10 +33,10 @@ $breakpoint: (
     }
     // タイトル
     &-title {
-      @apply text-center text-[70px] text-[#707070] ;
+      @apply text-center text-[70px] text-[#707070];
       @include mq(tab) {
         @apply text-[100px];
-      }  
+      }
     }
     // ログイントップ
     &-top-container {

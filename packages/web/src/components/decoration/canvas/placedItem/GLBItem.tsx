@@ -1,4 +1,3 @@
-
 import { useGLTF } from "@react-three/drei";
 import ModelItemImpl from "./ModelItemImpl";
 import decorationData from "@/data/decorationData.json";
@@ -17,10 +16,7 @@ const GLBItem = ({ itemData }: Props) => {
   const { scene: model } = useGLTF(decorationData.modelSrc[itemData.itemType]);
   return (
     <>
-      <ModelItemImpl
-        itemData={itemData}
-        srcModel={model}
-      />
+      <ModelItemImpl itemData={itemData} srcModel={model} />
     </>
   );
 };

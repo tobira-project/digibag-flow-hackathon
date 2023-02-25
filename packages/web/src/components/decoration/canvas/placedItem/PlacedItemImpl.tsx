@@ -16,16 +16,20 @@ type Props = {
  * @returns
  */
 const PlacedItemImpl = ({ itemData, children }: Props) => {
-  const { selectItem, setItemPos, setItemLookDir, isCameraMode, toggleCameraMode } = useDecorationStore(
-    (state) => ({
-      selectItem: state.selectItem,
-      setItemPos: state.setItemPos,
-      setItemLookDir: state.setItemLookDir,
-      isCameraMode: state.isCameraMode,
-      toggleCameraMode: state.toggleCameraMode,
-    })
-  );
-  const handleDirectDown = useContext(DirectMoveContext)
+  const {
+    selectItem,
+    setItemPos,
+    setItemLookDir,
+    isCameraMode,
+    toggleCameraMode,
+  } = useDecorationStore((state) => ({
+    selectItem: state.selectItem,
+    setItemPos: state.setItemPos,
+    setItemLookDir: state.setItemLookDir,
+    isCameraMode: state.isCameraMode,
+    toggleCameraMode: state.toggleCameraMode,
+  }));
+  const handleDirectDown = useContext(DirectMoveContext);
   const modelGroupRef = useRef<Group>(null);
   const raycastContext = useContext(RaycastContext);
 
@@ -49,12 +53,14 @@ const PlacedItemImpl = ({ itemData, children }: Props) => {
     }
     // 座標の更新
     setItemPos(itemData.id, pointerTarget.point);
-  }, [])
+  }, []);
 
   // モデルを接地面の法線方向に向ける
   useEffect(() => {
     if (!modelGroupRef.current) return;
-    modelGroupRef.current.lookAt(itemData.position.clone().sub(itemData.lookDir));
+    modelGroupRef.current.lookAt(
+      itemData.position.clone().sub(itemData.lookDir)
+    );
   }, [itemData.lookDir]);
 
   // グッズの選択

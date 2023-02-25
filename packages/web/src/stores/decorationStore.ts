@@ -1,5 +1,9 @@
-
-import { ItemType, PlacedItemData, CropData, ItemSizeData } from "@/types/decoration/decorationItemType";
+import {
+  ItemType,
+  PlacedItemData,
+  CropData,
+  ItemSizeData,
+} from "@/types/decoration/decorationItemType";
 import { Vector, Vector3 } from "three";
 import { create } from "zustand";
 
@@ -185,7 +189,7 @@ const useDecorationStore = create<DecorationState>((set, get) => ({
   // インベントリ（バッグ）の状態管理
   isInventoryBagOpen: false,
   openInventoryBag: () => set((state) => ({ isInventoryBagOpen: true })),
-  closeInventoryBag: () => set((state) => ({ isInventoryBagOpen: false }))
+  closeInventoryBag: () => set((state) => ({ isInventoryBagOpen: false })),
 }));
 
 export default useDecorationStore;

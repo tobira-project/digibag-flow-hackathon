@@ -9,7 +9,7 @@ import decorationData from "../../../../data/decorationData.json";
 const AddNewBadgeButton = () => {
   const { openCropWindow, openInventoryBag } = useDecorationStore((state) => ({
     openCropWindow: state.openCropWindow,
-    openInventoryBag: state.openInventoryBag
+    openInventoryBag: state.openInventoryBag,
   }));
 
   // クリック時の処理

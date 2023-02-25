@@ -1,24 +1,20 @@
-import decorationData from "@/data/decorationData.json"
+import decorationData from "@/data/decorationData.json";
 import useDecorationStore from "@/stores/decorationStore";
 import { CropData, ItemType } from "@/types/decoration/decorationItemType";
-import Image from "next/image"
+import Image from "next/image";
 import { useRef } from "react";
 
 /**
  * インベントリ（バッグ）の中のグッズ一覧表示
- * @returns 
+ * @returns
  */
 const GridItems = () => {
-  const {
-    placeNewItem,
-    closeInventoryBag
-  } = useDecorationStore((state) => ({
+  const { placeNewItem, closeInventoryBag } = useDecorationStore((state) => ({
     placeNewItem: state.placeNewItem,
     closeInventoryBag: state.closeInventoryBag,
   }));
 
   const imageRef = useRef<HTMLImageElement>(null);
-
 
   const handleClick = (imageUrl: string, itemType: ItemType) => {
     if (!imageRef.current) return;
@@ -30,28 +26,38 @@ const GridItems = () => {
       w: w,
       h: h,
       srcW: w,
-      srcH: h
-    }
-    placeNewItem(imageUrl, itemType, cropData)
+      srcH: h,
+    };
+    placeNewItem(imageUrl, itemType, cropData);
     closeInventoryBag();
-  }
+  };
 
-  return <>
-    <div className="absolute overflow-y-scroll inset-0 mt-14">
-      <div className="grid grid-cols-3 gap-3 pb-2 px-3">
-        {decorationData.mockItemList.map(v => <>
-          <button
-            key={v.id}
-            onClick={() => handleClick(v.imageUrl, "CAN_BADGE")}
-          >
-            <div className="relative w-full aspect-square">
-              <Image ref={imageRef} src={v.imageUrl} alt={'item'} fill style={{ objectFit: "contain" }} />
-            </div>
-          </button>
-        </>)}
+  return (
+    <>
+      <div className="absolute overflow-y-scroll inset-0 mt-14">
+        <div className="grid grid-cols-3 gap-3 pb-2 px-3">
+          {decorationData.mockItemList.map((v) => (
+            <>
+              <button
+                key={v.id}
+                onClick={() => handleClick(v.imageUrl, "CAN_BADGE")}
+              >
+                <div className="relative w-full aspect-square">
+                  <Image
+                    ref={imageRef}
+                    src={v.imageUrl}
+                    alt={"item"}
+                    fill
+                    style={{ objectFit: "contain" }}
+                  />
+                </div>
+              </button>
+            </>
+          ))}
+        </div>
       </div>
-    </div>
-  </>
-}
+    </>
+  );
+};
 
 export default GridItems;
