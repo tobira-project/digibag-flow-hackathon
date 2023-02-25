@@ -1,8 +1,8 @@
 import useDecorationStore from "@/stores/decorationStore";
-import { DragType } from "@/types/gestureType";
+import { DragType } from "@/types/decoration/gestureType";
 import * as GESTURE from "@use-gesture/react";
 import { useState } from "react";
-import decorationData from "../data/decorationData.json";
+import decorationData from "@/data/decorationData.json";
 
 /**
  * マウスの右ドラッグ操作による缶バッジ拡縮操作の処理をまとめたhook
@@ -27,6 +27,7 @@ const useMouseScale = () => {
   const [startPos, setStartPos] = useState<GESTURE.Vector2>([0, 0]);
   const [startScale, setStartScale] = useState<number>(0);
 
+  // ドラッグジェスチャーのイベントハンドル
   const handleScaleMove: DragType = (state) => {
     state.event.preventDefault();
     // 拡縮終了処理

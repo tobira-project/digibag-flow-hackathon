@@ -1,6 +1,5 @@
 // import { TEST_IMAGE_SRC } from "@/constants/decorationConstants";
 import useDecorationStore from "@/stores/decorationStore";
-import { CropData } from "@/types/decorationItemType";
 import decorationData from "../../../../data/decorationData.json";
 
 /**

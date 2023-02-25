@@ -1,4 +1,4 @@
-import { CropData } from "@/types/decorationItemType";
+import { CropData } from "@/types/decoration/decorationItemType";
 import Jimp from "jimp";
 import { FC, ReactNode, useCallback, useState } from "react";
 import Cropper, { Area } from "react-easy-crop";

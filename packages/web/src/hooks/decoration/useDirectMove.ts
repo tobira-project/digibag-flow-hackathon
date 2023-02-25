@@ -1,10 +1,10 @@
-import { DirectDownType } from "@/types/gestureType";
-import { DragType } from "@/types/gestureType";
+import { DirectDownType } from "@/types/decoration/gestureType";
+import { DragType } from "@/types/decoration/gestureType";
 import { Camera } from "@react-three/fiber";
 import { RefObject } from "react";
 import { Object3D, Raycaster, Vector2 } from "three";
-import useDecorationStore from "../stores/decorationStore";
-import useWindowSize from "./useWindowSize";
+import useDecorationStore from "@/stores/decorationStore";
+import useWindowSize from "@/hooks/useWindowSize";
 
 type HookType = (
   raycaster: Raycaster,
@@ -41,6 +41,7 @@ const useDirectMove: HookType = (raycaster, cameraRef, itaBagRef) => {
 
   const { innerWidth, innerHeight } = useWindowSize();
 
+  // グッズのonPinterDownのイベントハンドラ
   const handleDirectDown: DirectDownType = (ev, itemId) => {
     if (ev.button !== 0) return; // 左クリックでない
     if (isCameraMode) return; // カメラモードの時
@@ -50,6 +51,7 @@ const useDirectMove: HookType = (raycaster, cameraRef, itaBagRef) => {
     setInteractState("DIRECT_START");
   };
 
+  // ドラッグジェスチャーのイベントハンドラ
   const handleDirectMove: DragType = (state) => {
     state.event.preventDefault();
 

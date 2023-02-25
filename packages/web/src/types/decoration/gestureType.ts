@@ -14,12 +14,14 @@ export type DirectDownType = (
   itemId: string
 ) => void;
 
+// usePinchScaleのhandleScalePinchの型
 export type PinchType = (
   state: Omit<FullGestureState<"pinch">, "event"> & {
     event: PointerEvent | TouchEvent | WheelEvent | WebKitGestureEvent;
   }
 ) => void;
 
+// useWheelScaleのhandleScaleWheelの型
 export type WheelType = (
   state: Omit<FullGestureState<"wheel">, "event"> & {
     event: WheelEvent;

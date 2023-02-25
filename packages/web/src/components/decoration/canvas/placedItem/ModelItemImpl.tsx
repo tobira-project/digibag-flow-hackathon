@@ -1,6 +1,5 @@
 import useDecorationStore from "@/stores/decorationStore";
-import { CropData, PlacedItemData } from "@/types/decorationItemType";
-import { DirectDownType } from "@/types/gestureType";
+import { PlacedItemData, CropData } from "@/types/decoration/decorationItemType";
 import { useTexture } from "@react-three/drei";
 import { useEffect, useState } from "react";
 import {
