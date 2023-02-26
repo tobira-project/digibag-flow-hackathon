@@ -13,11 +13,15 @@ type Props = {
 const OpenGiftButton = ({ className }: Props) => {
   const { openGiftModal } = useArrangementStore((state) => ({
     openGiftModal: state.openGiftModal,
-  }))
+  }));
 
   return (
     <>
-      <button type={"button"} onClick={openGiftModal} className={`open-gift-btn ${className}`}>
+      <button
+        type={"button"}
+        onClick={openGiftModal}
+        className={`open-gift-btn ${className}`}
+      >
         <GiftIcon />
       </button>
     </>

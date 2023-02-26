@@ -33,11 +33,13 @@ type DecorationState = {
   // 配置されたグッズのデータ
   placedItems: PlacedItemData[];
   placeNewItem: (
+    srcId: string,
     srcUrl: string,
     itemType: ItemType,
     cropData: CropData,
     itemId?: string
   ) => void;
+  // グッズをインベントリ（バッグ）に戻す
   putBackItem: (itemId: string) => void;
 
   // 配置されたグッズのデータ更新系
@@ -89,7 +91,7 @@ const useDecorationStore = create<DecorationState>((set, get) => ({
 
   // 配置されたグッズのデータ
   placedItems: [],
-  placeNewItem: (srcUrl, itemType, cropData, itemId?) =>
+  placeNewItem: (srcId, srcUrl, itemType, cropData, itemId?) =>
     set((state) => {
       const newItems = [...state.placedItems];
 
@@ -99,6 +101,7 @@ const useDecorationStore = create<DecorationState>((set, get) => ({
 
       newItems.push({
         id: newId,
+        srcId,
         srcUrl,
         itemType,
         position: new Vector3(Math.random() * 6 - 3, Math.random() * 6 - 3, -7), // 要デフォルト値。バッグの表面というのが少し厄介そう
@@ -118,10 +121,15 @@ const useDecorationStore = create<DecorationState>((set, get) => ({
         isCameraMode: false,
       };
     }),
+  // グッズをインベントリ（バッグ）に戻す
   putBackItem: (id) =>
     set((state) => {
-      // 未実装
-      return {};
+      const newItems = state.placedItems.filter((v) => v.id !== id);
+
+      return {
+        placedItems: newItems,
+        selectedItemId: "",
+      };
     }),
 
   // 配置されたグッズのデータ更新系
