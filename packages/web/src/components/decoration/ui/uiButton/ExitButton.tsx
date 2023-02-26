@@ -1,6 +1,6 @@
 import useDecorationStore from "@/stores/decorationStore";
 import { useRouter } from "next/router";
-import ExitIcon from "../../../../../public/icon/exitIcon.svg";
+import ExitIcon from "../../../../../public/icon/exit-icon.svg";
 
 /**
  * 退出ボタンのコンポーネント

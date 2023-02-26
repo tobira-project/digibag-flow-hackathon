@@ -2,7 +2,7 @@
 import useDecorationStore from "@/stores/decorationStore";
 import decorationData from "../../../../data/decorationData.json";
 import UIButton from "../../../global/UIButton";
-import DecorateIcon from "../../../../../public/icon/decorateIcon.svg";
+import DecorateIcon from "../../../../../public/icon/decorate-icon.svg";
 
 /**
  * テスト用に作成。缶バッジを追加するボタン

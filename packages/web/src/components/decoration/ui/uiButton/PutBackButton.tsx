@@ -1,5 +1,5 @@
 import UIButton from "../../../global/UIButton";
-import PutBackIcon from "../../../../../public/icon/putBackIcon.svg";
+import PutBackIcon from "../../../../../public/icon/putback-icon.svg";
 import useDecorationStore from "@/stores/decorationStore";
 import { useEffect, useState } from "react";
 

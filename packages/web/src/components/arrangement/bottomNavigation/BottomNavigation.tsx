@@ -1,6 +1,6 @@
 import useArrangementStore from "@/stores/arrangementStore";
 import NavButton from "./NavButton";
-import BagView from "@/../public/arrangement/bagview.svg";
+import BagView from "@/../public/icon/bagview-icon.svg";
 import { TfiPlus } from "react-icons/tfi";
 
 /**
@@ -18,17 +18,17 @@ const BottomNavigation = () => {
       <div className="fixed bottom-10 pointer-events-none">
         <div className="w-[100vw] flex justify-center gap-2">
           <div className="pt-8">
-            <NavButton onClick={() => {}} className="bottom-btn-sm">
+            <NavButton onClick={() => { }} className="bottom-btn-sm">
               account
             </NavButton>
           </div>
           <div className="">
-            <NavButton onClick={() => {}} className="bottom-btn-md">
+            <NavButton onClick={() => { }} className="bottom-btn-md">
               <TfiPlus size={40} />
             </NavButton>
           </div>
           <div className="pt-8">
-            <NavButton onClick={() => {}} className="bottom-btn-sm p-[12.2px]">
+            <NavButton onClick={() => { }} className="bottom-btn-sm p-[12.2px]">
               <BagView />
             </NavButton>
           </div>
