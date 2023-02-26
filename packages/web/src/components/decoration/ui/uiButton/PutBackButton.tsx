@@ -1,11 +1,11 @@
 import UIButton from "../../../global/UIButton";
-import PutBackIcon from "../../../../../public/decoration/icon/putBackIcon.svg";
+import PutBackIcon from "../../../../../public/icon/putBackIcon.svg";
 
 /**
  * バッグにしまうボタン
  */
 const PutBackButton = () => {
-  const handleClick = () => {};
+  const handleClick = () => { };
 
   return (
     <>

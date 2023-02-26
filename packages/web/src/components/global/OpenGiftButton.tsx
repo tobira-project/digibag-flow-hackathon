@@ -1,4 +1,5 @@
-import GiftIcon from "../../../public/decoration/icon/giftIcon.svg";
+import useArrangementStore from "@/stores/arrangementStore";
+import GiftIcon from "../../../public/icon/giftIcon.svg";
 
 type Props = {
   className: string;
@@ -10,9 +11,13 @@ type Props = {
  * @returns
  */
 const OpenGiftButton = ({ className }: Props) => {
+  const { openGiftModal } = useArrangementStore((state) => ({
+    openGiftModal: state.openGiftModal,
+  }))
+
   return (
     <>
-      <button type={"button"} className={`open-gift-btn ${className}`}>
+      <button type={"button"} onClick={openGiftModal} className={`open-gift-btn ${className}`}>
         <GiftIcon />
       </button>
     </>
