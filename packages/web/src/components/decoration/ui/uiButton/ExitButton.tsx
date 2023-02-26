@@ -13,11 +13,10 @@ const ExitButton = () => {
   }));
   const router = useRouter();
 
-  const handleClick = () => {
+  const handleClick = async () => {
     // 保存して退出
     //
-    router.push(`/bags/${bagId}/`);
-    setBagId(-1);
+    await router.push(`/bags/${bagId}/`);
   };
 
   return (
@@ -25,10 +24,9 @@ const ExitButton = () => {
       <button
         type="button"
         onClick={handleClick}
-        className="btn btn-ghost w-20 h-10 text-[20px]"
+        className="btn btn-ghost btn-square w-16 h-16 p-3 ml-3 text-[10px]"
       >
-        {/* <ExitIcon /> */}
-        aiueo
+        <ExitIcon />
       </button>
     </>
   );
