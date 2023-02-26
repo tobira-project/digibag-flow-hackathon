@@ -1,5 +1,5 @@
 import useArrangementStore from "@/stores/arrangementStore";
-import GiftIcon from "../../../public/icon/giftIcon.svg";
+import GiftIcon from "../../../public/icon/gift-icon.svg";
 
 type Props = {
   className: string;

@@ -1,5 +1,5 @@
 import UIButton from "../../../global/UIButton";
-import PutBackIcon from "../../../../../public/icon/putBackIcon.svg";
+import PutBackIcon from "../../../../../public/icon/putback-icon.svg";
 import useDecorationStore from "@/stores/decorationStore";
 import { useEffect, useState } from "react";
 
@@ -32,7 +32,7 @@ const PutBackButton = () => {
     <>
       <UIButton
         onClick={handleClick}
-        className="bottom-btn-sm overflow-hidden p-[13.5px] pt-[8px]"
+        className="bottom-btn-sm bottom-btn-gray overflow-hidden p-[12.5px] pt-[6px]"
         disabled={disabled}
       >
         <PutBackIcon />

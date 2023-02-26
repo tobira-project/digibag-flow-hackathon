@@ -41,7 +41,7 @@ const useArrangementStore = create<ArrangementState>((set, get) => ({
   bagDataList: arrangementData.mockBagDataList,
 
   // ギフトのモーダル表示の状態を管理する
-  isGiftModalOpen: true,
+  isGiftModalOpen: false,
   openGiftModal: () => set((state) => ({ isGiftModalOpen: true })),
   closeGiftModal: () => set((state) => ({ isGiftModalOpen: false })),
 }));

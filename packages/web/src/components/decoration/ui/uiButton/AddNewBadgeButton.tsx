@@ -2,7 +2,7 @@
 import useDecorationStore from "@/stores/decorationStore";
 import decorationData from "../../../../data/decorationData.json";
 import UIButton from "../../../global/UIButton";
-import DecorateIcon from "../../../../../public/icon/decorateIcon.svg";
+import DecorateIcon from "../../../../../public/icon/decorate-icon.svg";
 
 /**
  * テスト用に作成。缶バッジを追加するボタン
@@ -26,7 +26,7 @@ const AddNewBadgeButton = () => {
 
   return (
     <>
-      <UIButton onClick={handleClick} className="bottom-btn-lg p-[10px]">
+      <UIButton onClick={handleClick} className="bottom-btn-lg bottom-btn-gray p-[10px] pt-[12px]">
         <DecorateIcon />
       </UIButton>
     </>

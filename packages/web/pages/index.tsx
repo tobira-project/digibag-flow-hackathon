@@ -1,6 +1,7 @@
-import BottomNavigation from "@/components/arrangement/bottomNavigation/BottomNavigation";
-import CarouselBagDisplay from "@/components/arrangement/carousel/CarouselBagDisplay";
-import GridBagDisplay from "@/components/arrangement/grid/GridBagDisplay";
+import BottomNavigation from "@/components/arrangement/bagSelect/bottomNavigation/BottomNavigation";
+import CarouselBagDisplay from "@/components/arrangement/bagSelect/carousel/CarouselBagDisplay";
+import GridBagDisplay from "@/components/arrangement/bagSelect/grid/GridBagDisplay";
+
 import useArrangementStore from "@/stores/arrangementStore";
 import Link from "next/link";
 import { useState } from "react";

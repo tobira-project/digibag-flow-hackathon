@@ -1,6 +1,4 @@
 import useDecorationStore from "@/stores/decorationStore";
-import { a, useSpring } from "@react-spring/web";
-import { transform } from "typescript";
 import CloseButton from "./CloseButton";
 import GridItems from "./GridItems";
 

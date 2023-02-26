@@ -1,23 +1,20 @@
 import useDecorationStore from "@/stores/decorationStore";
 import { useRouter } from "next/router";
-import ExitIcon from "../../../../../public/icon/exitIcon.svg";
+import ExitIcon from "../../../../../public/icon/exit-icon.svg";
 
 /**
  * 退出ボタンのコンポーネント
  * @returns
  */
 const ExitButton = () => {
-  const { bagId, setBagId } = useDecorationStore((state) => ({
-    bagId: state.bagId,
-    setBagId: state.setBagId,
-  }));
   const router = useRouter();
 
-  const handleClick = () => {
+  const handleClick = async () => {
+    if (!router.query.bagId) return;
+    if (typeof router.query.bagId !== 'string') return;
     // 保存して退出
     //
-    router.push(`/bags/${bagId}/`);
-    setBagId(-1);
+    router.push(`/bags/${router.query.bagId}/`);
   };
 
   return (
@@ -25,10 +22,9 @@ const ExitButton = () => {
       <button
         type="button"
         onClick={handleClick}
-        className="btn btn-ghost w-20 h-10 text-[20px]"
+        className="btn btn-ghost btn-square w-16 h-16 p-3 ml-3 text-[10px]"
       >
-        {/* <ExitIcon /> */}
-        aiueo
+        <ExitIcon />
       </button>
     </>
   );
