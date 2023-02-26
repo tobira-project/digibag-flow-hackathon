@@ -20,6 +20,10 @@ $breakpoint: (
     @apply absolute top-[10vh] left-[4%] btn btn-circle btn-ghost;
   }
 
+  .open-gift-btn {
+    @apply btn btn-circle btn-ghost p-[8px];
+  }
+
   .bottom-btn {
     &-container {
       @apply absolute bottom-10 pointer-events-none;
@@ -94,7 +98,7 @@ $breakpoint: (
     }
     // 戻るボタン
     &-back-btn {
-      @apply absolute top-[2vh] left-[4%] btn btn-circle btn-ghost;
+      @apply top-[2vh];
       @include mq(tab) {
         @apply top-[10vh];
       }

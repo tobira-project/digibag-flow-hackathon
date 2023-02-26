@@ -1,7 +1,11 @@
 import useDecorationStore from "@/stores/decorationStore";
 import { useRouter } from "next/router";
-import ExitIcon from "../../../../../public/decoration/icon/exit.svg";
+import ExitIcon from "../../../../../public/decoration/icon/exitIcon.svg";
 
+/**
+ * 退出ボタンのコンポーネント
+ * @returns
+ */
 const ExitButton = () => {
   const { bagId, setBagId } = useDecorationStore((state) => ({
     bagId: state.bagId,

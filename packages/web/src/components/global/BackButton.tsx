@@ -12,7 +12,7 @@ type BackButtonProps = {
  * @returns
  */
 const BackButton = ({ onClick, className }: BackButtonProps) => (
-  <button onClick={onClick} className={className}>
+  <button onClick={onClick} className={`back-btn ${className}`}>
     <div className="text-[30px] text-[#707070]">
       <FontAwesomeIcon icon={faChevronLeft} />
     </div>
