@@ -15,6 +15,11 @@ $breakpoint: (
 @tailwind utilities;
 
 @layer components {
+  // 戻るボタン
+  .back-btn {
+    @apply absolute top-[10vh] left-[4%] btn btn-circle btn-ghost;
+  }
+
   .bottom-btn {
     &-container {
       @apply absolute bottom-10 pointer-events-none;
