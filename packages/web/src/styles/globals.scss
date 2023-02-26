@@ -38,6 +38,10 @@ $breakpoint: (
     }
   }
 
+  .contents-grid-contianer {
+    @apply absolute overflow-y-scroll inset-0;
+  }
+
   // loginページ
   .login {
     // タイトルのコンテナ
@@ -94,6 +98,30 @@ $breakpoint: (
       @include mq(tab) {
         @apply top-[10vh];
       }
+    }
+  }
+
+  // ギフトモーダル
+  .gift {
+    // 通常ボタン
+    &-btn {
+      @apply btn btn-circle bg-white hover:bg-[#eee];
+      @apply text-[#717171] border-none shadow-xl;
+      @apply w-full h-[60px] text-xl;
+    }
+    // 透明ボタン
+    &-btn-inverse {
+      @apply btn btn-circle bg-transparent hover:bg-black/20;
+      @apply text-white border-white hover:border-[#eee] border-[2px] shadow-xl;
+      @apply w-full h-[60px] text-xl;
+    }
+    // テキストボックス
+    &-input {
+      @apply input input-bordered;
+      @apply bg-transparent hover:bg-black/20;
+      @apply border-white hover:border-[#eee] rounded-full border-[2px];
+      @apply text-white text-xl placeholder:text-xl;
+      @apply w-full h-[60px] px-6;
     }
   }
 

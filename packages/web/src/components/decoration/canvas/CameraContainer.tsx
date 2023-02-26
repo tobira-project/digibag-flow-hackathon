@@ -35,8 +35,8 @@ const CameraContainer = ({ cameraRef }: Props) => {
         minDistance={10}
         maxDistance={40}
         // 上下方向の回り込み制限
-        minPolarAngle={(Math.PI / 2.3)}
-        maxPolarAngle={(Math.PI / 2.3)}
+        minPolarAngle={Math.PI / 2.3}
+        maxPolarAngle={Math.PI / 2.3}
       />
     </>
   );

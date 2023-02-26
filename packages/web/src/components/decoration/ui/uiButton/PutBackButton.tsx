@@ -1,4 +1,4 @@
-import UIButton from "./UIButton";
+import UIButton from "../../../global/UIButton";
 import PutBackIcon from "../../../../../public/decoration/icon/putBackIcon.svg";
 
 /**
@@ -11,7 +11,7 @@ const PutBackButton = () => {
     <>
       <UIButton
         onClick={handleClick}
-        className="bottom-btn-sm p-[13px] pt-[8px]"
+        className="bottom-btn-sm overflow-hidden p-[13.5px] pt-[8px]"
       >
         <PutBackIcon />
       </UIButton>

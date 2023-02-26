@@ -28,7 +28,7 @@ const BottomNavigation = () => {
             </NavButton>
           </div>
           <div className="pt-8">
-            <NavButton onClick={() => {}} className="bottom-btn-sm p-[12px]">
+            <NavButton onClick={() => {}} className="bottom-btn-sm p-[12.2px]">
               <BagView />
             </NavButton>
           </div>

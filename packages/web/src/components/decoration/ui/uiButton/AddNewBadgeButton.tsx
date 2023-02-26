@@ -1,7 +1,7 @@
 // import { TEST_IMAGE_SRC } from "@/constants/decorationConstants";
 import useDecorationStore from "@/stores/decorationStore";
 import decorationData from "../../../../data/decorationData.json";
-import UIButton from "./UIButton";
+import UIButton from "../../../global/UIButton";
 import DecorateIcon from "../../../../../public/decoration/icon/decorateIcon.svg";
 
 /**

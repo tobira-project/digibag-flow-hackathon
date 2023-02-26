@@ -23,6 +23,11 @@ type ArrangementState = {
 
   // 何度も読み込みたくないので、読み込んだデータはここに保存したい
   bagDataList: BagData[];
+
+  // ギフトのモーダル表示の状態を管理する
+  isGiftModalOpen: boolean;
+  openGiftModal: () => void;
+  closeGiftModal: () => void;
 };
 
 /**
@@ -34,6 +39,11 @@ const useArrangementStore = create<ArrangementState>((set, get) => ({
   toggleIsGridBags: () => set((state) => ({ isGridBags: !state.isGridBags })),
 
   bagDataList: arrangementData.mockBagDataList,
+
+  // ギフトのモーダル表示の状態を管理する
+  isGiftModalOpen: true,
+  openGiftModal: () => set((state) => ({ isGiftModalOpen: true })),
+  closeGiftModal: () => set((state) => ({ isGiftModalOpen: false })),
 }));
 
 export default useArrangementStore;

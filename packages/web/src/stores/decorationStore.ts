@@ -28,7 +28,7 @@ type CropSrc = {
 type DecorationState = {
   // 編集中のバッグのid
   bagId: number;
-  setBagId: (id: number) => void,
+  setBagId: (id: number) => void;
 
   // 配置されたグッズのデータ
   placedItems: PlacedItemData[];

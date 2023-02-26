@@ -1,5 +1,5 @@
 import useDecorationStore from "@/stores/decorationStore";
-import UIButton from "./UIButton";
+import UIButton from "../../../global/UIButton";
 
 /**
  * 検証用に作成。グッズ操作モード/カメラモードを切り替えるボタンコンポーネント。
