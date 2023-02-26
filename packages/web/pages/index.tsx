@@ -7,26 +7,30 @@ import { useState } from "react";
 
 /**
  * バッグの一覧表示のページコンポーネント
- * @returns 
+ * @returns
  */
 const Home = () => {
   const { isGridBags } = useArrangementStore((state) => ({
     isGridBags: state.isGridBags,
-    toggleIsGridBags: state.toggleIsGridBags
-  }))
+    toggleIsGridBags: state.toggleIsGridBags,
+  }));
 
   return (
     <>
       <div>
-        {isGridBags ? <>
-          <CarouselBagDisplay />
-        </> : <>
-          <GridBagDisplay />
-        </>}
+        {isGridBags ? (
+          <>
+            <CarouselBagDisplay />
+          </>
+        ) : (
+          <>
+            <GridBagDisplay />
+          </>
+        )}
       </div>
       <BottomNavigation />
     </>
   );
-}
+};
 
-export default Home
+export default Home;

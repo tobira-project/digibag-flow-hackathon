@@ -1,6 +1,8 @@
 // import { TEST_IMAGE_SRC } from "@/constants/decorationConstants";
 import useDecorationStore from "@/stores/decorationStore";
 import decorationData from "../../../../data/decorationData.json";
+import UIButton from "../../../global/UIButton";
+import DecorateIcon from "../../../../../public/icon/decorateIcon.svg";
 
 /**
  * テスト用に作成。缶バッジを追加するボタン
@@ -24,11 +26,9 @@ const AddNewBadgeButton = () => {
 
   return (
     <>
-      <div className="bg-white rounded-full h-10 grid content-center">
-        <button type="button" onClick={handleClick}>
-          缶バッジを追加
-        </button>
-      </div>
+      <UIButton onClick={handleClick} className="bottom-btn-lg p-[10px]">
+        <DecorateIcon />
+      </UIButton>
     </>
   );
 };

@@ -1,4 +1,5 @@
 import useDecorationStore from "@/stores/decorationStore";
+import UIButton from "../../../global/UIButton";
 
 /**
  * 検証用に作成。グッズ操作モード/カメラモードを切り替えるボタンコンポーネント。
@@ -17,11 +18,9 @@ const ToggleModeButton = () => {
 
   return (
     <>
-      <div className="bg-white rounded-full w-20 h-10 grid content-center">
-        <button type="button" onClick={handleClick}>
-          {isCameraMode ? "カメラ" : "グッズ操作"}
-        </button>
-      </div>
+      <UIButton onClick={handleClick} className="bottom-btn-sm">
+        {isCameraMode ? "カメラ" : "グッズ操作"}
+      </UIButton>
     </>
   );
 };

@@ -18,17 +18,17 @@ const BottomNavigation = () => {
       <div className="fixed bottom-10 pointer-events-none">
         <div className="w-[100vw] flex justify-center gap-2">
           <div className="pt-8">
-            <NavButton onClick={() => {}} className="w-14 h-14">
+            <NavButton onClick={() => {}} className="bottom-btn-sm">
               account
             </NavButton>
           </div>
           <div className="">
-            <NavButton onClick={() => {}} className="w-[68px] h-[68px]">
+            <NavButton onClick={() => {}} className="bottom-btn-md">
               <TfiPlus size={40} />
             </NavButton>
           </div>
           <div className="pt-8">
-            <NavButton onClick={() => {}} className="w-14 h-14 p-[12px]">
+            <NavButton onClick={() => {}} className="bottom-btn-sm p-[12.2px]">
               <BagView />
             </NavButton>
           </div>
