@@ -10,19 +10,19 @@
   },
   "mockItemList": [
     {
-      "id": 0,
+      "id": "0",
       "imageUrl": "/decoration/test/toruto.png"
     },
     {
-      "id": 1,
+      "id": "1",
       "imageUrl": "/decoration/test/toruto.png"
     },
     {
-      "id": 3,
+      "id": "3",
       "imageUrl": "/decoration/test/toruto.png"
     },
     {
-      "id": 4,
+      "id": "4",
       "imageUrl": "/decoration/test/toruto.png"
     }
   ]
