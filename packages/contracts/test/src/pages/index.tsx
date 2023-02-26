@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import Head from "next/head";
 import "../flow/config";
 import { useState, useEffect, FC } from "react";
@@ -110,7 +109,7 @@ transaction {
 };
 
 const logIn = () => {
-  fcl.login();
+  fcl.logIn();
   createCollection();
 };
 
