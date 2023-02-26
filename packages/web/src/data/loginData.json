@@ -1,7 +1,7 @@
 {
   "bgBag": [
     {
-      "bagName": "bag01",
+      "bagName": "bag01-reverse",
       "width": 300,
       "height": 300
     },
@@ -12,8 +12,8 @@
     },
     {
       "bagName": "bag03",
-      "width": 300,
-      "height": 300
+      "width": 400,
+      "height": 400
     }
   ]
 }

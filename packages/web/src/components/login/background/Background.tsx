@@ -1,6 +1,6 @@
 import useWindowSize from "@/hooks/useWindowSize";
 import { LoginMode } from "@/types/login/LoginMode";
-import BgBag03 from "./BgBag03";
+import BgBag from "./BgBag";
 import loginData from "@/data/loginData.json"
 
 type Props = {
@@ -8,81 +8,92 @@ type Props = {
 }
 
 
-
+/**
+ * login画面の背景アニメーションを
+ * @param param0 
+ * @returns 
+ */
 const Background = ({ mode }: Props) => {
   const { innerWidth, innerHeight } = useWindowSize();
 
   return <>
     <div className="overflow-hidden w-[100vw]">
-
-      {/* <BgBag mode={mode} bagName={""} width={0} height={0} springData={{
+      <BgBag mode={mode} {...loginData.bgBag[0]} springData={{
         top: {
           pos: {
-            x: 0,
-            y: 0
+            x: innerWidth * -0.55,
+            y: innerHeight * 0.12
           },
-          rot: 0
+          rot: -32,
+          scale: 1.8
         },
         signIn: {
           pos: {
-            x: 0,
-            y: 0
+            x: innerWidth * -0.7,
+            y: innerHeight * 0.03
           },
-          rot: 0
+          rot: -32,
+          scale: 1.5
         },
         signUp: {
           pos: {
-            x: 0,
-            y: 0
+            x: innerWidth * -0.57,
+            y: innerHeight * (-0.3)
           },
-          rot: 0
+          rot: -32,
+          scale: 1
         }
       }} />
-
-      <BgBag mode={mode} bagName={""} width={0} height={0} springData={{
+      <BgBag mode={mode} {...loginData.bgBag[1]} springData={{
         top: {
           pos: {
-            x: 0,
-            y: 0
+            x: innerWidth * -0.15,
+            y: innerHeight * 0.6
           },
-          rot: 0
+          rot: -23,
+          scale: 1.4
         },
         signIn: {
           pos: {
-            x: 0,
-            y: 0
+            x: innerWidth * -0.53,
+            y: innerHeight * 0.76
           },
-          rot: 0
+          rot: -23,
+          scale: 1.4
         },
         signUp: {
           pos: {
-            x: 0,
-            y: 0
+            x: innerWidth * 0.25,
+            y: innerHeight * 0.41
           },
-          rot: 0
+          rot: 10,
+          scale: 2.7
         }
-      }} /> */}
-      <BgBag03 mode={mode} {...loginData.bgBag[2]} springData={{
+      }} />
+      <BgBag mode={mode} {...loginData.bgBag[2]} springData={{
         top: {
           pos: {
-            x: innerWidth * 0.8,
-            y: innerHeight * 0.2
+            x: innerWidth * 0.52,
+            y: innerHeight * 0.26
           },
-          rot: 0
+          rot: 16,
+          scale: 1
         },
         signIn: {
           pos: {
-            x: innerWidth * 0.1,
+            x: innerWidth * 0.08,
             y: innerHeight * 0.3
           },
-          rot: 0
+          rot: 16,
+          scale: 1.3
         },
         signUp: {
           pos: {
-            x: innerWidth * 1.1,
+            x: innerWidth * 0.9,
             y: innerHeight * (-0.2)
           },
-          rot: 0
+          rot: 14,
+          scale: 1
         }
       }} />
     </div>
