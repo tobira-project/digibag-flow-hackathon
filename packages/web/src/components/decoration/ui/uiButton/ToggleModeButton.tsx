@@ -21,7 +21,7 @@ const ToggleModeButton = () => {
   return (
     <>
       <UIButton onClick={handleClick} className={`bottom-btn-sm ${isCameraMode ? 'bottom-btn-gray-active' : 'bottom-btn-gray'}`}>
-        {isCameraMode ? <MoveObjIconB /> : <MoveObjIconW />}
+        <MoveObjIconW />
       </UIButton>
     </>
   );

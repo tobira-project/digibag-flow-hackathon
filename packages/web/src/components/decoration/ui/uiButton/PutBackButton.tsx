@@ -32,7 +32,7 @@ const PutBackButton = () => {
     <>
       <UIButton
         onClick={handleClick}
-        className="bottom-btn-sm overflow-hidden p-[13.5px] pt-[8px]"
+        className="bottom-btn-sm bottom-btn-gray overflow-hidden p-[12.5px] pt-[6px]"
         disabled={disabled}
       >
         <PutBackIcon />

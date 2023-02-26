@@ -39,7 +39,7 @@ const DecorationUI = () => {
         <div className="absolute top-8 w-[100vw] text-center text-[40px] text-[#A5A5A5] pointer-events-none">
           <h1>{title}</h1>
         </div>
-        <div className="bottom-btn-container left-6">
+        <div className="bottom-btn-container  left-6">
           <PutBackButton />
         </div>
         <div className="bottom-btn-container w-[100vw] flex justify-center">
