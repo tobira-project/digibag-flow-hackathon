@@ -5,7 +5,7 @@ import PutBackIcon from "../../../../../public/icon/putBackIcon.svg";
  * バッグにしまうボタン
  */
 const PutBackButton = () => {
-  const handleClick = () => { };
+  const handleClick = () => {};
 
   return (
     <>

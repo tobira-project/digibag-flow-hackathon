@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import useArrangementStore from "@/stores/arrangementStore";
 import OpenGiftButton from "@/components/global/OpenGiftButton";
 import { useEffect, useState } from "react";
-import arrangementData from "@/data/arrangementData.json"
+import arrangementData from "@/data/arrangementData.json";
 import PersonalizeBg from "@/components/arrangement/bagDetail/PersonalizeBg";
 
 /**
@@ -20,16 +20,21 @@ const BagDetail: NextPage = () => {
     isGiftModalOpen: state.isGiftModalOpen,
   }));
 
-  const [imageUrl, setImageUrl] = useState<string>('');
+  const [title, setTitle] = useState<string>("");
+  const [imageUrl, setImageUrl] = useState<string>("");
   const router = useRouter();
 
   useEffect(() => {
     if (!router.query.bagId) return;
-    if (typeof router.query.bagId !== 'string') return;
+    if (typeof router.query.bagId !== "string") return;
     const id = parseInt(router.query.bagId);
-    const url = arrangementData.mockBagDataList[id].thumbnailUrl
+
+    const title = arrangementData.mockBagDataList[id].title;
+    setTitle(title);
+
+    const url = arrangementData.mockBagDataList[id].thumbnailUrl;
     setImageUrl(url);
-  }, [router.query.bagId])
+  }, [router.query.bagId]);
 
   const handleBack = () => {
     router.push("/");
@@ -41,8 +46,10 @@ const BagDetail: NextPage = () => {
         <PersonalizeBg />
         <BackButton onClick={handleBack} className={"back-btn"} />
         <div className="h-[100vh] flex flex-col">
-          <h1 className="mt-[10vh] text-[40px] text-center align-top">title</h1>
-          <div className="relative w-full h-[30vh] p-10 bg-green-100">
+          <h1 className="mt-[10vh] text-[40px] text-center align-top text-white">
+            {title}
+          </h1>
+          <div className="relative w-full h-[30vh] p-10">
             <OpenGiftButton className="absolute right-4 top-0 w-[56px] h-[56px]" />
             <div className="relative w-full h-full">
               {router.query.bagId && <BagPreview imageUrl={imageUrl} />}
