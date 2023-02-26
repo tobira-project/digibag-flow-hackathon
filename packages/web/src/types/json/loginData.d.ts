@@ -3,7 +3,7 @@ declare module "*/loginData.json" {
     bagName: string;
     width: number;
     height: number;
-  }
+  };
 
   type JSONType = {
     bgBag: BagData[];

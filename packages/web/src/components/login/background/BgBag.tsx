@@ -1,10 +1,8 @@
-import useWindowSize from "@/hooks/useWindowSize";
 import { BgSpringData, PlaceData } from "@/types/login/BgSpringData";
 import { LoginMode } from "@/types/login/LoginMode";
-import { config, useSpring, a, useSpringRef, easings } from "@react-spring/web";
-import Image from 'next/image'
-import { useEffect, useState } from "react";
-
+import { config, useSpring, a } from "@react-spring/web";
+import Image from "next/image";
+import { useEffect } from "react";
 
 type Props = {
   mode: LoginMode;
@@ -12,29 +10,25 @@ type Props = {
   width: number;
   height: number;
   springData: BgSpringData;
-}
+};
 
 /**
  * login背景のバッグのアニメーションを管理するコンポーネント
- * @param param0 
- * @returns 
+ * @param param0
+ * @returns
  */
-const BgBag = ({
-  mode,
-  bagName,
-  width,
-  height,
-  springData,
-}: Props) => {
-  const [preMode, setPreMode] = useState<LoginMode>('TOP');
-
-  const [{ x, y, rot, scale }, api] = useSpring(() => ({
-    x: 0,
-    y: 0,
-    rot: 0,
-    scale: 1,
-    config: config.default,
-  }), [])
+const BgBag = ({ mode, bagName, width, height, springData }: Props) => {
+  // springの定義
+  const [{ x, y, rot, scale }, api] = useSpring(
+    () => ({
+      x: 0,
+      y: 0,
+      rot: 0,
+      scale: 1,
+      config: config.default,
+    }),
+    []
+  );
 
   // 初期化処理
   useEffect(() => {
@@ -45,8 +39,8 @@ const BgBag = ({
         y: -9999,
         rot: 0,
         scale: 0,
-        immediate: true
-      })
+        immediate: true,
+      });
     } else {
       // 値が入ったら初期化完了
       // springDataは初期化以降、変更されない
@@ -55,22 +49,22 @@ const BgBag = ({
         y: springData.top.pos.y,
         rot: springData.top.rot,
         scale: springData.top.scale,
-        immediate: true
-      })
+        immediate: true,
+      });
     }
-  }, [springData.top.pos.x])
+  }, [springData.top.pos.x]);
 
   const getData = (m: LoginMode) => {
     let data: PlaceData;
-    if (m === 'TOP') {
+    if (m === "TOP") {
       data = springData.top;
-    } else if (m === 'SIGN_IN') {
-      data = springData.signIn
+    } else if (m === "SIGN_IN") {
+      data = springData.signIn;
     } else {
-      data = springData.signUp
+      data = springData.signUp;
     }
-    return data
-  }
+    return data;
+  };
 
   // mode変更時、アニメーション
   useEffect(() => {
@@ -83,18 +77,23 @@ const BgBag = ({
       rot: data.rot,
       scale: data.scale,
       config: config.slow,
-    })
-    setPreMode(mode);
+    });
   }, [mode]);
 
+  return (
+    <>
+      <div className={"w-[100vw] h-[100vh] absolute overflow-hidden z-[-4]"}>
+        <a.div style={{ x, y, scale, rotate: rot.to((v) => `${v}deg`) }}>
+          <Image
+            src={`/bag-images/${bagName}.png`}
+            alt={`${bagName}`}
+            width={width}
+            height={height}
+          />
+        </a.div>
+      </div>
+    </>
+  );
+};
 
-  return <>
-    <div className={'w-[100vw] h-[100vh] absolute overflow-hidden z-[-4]'}>
-      <a.div style={{ x, y, scale, rotate: rot.to(v => `${v}deg`) }}>
-        <Image src={`/bag-images/${bagName}.png`} alt={`${bagName}`} width={width} height={height} />
-      </a.div>
-    </div>
-  </>
-}
-
-export default BgBag
+export default BgBag;

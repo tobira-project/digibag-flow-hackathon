@@ -16,7 +16,7 @@ import { LoginMode } from "@/types/login/LoginMode";
 const Login = () => {
   // モードによって背景の動きが変わるためには、背景移動のspring用に数値の変数を用意する必要があるかも
   // useSpringで使っていたbooleanの数値バージョン
-  const [mode, setMode] = useState<LoginMode>('TOP')
+  const [mode, setMode] = useState<LoginMode>("TOP");
   const router = useRouter();
 
   // Sign inモードへ
