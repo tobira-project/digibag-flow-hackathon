@@ -6,50 +6,51 @@ import useDecorationStore from "@/stores/decorationStore";
 import { CropData } from "@/types/decoration/decorationItemType";
 
 /**
+ * 未使用。
  * グッズのクロップ作業画面を表示するコンポーネント
  * @returns
  */
 const CropWindow = () => {
-  const {
-    placeNewItem,
-    cropSrc,
-    isCropWindowOpen,
-    closeCropWindow,
-    hideCropWindow,
-  } = useDecorationStore((state) => ({
-    placeNewItem: state.placeNewItem,
-    cropSrc: state.cropSrc,
-    isCropWindowOpen: state.isCropWindowOpen,
-    closeCropWindow: state.closeCropWindow,
-    hideCropWindow: state.hideCropWindow,
-  }));
+  // const {
+  //   placeNewItem,
+  //   cropSrc,
+  //   isCropWindowOpen,
+  //   closeCropWindow,
+  //   hideCropWindow,
+  // } = useDecorationStore((state) => ({
+  //   placeNewItem: state.placeNewItem,
+  //   cropSrc: state.cropSrc,
+  //   isCropWindowOpen: state.isCropWindowOpen,
+  //   closeCropWindow: state.closeCropWindow,
+  //   hideCropWindow: state.hideCropWindow,
+  // }));
 
-  // 開閉アニメーションの変数定義
-  const { y } = useSpring({
-    from: { y: "100vh" },
-    to: { y: isCropWindowOpen ? "0" : "100vh" },
-    config: { tension: 500, friction: 50 },
-    onResolve: () => {
-      if (isCropWindowOpen) return;
-      hideCropWindow();
-    },
-  });
+  // // 開閉アニメーションの変数定義
+  // const { y } = useSpring({
+  //   from: { y: "100vh" },
+  //   to: { y: isCropWindowOpen ? "0" : "100vh" },
+  //   config: { tension: 500, friction: 50 },
+  //   onResolve: () => {
+  //     if (isCropWindowOpen) return;
+  //     hideCropWindow();
+  //   },
+  // });
 
-  // クロップ完了時の処理
-  const handleCrop = (cropData: CropData) => {
-    // クロップデータの設定
-    if (cropSrc) {
-      placeNewItem(cropSrc.imageUrl, cropSrc.itemType, cropData);
-    } else {
-      console.warn("cropSrc is undefined");
-    }
-    // クロップウィンドウを閉じる
-    closeCropWindow();
-  };
+  // // クロップ完了時の処理
+  // const handleCrop = (cropData: CropData) => {
+  //   // クロップデータの設定
+  //   if (cropSrc) {
+  //     placeNewItem( cropSrc.imageUrl, cropSrc.itemType, cropData);
+  //   } else {
+  //     console.warn("cropSrc is undefined");
+  //   }
+  //   // クロップウィンドウを閉じる
+  //   closeCropWindow();
+  // };
 
   return (
     <>
-      <a.div className="absolute inset-0 z-[4]" style={{ y }}>
+      {/* <a.div className="absolute inset-0 z-[4]" style={{ y }}>
         <div className="crop-window">
           <div className="h-full p-8">
             <BadgeCrop
@@ -64,7 +65,7 @@ const CropWindow = () => {
           </div>
         </div>
         <CloseButton handleClick={closeCropWindow} />
-      </a.div>
+      </a.div> */}
     </>
   );
 };
