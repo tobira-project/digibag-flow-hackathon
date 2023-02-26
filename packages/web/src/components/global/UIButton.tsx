@@ -11,7 +11,12 @@ type Props = {
  * 装飾画面のUIボタン
  * @returns
  */
-const UIButton = ({ onClick, children, className, disabled = false }: Props) => {
+const UIButton = ({
+  onClick,
+  children,
+  className,
+  disabled = false,
+}: Props) => {
   return (
     <>
       <button

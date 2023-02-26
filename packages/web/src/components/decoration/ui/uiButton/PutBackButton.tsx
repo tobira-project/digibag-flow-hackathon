@@ -7,23 +7,25 @@ import { useEffect, useState } from "react";
  * バッグにしまうボタン
  */
 const PutBackButton = () => {
-  const { selectedItemId, putBackItem, isCameraMode } = useDecorationStore((state) => ({
-    selectedItemId: state.selectedItemId,
-    putBackItem: state.putBackItem,
-    isCameraMode: state.isCameraMode,
-  }))
+  const { selectedItemId, putBackItem, isCameraMode } = useDecorationStore(
+    (state) => ({
+      selectedItemId: state.selectedItemId,
+      putBackItem: state.putBackItem,
+      isCameraMode: state.isCameraMode,
+    })
+  );
 
   // 非選択状態、カメラモード時はボタンを非アクティブに
   const [disabled, setDisabled] = useState<boolean>(true);
 
   useEffect(() => {
-    setDisabled(selectedItemId === '' || isCameraMode)
-  }, [selectedItemId, isCameraMode])
+    setDisabled(selectedItemId === "" || isCameraMode);
+  }, [selectedItemId, isCameraMode]);
 
   // ボタンをクリックした時、バッグにしまう処理を実行
   const handleClick = () => {
-    if (selectedItemId === '') return;
-    putBackItem(selectedItemId)
+    if (selectedItemId === "") return;
+    putBackItem(selectedItemId);
   };
 
   return (

@@ -128,7 +128,7 @@ const useDecorationStore = create<DecorationState>((set, get) => ({
 
       return {
         placedItems: newItems,
-        selectedItemId: '',
+        selectedItemId: "",
       };
     }),
 

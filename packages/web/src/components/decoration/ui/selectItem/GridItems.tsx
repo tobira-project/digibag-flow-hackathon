@@ -9,11 +9,13 @@ import { useRef } from "react";
  * @returns
  */
 const GridItems = () => {
-  const { placedItems, placeNewItem, closeInventoryBag } = useDecorationStore((state) => ({
-    placedItems: state.placedItems,
-    placeNewItem: state.placeNewItem,
-    closeInventoryBag: state.closeInventoryBag,
-  }));
+  const { placedItems, placeNewItem, closeInventoryBag } = useDecorationStore(
+    (state) => ({
+      placedItems: state.placedItems,
+      placeNewItem: state.placeNewItem,
+      closeInventoryBag: state.closeInventoryBag,
+    })
+  );
 
   const imageRef = useRef<HTMLImageElement>(null);
 
@@ -38,7 +40,9 @@ const GridItems = () => {
       <div className="contents-grid-contianer mt-14">
         <div className="grid grid-cols-3 gap-3 pb-2 px-3">
           {decorationData.mockItemList
-            .filter((v) => placedItems.findIndex(x => x.srcId === v.id) === -1)
+            .filter(
+              (v) => placedItems.findIndex((x) => x.srcId === v.id) === -1
+            )
             .map((v) => (
               <>
                 <button
