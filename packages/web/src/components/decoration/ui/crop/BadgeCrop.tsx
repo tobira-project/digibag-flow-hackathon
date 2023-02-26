@@ -5,6 +5,7 @@ import Cropper, { Area } from "react-easy-crop";
 import "react-easy-crop/react-easy-crop.css";
 
 /**
+ * 未使用。
  * 缶バッジのクロップ機能を実装するコンポーネント
  * 完了ボタンクリック時に、引数funcに与えられた処理を実行する
  * @param param0

@@ -6,6 +6,7 @@ import useDecorationStore from "@/stores/decorationStore";
 import { CropData } from "@/types/decoration/decorationItemType";
 
 /**
+ * 未使用。
  * グッズのクロップ作業画面を表示するコンポーネント
  * @returns
  */

@@ -33,6 +33,7 @@ type DecorationState = {
   // 配置されたグッズのデータ
   placedItems: PlacedItemData[];
   placeNewItem: (
+    srcId: string,
     srcUrl: string,
     itemType: ItemType,
     cropData: CropData,
@@ -90,7 +91,7 @@ const useDecorationStore = create<DecorationState>((set, get) => ({
 
   // 配置されたグッズのデータ
   placedItems: [],
-  placeNewItem: (srcUrl, itemType, cropData, itemId?) =>
+  placeNewItem: (srcId, srcUrl, itemType, cropData, itemId?) =>
     set((state) => {
       const newItems = [...state.placedItems];
 
@@ -100,6 +101,7 @@ const useDecorationStore = create<DecorationState>((set, get) => ({
 
       newItems.push({
         id: newId,
+        srcId,
         srcUrl,
         itemType,
         position: new Vector3(Math.random() * 6 - 3, Math.random() * 6 - 3, -7), // 要デフォルト値。バッグの表面というのが少し厄介そう

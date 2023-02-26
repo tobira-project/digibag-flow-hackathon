@@ -16,6 +16,7 @@ export type CropData = {
 // 配置されたグッズのデータ
 export type PlacedItemData = {
   id: string;
+  srcId: string;
   srcUrl: string;
   itemType: ItemType;
   position: Vector3;

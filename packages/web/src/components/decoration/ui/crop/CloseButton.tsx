@@ -3,6 +3,7 @@ type Props = {
 };
 
 /**
+ * 未使用。
  * クロップウィンドウの閉じるボタン
  * @param param0
  * @returns
