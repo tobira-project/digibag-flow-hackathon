@@ -9,7 +9,7 @@ type HookType = () => {
 
 /**
  * マウスホイール操作による缶バッジの拡縮操作の処理をまとめたhook
- * @returns 
+ * @returns
  */
 const useWheelScale: HookType = () => {
   const {

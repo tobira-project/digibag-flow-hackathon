@@ -19,7 +19,7 @@ const useWindowSize: HookType = () => {
 
   useEffect(() => {
     if (typeof window === "undefined") {
-      return () => { };
+      return () => {};
     }
     const handleResize = () => {
       setWindowSize({

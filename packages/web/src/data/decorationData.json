@@ -7,5 +7,23 @@
     "drag": 0.01,
     "pinch": 0.01,
     "wheel": 0.001
-  }
+  },
+  "mockItemList": [
+    {
+      "id": 0,
+      "imageUrl": "/decoration/test/toruto.png"
+    },
+    {
+      "id": 1,
+      "imageUrl": "/decoration/test/toruto.png"
+    },
+    {
+      "id": 3,
+      "imageUrl": "/decoration/test/toruto.png"
+    },
+    {
+      "id": 4,
+      "imageUrl": "/decoration/test/toruto.png"
+    }
+  ]
 }

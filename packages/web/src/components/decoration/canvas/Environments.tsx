@@ -10,7 +10,7 @@ const Environments = () => {
   const { scene } = useThree();
   useEffect(() => {
     // SkyBoxの色設定
-    scene.background = new Color("grey");
+    scene.background = new Color("fefefe");
   }, []);
 
   return (

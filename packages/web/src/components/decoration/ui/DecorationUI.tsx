@@ -1,26 +1,39 @@
 import useDecorationStore from "@/stores/decorationStore";
 import CropWindow from "./crop/CropWindow";
-import AddNewBadgeButton from "./test/AddNewBadgeButton";
-import ToggleModeButton from "./test/ToggleModeButton";
+import InventoryBag from "./selectItem/InventoryBag";
+import AddNewBadgeButton from "./uiButton/AddNewBadgeButton";
+import ExitButton from "./uiButton/ExitButton";
+import PutBackButton from "./uiButton/PutBackButton";
+import ToggleModeButton from "./uiButton/ToggleModeButton";
 
 /**
  * 装飾画面のUIを表示するコンポーネント
  * @returns
  */
 const DecorationUI = () => {
-  const { isCropWindowVisible } = useDecorationStore((state) => ({
-    isCropWindowVisible: state.isCropWindowVisible,
-  }));
+  const { isCropWindowVisible, isInventoryBagOpen } = useDecorationStore(
+    (state) => ({
+      isCropWindowVisible: state.isCropWindowVisible,
+      isInventoryBagOpen: state.isInventoryBagOpen,
+    })
+  );
 
   return (
     <>
       <div>
-        <div className="absolute bottom-0 left-0">
+        <div className="absolute top-8">
+          <ExitButton />
+        </div>
+        <div className="bottom-btn-container left-6">
+          <PutBackButton />
+        </div>
+        <div className="bottom-btn-container w-[100vw] flex justify-center">
           <AddNewBadgeButton />
         </div>
-        <div className="absolute bottom-0 right-0">
+        <div className="bottom-btn-container right-6">
           <ToggleModeButton />
         </div>
+        {isInventoryBagOpen && <InventoryBag />}
         {isCropWindowVisible && <CropWindow />}
       </div>
     </>

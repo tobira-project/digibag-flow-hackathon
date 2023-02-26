@@ -1,5 +1,9 @@
-
-import { ItemType, PlacedItemData, CropData, ItemSizeData } from "@/types/decoration/decorationItemType";
+import {
+  ItemType,
+  PlacedItemData,
+  CropData,
+  ItemSizeData,
+} from "@/types/decoration/decorationItemType";
 import { Vector, Vector3 } from "three";
 import { create } from "zustand";
 
@@ -22,6 +26,10 @@ type CropSrc = {
 };
 
 type DecorationState = {
+  // 編集中のバッグのid
+  bagId: number;
+  setBagId: (id: number) => void;
+
   // 配置されたグッズのデータ
   placedItems: PlacedItemData[];
   placeNewItem: (
@@ -64,12 +72,21 @@ type DecorationState = {
   openCropWindow: (cropSrc: CropSrc) => void;
   closeCropWindow: () => void; // 閉じるアニメーション開始する
   hideCropWindow: () => void; // 非表示にする
+
+  // インベントリ（バッグ）の状態管理
+  isInventoryBagOpen: boolean;
+  openInventoryBag: () => void;
+  closeInventoryBag: () => void;
 };
 
 /**
  * zustandによるdecorationページの状態管理
  */
 const useDecorationStore = create<DecorationState>((set, get) => ({
+  // 編集中のバッグのid
+  bagId: -1,
+  setBagId: (id) => set((state) => ({ bagId: id })),
+
   // 配置されたグッズのデータ
   placedItems: [],
   placeNewItem: (srcUrl, itemType, cropData, itemId?) =>
@@ -176,6 +193,11 @@ const useDecorationStore = create<DecorationState>((set, get) => ({
   closeCropWindow: () =>
     set(() => ({ isCropWindowOpen: false, cropSrc: null })),
   hideCropWindow: () => set(() => ({ isCropWindowVisible: false })),
+
+  // インベントリ（バッグ）の状態管理
+  isInventoryBagOpen: false,
+  openInventoryBag: () => set((state) => ({ isInventoryBagOpen: true })),
+  closeInventoryBag: () => set((state) => ({ isInventoryBagOpen: false })),
 }));
 
 export default useDecorationStore;

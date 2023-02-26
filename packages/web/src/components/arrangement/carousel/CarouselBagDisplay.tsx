@@ -1,9 +1,9 @@
 /**
  * バッグのカルーセル表示のコンポーネント
- * @returns 
+ * @returns
  */
 const CarouselBagDisplay = () => {
-  return <>カルーセル</>
-}
+  return <>カルーセル</>;
+};
 
-export default CarouselBagDisplay
+export default CarouselBagDisplay;
