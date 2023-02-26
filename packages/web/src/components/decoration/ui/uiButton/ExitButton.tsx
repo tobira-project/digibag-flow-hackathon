@@ -7,16 +7,14 @@ import ExitIcon from "../../../../../public/icon/exit-icon.svg";
  * @returns
  */
 const ExitButton = () => {
-  const { bagId, setBagId } = useDecorationStore((state) => ({
-    bagId: state.bagId,
-    setBagId: state.setBagId,
-  }));
   const router = useRouter();
 
   const handleClick = async () => {
+    if (!router.query.bagId) return;
+    if (typeof router.query.bagId !== 'string') return;
     // 保存して退出
     //
-    await router.push(`/bags/${bagId}/`);
+    router.push(`/bags/${router.query.bagId}/`);
   };
 
   return (

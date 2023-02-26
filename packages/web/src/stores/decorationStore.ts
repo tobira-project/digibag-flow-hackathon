@@ -26,10 +26,6 @@ type CropSrc = {
 };
 
 type DecorationState = {
-  // 編集中のバッグのid
-  bagId: number;
-  setBagId: (id: number) => void;
-
   // 配置されたグッズのデータ
   placedItems: PlacedItemData[];
   placeNewItem: (
@@ -85,10 +81,6 @@ type DecorationState = {
  * zustandによるdecorationページの状態管理
  */
 const useDecorationStore = create<DecorationState>((set, get) => ({
-  // 編集中のバッグのid
-  bagId: -1,
-  setBagId: (id) => set((state) => ({ bagId: id })),
-
   // 配置されたグッズのデータ
   placedItems: [],
   placeNewItem: (srcId, srcUrl, itemType, cropData, itemId?) =>
