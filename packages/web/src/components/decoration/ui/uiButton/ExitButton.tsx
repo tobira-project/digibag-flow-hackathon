@@ -11,7 +11,7 @@ const ExitButton = () => {
 
   const handleClick = async () => {
     if (!router.query.bagId) return;
-    if (typeof router.query.bagId !== 'string') return;
+    if (typeof router.query.bagId !== "string") return;
     // 保存して退出
     //
     router.push(`/bags/${router.query.bagId}/`);

@@ -26,7 +26,10 @@ const AddNewBadgeButton = () => {
 
   return (
     <>
-      <UIButton onClick={handleClick} className="bottom-btn-lg bottom-btn-gray p-[10px] pt-[12px]">
+      <UIButton
+        onClick={handleClick}
+        className="bottom-btn-lg bottom-btn-gray p-[10px] pt-[12px]"
+      >
         <DecorateIcon />
       </UIButton>
     </>

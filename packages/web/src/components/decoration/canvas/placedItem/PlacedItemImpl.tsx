@@ -2,7 +2,7 @@ import useDecorationStore from "@/stores/decorationStore";
 import { PlacedItemData } from "@/types/decoration/decorationItemType";
 import { ThreeEvent } from "@react-three/fiber";
 import { ReactNode, Suspense, useContext, useEffect, useRef } from "react";
-import { Group, Vector2 } from "three";
+import { Group, Vector2, Vector3 } from "three";
 import { DirectMoveContext, RaycastContext } from "../DecorationCanvas";
 
 type Props = {
@@ -50,9 +50,14 @@ const PlacedItemImpl = ({ itemData, children }: Props) => {
     if (pointerTarget.face) {
       // 姿勢の更新
       setItemLookDir(itemData.id, pointerTarget.face.normal);
+      // 座標の更新
+      setItemPos(
+        itemData.id,
+        pointerTarget.point
+          .clone()
+          .add(pointerTarget.face.normal.multiply(new Vector3(0.1, 0.1, 0.1)))
+      );
     }
-    // 座標の更新
-    setItemPos(itemData.id, pointerTarget.point);
   }, []);
 
   // モデルを接地面の法線方向に向ける

@@ -78,8 +78,8 @@ const DecorationCanvas = () => {
         >
           <Environments />
           <CameraContainer cameraRef={cameraRef} />
-          {/* 勝手にカメラ位置を調整するのを止められれば、Stageは便利そう
-           <Stage adjustCamera={false} center={{ disable: true }}> */}
+          {/* 勝手にカメラ位置を調整するのを止められれば、Stageは便利そう */}
+          {/* <Stage adjustCamera={false} center={{ disable: true }}> */}
           <ItaBagModel itaBagRef={itaBagRef} />
           <DirectMoveContext.Provider value={handleDirectDown}>
             <RaycastContext.Provider
@@ -88,7 +88,6 @@ const DecorationCanvas = () => {
               <PlacedItemContainer />
             </RaycastContext.Provider>
           </DirectMoveContext.Provider>
-          <TestRayPoint />
           {/* </Stage> */}
         </Canvas>
       </div>
