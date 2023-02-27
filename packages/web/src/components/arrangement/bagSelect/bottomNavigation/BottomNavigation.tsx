@@ -3,6 +3,7 @@ import NavButton from "./NavButton";
 import BagView from "@/../public/icon/bagview-icon.svg";
 import { TfiPlus } from "react-icons/tfi";
 import ProfileIcon from "@/../public/icon/profile-icon.svg";
+import useWindowSize from "@/hooks/useWindowSize";
 
 /**
  * バッグ選択画面でのbottom navigationのコンポーネント
@@ -14,10 +15,20 @@ const BottomNavigation = () => {
     toggleIsGridBags: state.toggleIsGridBags,
   }));
 
+  const { innerHeight, displayWidth, displayHeight } = useWindowSize();
+
   return (
     <>
-      <div className="fixed bottom-10 pointer-events-none">
-        <div className="w-[100vw] flex justify-center gap-3">
+      <div
+        className="fixed pointer-events-none"
+        style={{
+          bottom: (innerHeight - displayHeight) / 2.0 + 40,
+        }}
+      >
+        <div
+          className="flex justify-center gap-3"
+          style={{ width: displayWidth }}
+        >
           <div className="pt-8">
             <NavButton
               onClick={() => {}}

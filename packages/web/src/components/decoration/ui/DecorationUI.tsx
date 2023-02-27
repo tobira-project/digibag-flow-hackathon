@@ -8,6 +8,7 @@ import ToggleModeButton from "./uiButton/ToggleModeButton";
 import arrangementData from "@/data/arrangementData.json";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import useWindowSize from "@/hooks/useWindowSize";
 
 /**
  * 装飾画面のUIを表示するコンポーネント
@@ -31,19 +32,24 @@ const DecorationUI = () => {
     setTitle(newTitle);
   }, [router.query.bagId]);
 
+  const { displayWidth } = useWindowSize();
+
   return (
     <>
       <div>
         <div className="absolute top-8">
           <ExitButton />
         </div>
-        <div className="absolute top-8 w-[100vw] text-center text-[40px] text-[#A5A5A5] pointer-events-none">
+        <div className="deco-title" style={{ width: displayWidth }}>
           <h1>{title}</h1>
         </div>
         <div className="bottom-btn-container  left-6">
           <PutBackButton />
         </div>
-        <div className="bottom-btn-container w-[100vw] flex justify-center">
+        <div
+          className="bottom-btn-container flex justify-center"
+          style={{ width: displayWidth }}
+        >
           <AddNewBadgeButton />
         </div>
         <div className="bottom-btn-container right-6">

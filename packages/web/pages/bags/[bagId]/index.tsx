@@ -54,7 +54,7 @@ const BagDetail: NextPage = () => {
           <h1 className="mt-[10%] text-[40px] text-center align-top text-white">
             {title}
           </h1>
-          <div className="relative w-full h-[30%] p-10">
+          <div className="relative w-full h-[30%] p-10 pointer-events-none">
             <OpenGiftButton className="absolute right-4 top-0 w-[56px] h-[56px]" />
             <div className="relative w-full h-full">
               {router.query.bagId && <BagPreview imageUrl={imageUrl} />}
