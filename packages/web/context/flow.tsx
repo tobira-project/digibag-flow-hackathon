@@ -9,14 +9,14 @@ import * as fcl from "@onflow/fcl";
 // CONFIGURE ACCESS NODE
 fcl.config().put("accessNode.api", "https://rest-testnet.onflow.org");
 
-const MagicContext = createContext<{
+const FlowContext = createContext<{
   magic?: InstanceWithExtensions<SDKBase, (FlowExtension | OAuthExtension)[]>;
   fcl: typeof fcl;
 }>({
   fcl: fcl
 })
 
-export const MagicProvider = ({ children }: { children: ReactNode }) => {
+export const FlowProvider = ({ children }: { children: ReactNode }) => {
   const magic = useMemo(() => {
     if (typeof window === 'undefined') return;
     if (typeof process.env.NEXT_PUBLIC_MAGIC_PUBLISHABLE_API_KEY !== 'string') return;
@@ -31,13 +31,13 @@ export const MagicProvider = ({ children }: { children: ReactNode }) => {
     })
   }, [])
   return (
-    <MagicContext.Provider value={{
+    <FlowContext.Provider value={{
       magic: magic,
       fcl: fcl
     }}>
       {children}
-    </MagicContext.Provider>
+    </FlowContext.Provider>
   )
 }
 
-export const useMagic = () => useContext(MagicContext)
+export const useFlow = () => useContext(FlowContext)

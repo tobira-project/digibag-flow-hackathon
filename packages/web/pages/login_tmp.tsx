@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { useMagic } from "context/magic";
+import { useFlow } from "context/flow";
 
 export default function Home() {
-  const { magic, fcl } = useMagic();
+  const { magic, fcl } = useFlow();
   const [magicLoaded, setMagicLoaded] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [publicAddress, setPublicAddress] = useState("");

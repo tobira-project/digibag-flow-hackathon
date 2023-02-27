@@ -1,10 +1,9 @@
 import "@/styles/globals.scss";
-import "@/styles/index-tmp.css"; // temporary css file for demo
 import type { AppProps } from "next/app";
-import { MagicProvider } from "context/magic";
+import { FlowProvider } from "context/flow";
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <MagicProvider>
+  return <FlowProvider>
     <Component {...pageProps} />
-  </MagicProvider>;
+  </FlowProvider>;
 }
