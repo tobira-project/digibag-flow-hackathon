@@ -25,8 +25,9 @@ type ArrangementState = {
   bagDataList: BagData[];
 
   // グッズのモーダル表示の状態を管理する
+  selectedItemModalId: string;
   isItemModalOpen: boolean;
-  openItemModal: () => void;
+  openItemModal: (itemId: string) => void;
   closeItemModal: () => void;
 
   // ギフトのモーダル表示の状態を管理する
@@ -46,8 +47,10 @@ const useArrangementStore = create<ArrangementState>((set, get) => ({
   bagDataList: arrangementData.mockBagDataList,
 
   // グッズのモーダル表示の状態を管理する
+  selectedItemModalId: "",
   isItemModalOpen: false,
-  openItemModal: () => set((state) => ({ isItemModalOpen: true })),
+  openItemModal: (itemId) =>
+    set((state) => ({ isItemModalOpen: true, selectedItemModalId: itemId })),
   closeItemModal: () => set((state) => ({ isItemModalOpen: false })),
 
   // ギフトのモーダル表示の状態を管理する

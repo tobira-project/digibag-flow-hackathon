@@ -3,17 +3,47 @@ import Image from "next/image";
 import ItemModalButton from "./ui/ItemModalButton";
 import TakeThisOutIcon from "@/../public/icon/takethisout-icon.svg";
 import MoveItemIcon from "@/../public/icon/moveitem-icon.svg";
+import decorationData from "@/data/decorationData.json";
+import { ItemDataType } from "@/types/arrangement/itemData";
+import { useEffect, useState } from "react";
 
+/**
+ * グッズ詳細を表示するモーダルのコンポーネント
+ * @returns
+ */
 const ItemModal = () => {
-  const { closeItemModal } = useArrangementStore((state) => ({
-    closeItemModal: state.closeItemModal,
-  }));
+  const { closeItemModal, selectedItemModalId } = useArrangementStore(
+    (state) => ({
+      closeItemModal: state.closeItemModal,
+      selectedItemModalId: state.selectedItemModalId,
+    })
+  );
 
+  const DEFAULT_ITEM_DATA: ItemDataType = {
+    id: "",
+    imageUrl: "",
+    title: "",
+    author: "",
+    description: "",
+  };
+  const [itemData, setItemData] = useState<ItemDataType>(DEFAULT_ITEM_DATA);
+
+  // データのセット
+  useEffect(() => {
+    const newData = decorationData.mockItemList.find(
+      (v) => v.id === selectedItemModalId
+    );
+    if (!newData) return;
+    setItemData(newData);
+  }, []);
+
+  // 外側をクリックでモーダルを閉じる
   const handleOuterClick = () => {
     // グッズの詳細表示を開く
     closeItemModal();
   };
 
+  // 内側のクリックではモーダルを閉じない
   const handleContainerClick = (ev: React.MouseEvent<HTMLDivElement>) => {
     ev.stopPropagation();
   };
@@ -25,22 +55,19 @@ const ItemModal = () => {
           className="item-modal-container"
           onClick={(ev) => handleContainerClick(ev)}
         >
-          <h2 className="item-modal-title">Item name</h2>
+          <h2 className="item-modal-title">{itemData.title}</h2>
           <div className="item-modal-border" />
-          <p className="item-modal-author">Gorakuba!</p>
+          <p className="item-modal-author">{itemData.author}</p>
           <div className="item-modal-image">
             {/* 画像表示 */}
             <Image
-              src={"/decoration/test/tbr_inutanuki.png"}
+              src={itemData.imageUrl}
               alt={"item"}
               fill
               style={{ objectFit: "contain" }}
             />
           </div>
-          <p className="item-modal-description">
-            desfffffffffffffffffffffffffffffcriptiondescriptiondescription
-            descriptiondescriptiondescription
-          </p>
+          <p className="item-modal-description">{itemData.description}</p>
           <div className="item-modal-btn-container">
             {/* ボタン */}
             <ItemModalButton onClick={() => {}}>

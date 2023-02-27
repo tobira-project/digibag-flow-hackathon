@@ -2,6 +2,7 @@ import useArrangementStore from "@/stores/arrangementStore";
 import Image from "next/image";
 
 type Props = {
+  itemId: string;
   imageUrl: string;
 };
 
@@ -10,14 +11,15 @@ type Props = {
  * @param param0
  * @returns
  */
-const ContentItem = ({ imageUrl }: Props) => {
+const ContentItem = ({ itemId, imageUrl }: Props) => {
   const { openItemModal } = useArrangementStore((state) => ({
     openItemModal: state.openItemModal,
   }));
 
   const handleClick = () => {
+    if (itemId === "") return;
     // グッズの詳細表示を開く
-    openItemModal();
+    openItemModal(itemId);
   };
 
   return (

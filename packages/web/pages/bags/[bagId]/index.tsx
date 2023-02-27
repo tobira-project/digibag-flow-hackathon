@@ -26,6 +26,7 @@ const BagDetail: NextPage = () => {
   const [imageUrl, setImageUrl] = useState<string>("");
   const router = useRouter();
 
+  // dynamic routingを利用してバッグのidを取得し、データをセットする
   useEffect(() => {
     if (!router.query.bagId) return;
     if (typeof router.query.bagId !== "string") return;
@@ -38,6 +39,8 @@ const BagDetail: NextPage = () => {
     setImageUrl(url);
   }, [router.query.bagId]);
 
+  // バッグ一覧へ戻る
+  // （前のページに戻る方がよいかも？）
   const handleBack = () => {
     router.push("/");
   };
