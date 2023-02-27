@@ -18,7 +18,7 @@ const Home = () => {
 
   return (
     <>
-      <div>
+      <div className="page-top-container">
         {isGridBags ? (
           <>
             <CarouselBagDisplay />

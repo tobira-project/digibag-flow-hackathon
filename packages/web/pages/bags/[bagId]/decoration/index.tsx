@@ -8,7 +8,7 @@ import { NextPage } from "next";
 const DecorationPage: NextPage = () => {
   return (
     <>
-      <div className="overflow-hidden">
+      <div className="page-top-container overflow-hidden">
         <DecorationWindow />
       </div>
     </>

@@ -52,44 +52,46 @@ const Login = () => {
 
   return (
     <>
-      {/* バックグラウンドにバッグ画像を表示 */}
-      <Background mode={mode} />
+      <div className="page-top-container">
+        {/* バックグラウンドにバッグ画像を表示 */}
+        <Background mode={mode} />
 
-      {mode !== "TOP" && (
-        <>
-          <BackButton onClick={back} className={"login-back-btn"} />
-        </>
-      )}
-      <div className="login-title-container">
-        <div className="login-tbr-logo">
-          <TBRLogo />
+        {mode !== "TOP" && (
+          <>
+            <BackButton onClick={back} className={"login-back-btn"} />
+          </>
+        )}
+        <div className="login-title-container">
+          <div className="login-tbr-logo">
+            <TBRLogo />
+          </div>
+          <h1 className="login-title">DIGIBAG</h1>
         </div>
-        <h1 className="login-title">DIGIBAG</h1>
-      </div>
 
-      <div>
-        {mode === "TOP" && (
+        <div>
+          {mode === "TOP" && (
+            <>
+              <Top moveSignIn={moveSignIn} moveSignUp={moveSignUp} />
+            </>
+          )}
+          {mode === "SIGN_IN" && (
+            <>
+              <SignIn handleSignIn={handleSignIn} moveSignUp={moveSignUp} />
+            </>
+          )}
+          {mode === "SIGN_UP" && (
+            <>
+              <SignUp handleSignUp={handleSignUp} moveSignIn={moveSignIn} />
+            </>
+          )}
+        </div>
+        {mode === "SUCCESS_SIGN_UP" && (
           <>
-            <Top moveSignIn={moveSignIn} moveSignUp={moveSignUp} />
-          </>
-        )}
-        {mode === "SIGN_IN" && (
-          <>
-            <SignIn handleSignIn={handleSignIn} moveSignUp={moveSignUp} />
-          </>
-        )}
-        {mode === "SIGN_UP" && (
-          <>
-            <SignUp handleSignUp={handleSignUp} moveSignIn={moveSignIn} />
+            you are successfully registered!!
+            <SignButton text="Next" onClick={handleNext} />
           </>
         )}
       </div>
-      {mode === "SUCCESS_SIGN_UP" && (
-        <>
-          you are successfully registered!!
-          <SignButton text="Next" onClick={handleNext} />
-        </>
-      )}
     </>
   );
 };

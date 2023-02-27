@@ -15,6 +15,10 @@ $breakpoint: (
 @tailwind utilities;
 
 @layer components {
+  .page-top-container {
+    @apply absolute inset-0 bg-white z-[-20];
+  }
+
   // 戻るボタン
   .back-btn {
     @apply absolute top-[10vh] left-[4%] btn btn-circle btn-ghost;
@@ -30,7 +34,7 @@ $breakpoint: (
       @apply backdrop-blur-lg bg-white/80;
 
       &-sm {
-        @apply glass-white backdrop-blur-sm
+        @apply glass-white backdrop-blur-sm;
       }
     }
 
@@ -38,7 +42,7 @@ $breakpoint: (
       @apply backdrop-blur-lg bg-black/30;
 
       &-hover {
-        @apply backdrop-blur-lg bg-black/40 hover:bg-black/50;  
+        @apply backdrop-blur-lg bg-black/40 hover:bg-black/50;
       }
     }
 
