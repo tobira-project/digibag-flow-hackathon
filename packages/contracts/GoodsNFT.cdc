@@ -54,10 +54,6 @@ pub contract GoodsNFT {
         pub fun getIDs(): [UInt64]
 
         pub fun idExists(id: UInt64): Bool
-
-        pub fun updatePos(id: UInt64, pos: [UInt64])
-
-        pub fun updateRot(id: UInt64, rot: [UInt64])
     }
 
     pub resource interface NFTReceiver {
@@ -66,6 +62,14 @@ pub contract GoodsNFT {
         pub fun getIDs(): [UInt64]
 
         pub fun idExists(id: UInt64): Bool
+
+        pub fun move(nftId: UInt64, bagId: UInt64, addressId: UInt64)
+
+        pub fun updatePos(bagId: UInt64, nftId: UInt64, pos: [UInt64])
+
+        pub fun updateRot(bagId: UInt64, nftId: UInt64, rot: [UInt64])
+
+        pub fun depositNFT(bagId: UInt64, token: @NFT)
     }
 
     // The definition of the Collection resource that
@@ -156,6 +160,15 @@ pub contract GoodsNFT {
             self.ownedBags[token.id] <-! token
         }
 
+        pub fun move(nftId: UInt64, bagId: UInt64, addressId: UInt64) {
+        if let bag <- self.ownedBags[bagId] <- nil {
+                self.ownedBags[addressId]?.deposit(token: <- bag.withdraw(withdrawID: nftId))
+                self.ownedBags[bagId] <-! bag
+            } else {
+                panic("the specified bag ID was not found")
+            }
+        }
+
         // idExists checks to see if a NFT
         // with the given ID exists in the collection
         pub fun idExists(id: UInt64): Bool {
@@ -165,6 +178,23 @@ pub contract GoodsNFT {
         // getIDs returns an array of the IDs that are in the collection
         pub fun getIDs(): [UInt64] {
             return self.ownedBags.keys
+        }
+
+        pub fun updatePos(bagId: UInt64, nftId: UInt64, pos: [UInt64]) {
+            self.ownedBags[bagId]?.updatePos(id: nftId, pos: pos)
+        }
+
+        pub fun updateRot(bagId: UInt64, nftId: UInt64, rot: [UInt64]) {
+            self.ownedBags[bagId]?.updateRot(id: nftId, rot: rot)
+        }
+
+        pub fun depositNFT(bagId: UInt64, token: @NFT) {
+            if let bag <- self.ownedBags[bagId] <- nil {
+                bag.deposit(token: <- token)
+                self.ownedBags[bagId] <-! bag
+            } else {
+                panic("A bag with the specified ID was not found")
+            }
         }
 
         destroy() {
