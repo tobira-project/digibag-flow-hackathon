@@ -117,6 +117,63 @@ $breakpoint: (
     }
   }
 
+  // グッズ詳細モーダル
+  .item-modal {
+    &-outer {
+      @apply absolute inset-0 bg-black/20 px-6 py-[10vh];
+    }
+
+    &-container {
+      @apply w-full h-full rounded-[50px];
+      @apply bg-gray-800;
+      @apply px-6 pt-8 pb-10;
+      @apply flex flex-col;
+    }
+
+    &-title {
+      @apply text-center text-white text-[38px];
+    }
+
+    &-border {
+      @apply border-[1px] border-white mt-2;
+    }
+
+    &-author {
+      @apply text-center text-[20px] text-white mt-2;
+    }
+
+    &-image {
+      @apply relative grow m-8;
+    }
+
+    &-description {
+      @apply text-center text-sm text-white mx-6 break-words;
+    }
+
+    &-btn-container {
+      @apply flex flex-col gap-4 mx-4 mt-6;
+    }
+
+    &-btn {
+      @apply btn btn-circle bg-transparent hover:bg-black/20;
+      @apply text-white border-white hover:border-[#eee] border-[1px] shadow-xl;
+      @apply w-full h-[50px] text-xl;
+
+      &-inner {
+        @apply w-full h-full flex;
+      }
+
+      &-icon {
+        @apply w-[30%] grid content-center h-full;
+      }
+
+      &-text {
+        @apply w-[70%] grid content-center pr-4;
+        @apply text-[16px];
+      }
+    }
+  }
+
   // ギフトモーダル
   .gift {
     // 通常ボタン
