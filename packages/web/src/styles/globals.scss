@@ -24,6 +24,30 @@ $breakpoint: (
     @apply btn btn-circle btn-ghost p-[8px];
   }
 
+  // ガラス表現
+  .glass {
+    &-white {
+      @apply backdrop-blur-lg bg-white/80;
+
+      &-sm {
+        @apply glass-white backdrop-blur-sm
+      }
+    }
+
+    &-light-dark {
+      @apply backdrop-blur-lg bg-black/30;
+
+      &-hover {
+        @apply backdrop-blur-lg bg-black/40 hover:bg-black/50;  
+      }
+    }
+
+    &-dark {
+      @apply backdrop-blur-lg bg-black/50;
+    }
+  }
+
+  // 下部ボタン
   .bottom-btn {
     &-container {
       @apply absolute bottom-10 pointer-events-none;
@@ -42,11 +66,11 @@ $breakpoint: (
     }
 
     &-gray {
-      @apply bg-black/30 border-none hover:bg-black/40;
+      @apply border-none glass-light-dark-hover;
     }
 
     &-gray-active {
-      @apply bg-black/60 border-none hover:bg-black/60;
+      @apply border-none glass-light-dark-hover bg-black/20 hover:bg-black/20;
     }
 
     &-white {
@@ -102,7 +126,7 @@ $breakpoint: (
       }
       // 内側
       &-inner {
-        @apply mx-[20px] p-[20px] w-full bg-gray-200 rounded-[30px];
+        @apply mx-[20px] p-[20px] w-full rounded-[30px] glass-white-sm;
         @include mq(tab) {
           @apply max-w-[800px] p-[30px];
         }
@@ -125,9 +149,9 @@ $breakpoint: (
 
     &-container {
       @apply w-full h-full rounded-[50px];
-      @apply bg-gray-800;
       @apply px-6 pt-8 pb-10;
       @apply flex flex-col;
+      @apply glass-dark;
     }
 
     &-title {
@@ -135,7 +159,7 @@ $breakpoint: (
     }
 
     &-border {
-      @apply border-[1px] border-white mt-2;
+      @apply border-[1px] border-[#AEAEAE] mt-2;
     }
 
     &-author {

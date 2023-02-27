@@ -9,7 +9,7 @@ import TabContainer from "./tabContainer/TabContainer";
 const BagDetailContainer = () => {
   return (
     <>
-      <div className="h-full bg-gray-300 rounded-t-[30px]">
+      <div className="h-full rounded-t-[30px] glass-white">
         <TabContainer
           contents={[
             {
