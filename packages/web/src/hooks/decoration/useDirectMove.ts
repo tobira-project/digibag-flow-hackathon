@@ -39,7 +39,8 @@ const useDirectMove: HookType = (raycaster, cameraRef, itaBagRef) => {
     isCameraMode: state.isCameraMode,
   }));
 
-  const { innerWidth, innerHeight } = useWindowSize();
+  const { innerWidth, innerHeight, displayWidth, displayHeight } =
+    useWindowSize();
 
   // グッズのonPinterDownのイベントハンドラ
   const handleDirectDown: DirectDownType = (ev, itemId) => {
@@ -82,10 +83,14 @@ const useDirectMove: HookType = (raycaster, cameraRef, itaBagRef) => {
     // 最初のクリックでは移動しない（触り心地の良さと、他の操作との衝突避け用）
     if (state.first) return;
 
+    // スマホっぽいPC表示実装のために、state.xyの値を変形する
+    const simulatedStateX = state.xy[0] - (innerWidth - displayWidth) / 2;
+    const simulatedStateY = state.xy[1] - (innerHeight - displayHeight) / 2;
+
     // raycastのために画面w,hを(-1~1, -1~1)に正規化
     const pointer = new Vector2(
-      (state.xy[0] / innerWidth) * 2 - 1,
-      -(state.xy[1] / innerHeight) * 2 + 1
+      (simulatedStateX / displayWidth) * 2 - 1,
+      -(simulatedStateY / displayHeight) * 2 + 1
     );
     raycaster.setFromCamera(pointer, cameraRef.current);
 
