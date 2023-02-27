@@ -1,8 +1,18 @@
+import { BagModelMode } from "../decoration/bagModelMode";
+
 declare module "*/decorationData.json" {
   type JSONType = {
     testImageSrc: string;
-    modelSrc: {
+    itemModelSrc: {
       CAN_BADGE: string;
+    };
+    bagModelMode: BagModelMode;
+    bagModelData: {
+      [mode: BagModelMode]: {
+        srcUrl: sring;
+        posY: number;
+        scale: number;
+      }
     };
     scaleRate: {
       drag: number;

@@ -17,15 +17,15 @@ import useWheelScale from "@/hooks/decoration/useWheelScale";
 import { DirectDownType } from "@/types/decoration/gestureType";
 
 // 移動操作のイベントハンドラをPlacedItemImplコンポーネントに伝えるためのcontext
-export const DirectMoveContext = createContext<DirectDownType>(() => {});
+export const DirectMoveContext = createContext<DirectDownType>(() => { });
 
 // グッズの初期座標・姿勢設定に利用するraycastに関する情報を伝えるためのcontext
 type RaycastContextType =
   | {
-      raycaster: Raycaster;
-      cameraRef: RefObject<Camera>;
-      itaBagRef: RefObject<Object3D>;
-    }
+    raycaster: Raycaster;
+    cameraRef: RefObject<Camera>;
+    itaBagRef: RefObject<Object3D>;
+  }
   | undefined;
 export const RaycastContext = createContext<RaycastContextType>(undefined);
 
@@ -78,17 +78,16 @@ const DecorationCanvas = () => {
         >
           <Environments />
           <CameraContainer cameraRef={cameraRef} />
-          {/* 勝手にカメラ位置を調整するのを止められれば、Stageは便利そう
-           <Stage adjustCamera={false} center={{ disable: true }}> */}
-          <ItaBagModel itaBagRef={itaBagRef} />
-          <DirectMoveContext.Provider value={handleDirectDown}>
-            <RaycastContext.Provider
-              value={{ raycaster, cameraRef, itaBagRef }}
-            >
-              <PlacedItemContainer />
-            </RaycastContext.Provider>
-          </DirectMoveContext.Provider>
-          <TestRayPoint />
+          {/* 勝手にカメラ位置を調整するのを止められれば、Stageは便利そう */}
+          {/* <Stage adjustCamera={false} center={{ disable: true }}> */}
+            <ItaBagModel itaBagRef={itaBagRef} />
+            <DirectMoveContext.Provider value={handleDirectDown}>
+              <RaycastContext.Provider
+                value={{ raycaster, cameraRef, itaBagRef }}
+              >
+                <PlacedItemContainer />
+              </RaycastContext.Provider>
+            </DirectMoveContext.Provider>
           {/* </Stage> */}
         </Canvas>
       </div>

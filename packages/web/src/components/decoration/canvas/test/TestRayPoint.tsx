@@ -14,7 +14,7 @@ const TestRayPoint = () => {
   //   modelLookDir: state.modelLookDir,
   // }));
   const { scene: model } = useGLTF<string>(
-    decorationData.modelSrc["CAN_BADGE"]
+    decorationData.itemModelSrc["CAN_BADGE"]
   );
   const { map, metalic, roughness } = useTexture({
     map: "/decoration/can-badge/can-badge_baseColor.png",

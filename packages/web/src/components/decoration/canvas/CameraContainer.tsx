@@ -32,8 +32,8 @@ const CameraContainer = ({ cameraRef }: Props) => {
         // 慣性の無効
         enableDamping={false}
         // 距離制限
-        minDistance={10}
-        maxDistance={40}
+        // minDistance={10}
+        // maxDistance={40}
         // 上下方向の回り込み制限
         minPolarAngle={Math.PI / 2.3}
         maxPolarAngle={Math.PI / 2.3}
