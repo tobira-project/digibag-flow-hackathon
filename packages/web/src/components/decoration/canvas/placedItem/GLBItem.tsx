@@ -13,7 +13,9 @@ type Props = {
  * @returns
  */
 const GLBItem = ({ itemData }: Props) => {
-  const { scene: model } = useGLTF(decorationData.itemModelSrc[itemData.itemType]);
+  const { scene: model } = useGLTF(
+    decorationData.itemModelSrc[itemData.itemType]
+  );
   return (
     <>
       <ModelItemImpl itemData={itemData} srcModel={model} />

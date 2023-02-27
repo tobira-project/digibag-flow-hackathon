@@ -3,7 +3,6 @@
   "itemModelSrc": {
     "CAN_BADGE": "/decoration/can-badge/can-badge.glb"
   },
-  "bagModelMode": "01",
   "bagModelData": {
     "01": {
       "srcUrl": "/model/bag01/bag01.glb",

@@ -6,13 +6,12 @@ declare module "*/decorationData.json" {
     itemModelSrc: {
       CAN_BADGE: string;
     };
-    bagModelMode: BagModelMode;
     bagModelData: {
       [mode: BagModelMode]: {
         srcUrl: sring;
         posY: number;
         scale: number;
-      }
+      };
     };
     scaleRate: {
       drag: number;

@@ -53,8 +53,10 @@ const PlacedItemImpl = ({ itemData, children }: Props) => {
       // 座標の更新
       setItemPos(
         itemData.id,
-        pointerTarget.point.clone().add(
-          pointerTarget.face.normal.multiply(new Vector3(0.1, 0.1, 0.1))));
+        pointerTarget.point
+          .clone()
+          .add(pointerTarget.face.normal.multiply(new Vector3(0.1, 0.1, 0.1)))
+      );
     }
   }, []);
 

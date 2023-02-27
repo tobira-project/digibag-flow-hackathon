@@ -2,9 +2,10 @@ import { useFBX, useGLTF, useTexture } from "@react-three/drei";
 import { useLoader } from "@react-three/fiber";
 import { RefObject, useEffect, useState } from "react";
 import { Group, Mesh, MeshStandardMaterial, Object3D, Texture } from "three";
-import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-import decorationData from '@/data/decorationData.json'
+import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import decorationData from "@/data/decorationData.json";
+import { BagModelMode } from "@/types/decoration/bagModelMode";
 
 type Props = {
   itaBagRef: RefObject<Object3D>;
@@ -17,11 +18,9 @@ type ModelMode = 1 | 2 | 3;
  * @returns jsx
  */
 const ItaBagModel = ({ itaBagRef }: Props) => {
-  // const { scene: srcModel } = useLoader(GLTFLoader, '/model/bag01/bag01.glb')
-  // const { scene: srcModel } = useLoader(GLTFLoader, '/model/bag02/bag02.glb')
-  const modelMode = decorationData.bagModelMode;
+  const modelMode: BagModelMode = "01";
   const { srcUrl, posY, scale } = decorationData.bagModelData[modelMode];
-  const { scene: srcModel } = useGLTF(srcUrl)
+  const { scene: srcModel } = useGLTF(srcUrl);
 
   // #region bag03
 
@@ -63,7 +62,7 @@ const ItaBagModel = ({ itaBagRef }: Props) => {
 
   return (
     <>
-      {srcModel &&
+      {srcModel && (
         // 一旦meshで表示。後で痛バッグに差し替える
         // <mesh ref={itaBagRef as RefObject<Mesh>} position={[0, 0, 0]}>
         //   <sphereGeometry args={[10, 10, 10]} />
@@ -72,7 +71,7 @@ const ItaBagModel = ({ itaBagRef }: Props) => {
         <group position={[0, posY, 0]} scale={scale}>
           <primitive ref={itaBagRef} object={srcModel} />
         </group>
-      }
+      )}
     </>
   );
 };

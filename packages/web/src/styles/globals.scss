@@ -42,15 +42,15 @@ $breakpoint: (
     }
 
     &-gray {
-      @apply bg-black/30 border-none hover:bg-black/40
+      @apply bg-black/30 border-none hover:bg-black/40;
     }
-    
+
     &-gray-active {
-      @apply bg-black/60 border-none hover:bg-black/60
+      @apply bg-black/60 border-none hover:bg-black/60;
     }
 
     &-white {
-      @apply bg-white border-none border-[#6c6c6c] hover:bg-[#ddd]
+      @apply bg-white border-none border-[#6c6c6c] hover:bg-[#ddd];
     }
   }
 

@@ -5,7 +5,7 @@ import AddNewBadgeButton from "./uiButton/AddNewBadgeButton";
 import ExitButton from "./uiButton/ExitButton";
 import PutBackButton from "./uiButton/PutBackButton";
 import ToggleModeButton from "./uiButton/ToggleModeButton";
-import arrangementData from "@/data/arrangementData.json"
+import arrangementData from "@/data/arrangementData.json";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
@@ -20,15 +20,16 @@ const DecorationUI = () => {
       isInventoryBagOpen: state.isInventoryBagOpen,
     })
   );
-  const [title, setTitle] = useState<string>('');
+  const [title, setTitle] = useState<string>("");
   const router = useRouter();
 
   useEffect(() => {
-    if (!router.query.bagId) return
-    if (typeof router.query.bagId !== 'string') return;
-    const newTitle = arrangementData.mockBagDataList[parseInt(router.query.bagId)].title;
-    setTitle(newTitle)
-  }, [router.query.bagId])
+    if (!router.query.bagId) return;
+    if (typeof router.query.bagId !== "string") return;
+    const newTitle =
+      arrangementData.mockBagDataList[parseInt(router.query.bagId)].title;
+    setTitle(newTitle);
+  }, [router.query.bagId]);
 
   return (
     <>

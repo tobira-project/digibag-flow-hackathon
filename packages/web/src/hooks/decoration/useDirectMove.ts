@@ -105,8 +105,10 @@ const useDirectMove: HookType = (raycaster, cameraRef, itaBagRef) => {
       // 座標の更新
       setItemPos(
         selectedItemId,
-        pointerTarget.point.clone().add(
-          pointerTarget.face.normal.multiply(new Vector3(0.1, 0.1, 0.1))));
+        pointerTarget.point
+          .clone()
+          .add(pointerTarget.face.normal.multiply(new Vector3(0.1, 0.1, 0.1)))
+      );
     }
 
     setInteractState("DIRECT_MOVING");

@@ -1,7 +1,7 @@
 import useDecorationStore from "@/stores/decorationStore";
 import UIButton from "../../../global/UIButton";
-import MoveObjIconW from "../../../../../public/icon/moveobj-icon-w.svg"
-import MoveObjIconB from "../../../../../public/icon/moveobj-icon-b.svg"
+import MoveObjIconW from "../../../../../public/icon/moveobj-icon-w.svg";
+import MoveObjIconB from "../../../../../public/icon/moveobj-icon-b.svg";
 
 /**
  * 検証用に作成。グッズ操作モード/カメラモードを切り替えるボタンコンポーネント。
@@ -20,7 +20,12 @@ const ToggleModeButton = () => {
 
   return (
     <>
-      <UIButton onClick={handleClick} className={`bottom-btn-sm ${isCameraMode ? 'bottom-btn-gray-active' : 'bottom-btn-gray'}`}>
+      <UIButton
+        onClick={handleClick}
+        className={`bottom-btn-sm ${
+          isCameraMode ? "bottom-btn-gray-active" : "bottom-btn-gray"
+        }`}
+      >
         <MoveObjIconW />
       </UIButton>
     </>
