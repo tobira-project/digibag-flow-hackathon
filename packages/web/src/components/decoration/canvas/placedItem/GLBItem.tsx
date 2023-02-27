@@ -1,12 +1,10 @@
-import { PlacedItemData } from "@/types/decorationItemType";
-import { DirectDownType } from "@/types/gestureType";
 import { useGLTF } from "@react-three/drei";
 import ModelItemImpl from "./ModelItemImpl";
 import decorationData from "@/data/decorationData.json";
+import { PlacedItemData } from "@/types/decoration/decorationItemType";
 
 type Props = {
   itemData: PlacedItemData;
-  handleDirectDown: DirectDownType;
 };
 
 /**
@@ -14,15 +12,13 @@ type Props = {
  * @param param0
  * @returns
  */
-const GLBItem = ({ itemData, handleDirectDown }: Props) => {
-  const { scene: model } = useGLTF(decorationData.modelSrc[itemData.itemType]);
+const GLBItem = ({ itemData }: Props) => {
+  const { scene: model } = useGLTF(
+    decorationData.itemModelSrc[itemData.itemType]
+  );
   return (
     <>
-      <ModelItemImpl
-        itemData={itemData}
-        srcModel={model}
-        handleDirectDown={handleDirectDown}
-      />
+      <ModelItemImpl itemData={itemData} srcModel={model} />
     </>
   );
 };

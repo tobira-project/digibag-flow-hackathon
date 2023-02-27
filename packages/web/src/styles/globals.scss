@@ -15,6 +15,189 @@ $breakpoint: (
 @tailwind utilities;
 
 @layer components {
+  // 戻るボタン
+  .back-btn {
+    @apply absolute top-[10vh] left-[4%] btn btn-circle btn-ghost;
+  }
+
+  .open-gift-btn {
+    @apply btn btn-circle btn-ghost p-[8px];
+  }
+
+  .bottom-btn {
+    &-container {
+      @apply absolute bottom-10 pointer-events-none;
+    }
+
+    &-sm {
+      @apply w-14 h-14;
+    }
+
+    &-md {
+      @apply w-[68px] h-[68px];
+    }
+
+    &-lg {
+      @apply w-[76px] h-[76px];
+    }
+
+    &-gray {
+      @apply bg-black/30 border-none hover:bg-black/40;
+    }
+
+    &-gray-active {
+      @apply bg-black/60 border-none hover:bg-black/60;
+    }
+
+    &-white {
+      @apply bg-white border-none border-[#6c6c6c] hover:bg-[#ddd];
+    }
+  }
+
+  .contents-grid-contianer {
+    @apply absolute overflow-y-scroll inset-0;
+  }
+
+  // loginページ
+  .login {
+    // タイトルのコンテナ
+    &-title-container {
+      @apply mt-[10vh] px-[10%];
+      @include mq(tab) {
+        @apply mt-[5vh] px-[50px];
+      }
+    }
+    // ロゴ
+    &-tbr-logo {
+      @apply w-[120px];
+      @include mq(tab) {
+        @apply w-[150px];
+      }
+    }
+    // タイトル
+    &-title {
+      @apply text-center text-[70px] text-[#707070];
+      @include mq(tab) {
+        @apply text-[100px];
+      }
+    }
+    // ログイントップ
+    &-top-container {
+      @apply px-[10%] w-full;
+      @include mq(tab) {
+        @apply max-w-[800px];
+      }
+    }
+    // sign in/upボタン
+    &-btn {
+      @apply btn btn-circle bg-white hover:bg-[#eee];
+      @apply text-[#8C8C8C] border-none shadow-xl;
+      @apply w-full text-xl;
+    }
+    // sign in/upフォームのコンテナ
+    &-sign-container {
+      // 外側
+      &-outer {
+        @apply mt-4 w-[100vw] flex justify-center;
+      }
+      // 内側
+      &-inner {
+        @apply mx-[20px] p-[20px] w-full bg-gray-200 rounded-[30px];
+        @include mq(tab) {
+          @apply max-w-[800px] p-[30px];
+        }
+      }
+    }
+    // 戻るボタン
+    &-back-btn {
+      @apply top-[2vh];
+      @include mq(tab) {
+        @apply top-[10vh];
+      }
+    }
+  }
+
+  // グッズ詳細モーダル
+  .item-modal {
+    &-outer {
+      @apply absolute inset-0 bg-black/20 px-6 py-[10vh];
+    }
+
+    &-container {
+      @apply w-full h-full rounded-[50px];
+      @apply bg-gray-800;
+      @apply px-6 pt-8 pb-10;
+      @apply flex flex-col;
+    }
+
+    &-title {
+      @apply text-center text-white text-[38px];
+    }
+
+    &-border {
+      @apply border-[1px] border-white mt-2;
+    }
+
+    &-author {
+      @apply text-center text-[20px] text-white mt-2;
+    }
+
+    &-image {
+      @apply relative grow m-8;
+    }
+
+    &-description {
+      @apply text-center text-sm text-white mx-6 break-words;
+    }
+
+    &-btn-container {
+      @apply flex flex-col gap-4 mx-4 mt-6;
+    }
+
+    &-btn {
+      @apply btn btn-circle bg-transparent hover:bg-black/20;
+      @apply text-white border-white hover:border-[#eee] border-[1px] shadow-xl;
+      @apply w-full h-[50px] text-xl;
+
+      &-inner {
+        @apply w-full h-full flex;
+      }
+
+      &-icon {
+        @apply w-[30%] grid content-center h-full;
+      }
+
+      &-text {
+        @apply w-[70%] grid content-center pr-4;
+        @apply text-[16px];
+      }
+    }
+  }
+
+  // ギフトモーダル
+  .gift {
+    // 通常ボタン
+    &-btn {
+      @apply btn btn-circle bg-white hover:bg-[#eee];
+      @apply text-[#717171] border-none shadow-xl;
+      @apply w-full h-[60px] text-xl;
+    }
+    // 透明ボタン
+    &-btn-inverse {
+      @apply btn btn-circle bg-transparent hover:bg-black/20;
+      @apply text-white border-white hover:border-[#eee] border-[2px] shadow-xl;
+      @apply w-full h-[60px] text-xl;
+    }
+    // テキストボックス
+    &-input {
+      @apply input input-bordered;
+      @apply bg-transparent hover:bg-black/20;
+      @apply border-white hover:border-[#eee] rounded-full border-[2px];
+      @apply text-white text-xl placeholder:text-xl;
+      @apply w-full h-[60px] px-6;
+    }
+  }
+
   // クロップウィンドウ
   .crop {
     &-window {

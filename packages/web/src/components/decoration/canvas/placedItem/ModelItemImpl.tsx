@@ -1,6 +1,8 @@
 import useDecorationStore from "@/stores/decorationStore";
-import { CropData, PlacedItemData } from "@/types/decorationItemType";
-import { DirectDownType } from "@/types/gestureType";
+import {
+  PlacedItemData,
+  CropData,
+} from "@/types/decoration/decorationItemType";
 import { useTexture } from "@react-three/drei";
 import { useEffect, useState } from "react";
 import {
@@ -18,7 +20,6 @@ import PlacedItemImpl from "./PlacedItemImpl";
 type Props = {
   itemData: PlacedItemData;
   srcModel: Group;
-  handleDirectDown: DirectDownType;
 };
 
 /**
@@ -27,7 +28,7 @@ type Props = {
  * @param param0
  * @returns
  */
-const ModelItemImpl = ({ itemData, srcModel, handleDirectDown }: Props) => {
+const ModelItemImpl = ({ itemData, srcModel }: Props) => {
   const { itemSizeData, setItemSize, selectedItemId, isCameraMode } =
     useDecorationStore((state) => ({
       itemSizeData: state.itemSizeData,
@@ -148,7 +149,7 @@ const ModelItemImpl = ({ itemData, srcModel, handleDirectDown }: Props) => {
   return (
     <>
       {model && colorMap && (
-        <PlacedItemImpl itemData={itemData} handleDirectDown={handleDirectDown}>
+        <PlacedItemImpl itemData={itemData}>
           <primitive object={model} />
           {/** ↓なぜかこれを置くと、↑のテクスチャの色も濃くなる（テクスチャの初期化？） */}
           <mesh position={[0, 100, 100]}>

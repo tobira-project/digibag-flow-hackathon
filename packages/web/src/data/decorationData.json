@@ -1,11 +1,58 @@
 {
   "testImageSrc": "/decoration/test/toruto.png",
-  "modelSrc": {
+  "itemModelSrc": {
     "CAN_BADGE": "/decoration/can-badge/can-badge.glb"
+  },
+  "bagModelData": {
+    "01": {
+      "srcUrl": "/model/bag01/bag01.glb",
+      "posY": -9,
+      "scale": 60
+    },
+    "02": {
+      "srcUrl": "/model/bag02/bag02.glb",
+      "posY": -2,
+      "scale": 30
+    },
+    "03": {
+      "srcUrl": "/model/bag03/bag03.glb",
+      "posY": -2,
+      "scale": 30
+    }
   },
   "scaleRate": {
     "drag": 0.01,
     "pinch": 0.01,
     "wheel": 0.001
-  }
+  },
+  "mockItemList": [
+    {
+      "id": "0",
+      "imageUrl": "/decoration/test/tbr_inutanuki.png",
+      "title": "Gorakuba !",
+      "author": "inutanuki",
+      "description": "description description description description"
+    },
+    {
+      "id": "1",
+      "imageUrl": "/decoration/test/toruto.png",
+      "title": "TORUTO",
+      "author": "toruto",
+      "description": "toruto toruto toruto toruto toruto toruto toruto toruto "
+    },
+    {
+      "id": "3",
+      "imageUrl": "/decoration/test/toruto.png",
+      "title": "TORUTO",
+      "author": "toruto",
+      "description": "toruto toruto toruto toruto toruto toruto toruto toruto "
+    },
+    {
+      "id": "4",
+      "imageUrl": "/decoration/test/toruto.png",
+      "title": "TORUTO",
+      "author": "toruto",
+      "description": "toruto toruto toruto toruto toruto toruto toruto toruto "
+    }
+  ]
 }

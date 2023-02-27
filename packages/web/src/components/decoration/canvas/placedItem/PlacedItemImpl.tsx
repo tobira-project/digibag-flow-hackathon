@@ -1,13 +1,12 @@
 import useDecorationStore from "@/stores/decorationStore";
-import { PlacedItemData } from "@/types/decorationItemType";
-import { DirectDownType } from "@/types/gestureType";
+import { PlacedItemData } from "@/types/decoration/decorationItemType";
 import { ThreeEvent } from "@react-three/fiber";
-import { ReactNode, Suspense, useEffect, useRef } from "react";
-import { Group } from "three";
+import { ReactNode, Suspense, useContext, useEffect, useRef } from "react";
+import { Group, Vector2, Vector3 } from "three";
+import { DirectMoveContext, RaycastContext } from "../DecorationCanvas";
 
 type Props = {
   itemData: PlacedItemData;
-  handleDirectDown: DirectDownType;
   children: ReactNode;
 };
 
@@ -16,20 +15,57 @@ type Props = {
  * @param param0
  * @returns
  */
-const PlacedItemImpl = ({ itemData, handleDirectDown, children }: Props) => {
-  const { selectItem, isCameraMode, toggleCameraMode } = useDecorationStore(
-    (state) => ({
-      selectItem: state.selectItem,
-      isCameraMode: state.isCameraMode,
-      toggleCameraMode: state.toggleCameraMode,
-    })
-  );
+const PlacedItemImpl = ({ itemData, children }: Props) => {
+  const {
+    selectItem,
+    setItemPos,
+    setItemLookDir,
+    isCameraMode,
+    toggleCameraMode,
+  } = useDecorationStore((state) => ({
+    selectItem: state.selectItem,
+    setItemPos: state.setItemPos,
+    setItemLookDir: state.setItemLookDir,
+    isCameraMode: state.isCameraMode,
+    toggleCameraMode: state.toggleCameraMode,
+  }));
+  const handleDirectDown = useContext(DirectMoveContext);
   const modelGroupRef = useRef<Group>(null);
+  const raycastContext = useContext(RaycastContext);
+
+  // 新規生成時、グッズを画面中心からのraycastにより初期配置に移動させる
+  useEffect(() => {
+    if (!raycastContext) return;
+    const { raycaster, cameraRef, itaBagRef } = raycastContext;
+    if (!cameraRef.current || !itaBagRef.current) return;
+    raycaster.setFromCamera(new Vector2(0, 0), cameraRef.current);
+
+    // raycastのターゲットを取得
+    const intersects = raycaster.intersectObject(itaBagRef.current);
+    // 衝突なし
+    if (intersects.length === 0) return;
+
+    const pointerTarget = intersects[0];
+
+    if (pointerTarget.face) {
+      // 姿勢の更新
+      setItemLookDir(itemData.id, pointerTarget.face.normal);
+      // 座標の更新
+      setItemPos(
+        itemData.id,
+        pointerTarget.point
+          .clone()
+          .add(pointerTarget.face.normal.multiply(new Vector3(0.1, 0.1, 0.1)))
+      );
+    }
+  }, []);
 
   // モデルを接地面の法線方向に向ける
   useEffect(() => {
     if (!modelGroupRef.current) return;
-    modelGroupRef.current.lookAt(itemData.position.sub(itemData.lookDir));
+    modelGroupRef.current.lookAt(
+      itemData.position.clone().sub(itemData.lookDir)
+    );
   }, [itemData.lookDir]);
 
   // グッズの選択
@@ -53,7 +89,7 @@ const PlacedItemImpl = ({ itemData, handleDirectDown, children }: Props) => {
             onClick={handleOnClick}
             onPointerDown={(e) => handleDirectDown(e, itemData.id)}
             position={itemData.position}
-            scale={[itemData.scale, itemData.scale, 1]}
+            scale={[itemData.scale, itemData.scale, 0.5]}
           >
             {children}
           </group>

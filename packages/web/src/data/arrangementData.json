@@ -1,0 +1,76 @@
+{
+  "mockBagDataList": [
+    {
+      "id": 0,
+      "title": "bag-title0",
+      "address": "0x001",
+      "thumbnailUrl": "/decoration/test/toruto.png",
+      "modelUrl": "/decoration/can-badge/can-badge.glb",
+      "itemList": [
+        {
+          "id": 0,
+          "title": "item-title0",
+          "isDecorated": false
+        },
+        {
+          "id": 1,
+          "title": "item-title1",
+          "isDecorated": false
+        },
+        {
+          "id": 2,
+          "title": "item-title2",
+          "isDecorated": true
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "title": "bag-title1",
+      "address": "0x001",
+      "thumbnailUrl": "/decoration/test/tbr_inutanuki.png",
+      "modelUrl": "/decoration/can-badge/can-badge.glb",
+      "itemList": [
+        {
+          "id": 0,
+          "title": "item-title0",
+          "isDecorated": false
+        },
+        {
+          "id": 1,
+          "title": "item-title1",
+          "isDecorated": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "bag-title2",
+      "address": "0x001",
+      "thumbnailUrl": "/decoration/test/toruto.png",
+      "modelUrl": "/decoration/can-badge/can-badge.glb",
+      "itemList": [
+        {
+          "id": 0,
+          "title": "item-title0",
+          "isDecorated": false
+        },
+        {
+          "id": 1,
+          "title": "item-title1",
+          "isDecorated": true
+        },
+        {
+          "id": 2,
+          "title": "item-title2",
+          "isDecorated": true
+        },
+        {
+          "id": 1,
+          "title": "item-title1",
+          "isDecorated": true
+        }
+      ]
+    }
+  ]
+}
