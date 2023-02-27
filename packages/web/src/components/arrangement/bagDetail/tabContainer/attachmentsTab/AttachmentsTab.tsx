@@ -14,7 +14,11 @@ const AttachmentsTab = () => {
             {/* decorationから持ってきているのはあくまでmockとして。 */}
             {decorationData.mockItemList.map((v) => (
               <>
-                <AttachmentItem key={v.id} imageUrl={v.imageUrl} />
+                <AttachmentItem
+                  key={v.id}
+                  itemId={v.id}
+                  imageUrl={v.imageUrl}
+                />
               </>
             ))}
           </div>

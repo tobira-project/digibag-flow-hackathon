@@ -14,7 +14,7 @@ const ContentsTab = () => {
             {/* decorationから持ってきているのはあくまでmockとして。 */}
             {decorationData.mockItemList.map((v) => (
               <>
-                <ContentItem key={v.id} imageUrl={v.imageUrl} />
+                <ContentItem key={v.id} itemId={v.id} imageUrl={v.imageUrl} />
               </>
             ))}
           </div>

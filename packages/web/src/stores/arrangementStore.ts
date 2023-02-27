@@ -24,6 +24,12 @@ type ArrangementState = {
   // 何度も読み込みたくないので、読み込んだデータはここに保存したい
   bagDataList: BagData[];
 
+  // グッズのモーダル表示の状態を管理する
+  selectedItemModalId: string;
+  isItemModalOpen: boolean;
+  openItemModal: (itemId: string) => void;
+  closeItemModal: () => void;
+
   // ギフトのモーダル表示の状態を管理する
   isGiftModalOpen: boolean;
   openGiftModal: () => void;
@@ -39,6 +45,13 @@ const useArrangementStore = create<ArrangementState>((set, get) => ({
   toggleIsGridBags: () => set((state) => ({ isGridBags: !state.isGridBags })),
 
   bagDataList: arrangementData.mockBagDataList,
+
+  // グッズのモーダル表示の状態を管理する
+  selectedItemModalId: "",
+  isItemModalOpen: false,
+  openItemModal: (itemId) =>
+    set((state) => ({ isItemModalOpen: true, selectedItemModalId: itemId })),
+  closeItemModal: () => set((state) => ({ isItemModalOpen: false })),
 
   // ギフトのモーダル表示の状態を管理する
   isGiftModalOpen: false,

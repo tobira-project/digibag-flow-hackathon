@@ -2,7 +2,7 @@ import BagDetailContainer from "@/components/arrangement/bagDetail/BagDetailCont
 import BagPreview from "@/components/arrangement/bagDetail/BagPreview";
 import DecorationButton from "@/components/arrangement/bagDetail/DecorationButton";
 import BackButton from "@/components/global/BackButton";
-import GiftModal from "@/components/gift/GiftModal";
+import GiftModal from "@/components/giftModal/GiftModal";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import useArrangementStore from "@/stores/arrangementStore";
@@ -10,13 +10,15 @@ import OpenGiftButton from "@/components/global/OpenGiftButton";
 import { useEffect, useState } from "react";
 import arrangementData from "@/data/arrangementData.json";
 import PersonalizeBg from "@/components/arrangement/bagDetail/PersonalizeBg";
+import ItemModal from "@/components/itemModal/ItemModal";
 
 /**
  * バッグの詳細ページ
  * @returns
  */
 const BagDetail: NextPage = () => {
-  const { isGiftModalOpen } = useArrangementStore((state) => ({
+  const { isItemModalOpen, isGiftModalOpen } = useArrangementStore((state) => ({
+    isItemModalOpen: state.isItemModalOpen,
     isGiftModalOpen: state.isGiftModalOpen,
   }));
 
@@ -24,6 +26,7 @@ const BagDetail: NextPage = () => {
   const [imageUrl, setImageUrl] = useState<string>("");
   const router = useRouter();
 
+  // dynamic routingを利用してバッグのidを取得し、データをセットする
   useEffect(() => {
     if (!router.query.bagId) return;
     if (typeof router.query.bagId !== "string") return;
@@ -36,6 +39,8 @@ const BagDetail: NextPage = () => {
     setImageUrl(url);
   }, [router.query.bagId]);
 
+  // バッグ一覧へ戻る
+  // （前のページに戻る方がよいかも？）
   const handleBack = () => {
     router.push("/");
   };
@@ -63,6 +68,7 @@ const BagDetail: NextPage = () => {
           </div>
         </div>
       </div>
+      {isItemModalOpen && <ItemModal />}
       {isGiftModalOpen && <GiftModal />}
     </>
   );
