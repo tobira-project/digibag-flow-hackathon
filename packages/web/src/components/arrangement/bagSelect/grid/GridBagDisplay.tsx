@@ -1,4 +1,7 @@
 import arrangementData from "@/data/arrangementData.json";
+import { useState } from "react";
+import { useEffect } from "react";
+import PersonalizeBg from "../../PersonalizeBg";
 import GridBagItem from "./GridBagItem";
 
 /**
@@ -6,8 +9,15 @@ import GridBagItem from "./GridBagItem";
  * @returns
  */
 const GridBagDisplay = () => {
+  const [imageUrl, setImageUrl] = useState<string>("");
+
+  useEffect(() => {
+    setImageUrl(arrangementData.mockBagDataList[0].thumbnailUrl);
+  }, [arrangementData.mockBagDataList]);
+
   return (
     <>
+      <PersonalizeBg imageUrl={imageUrl} />
       <div className="h-full overflow-y-scroll px-10 pt-20">
         <div className="grid grid-cols-2 gap-6">
           {arrangementData.mockBagDataList.map((v) => (

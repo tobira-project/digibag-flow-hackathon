@@ -3,22 +3,15 @@ import arrangementData from "@/data/arrangementData.json";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
+type Props = {
+  imageUrl: string;
+};
+
 /**
  * バッグ画像を拡大して背景色に使うコンポーネント
  * @returns
  */
-const PersonalizeBg = () => {
-  const [imageUrl, setImageUrl] = useState<string>("");
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!router.query.bagId) return;
-    if (typeof router.query.bagId !== "string") return;
-    const id = parseInt(router.query.bagId);
-    const url = arrangementData.mockBagDataList[id].thumbnailUrl;
-    setImageUrl(url);
-  }, [router.query.bagId]);
-
+const PersonalizeBg = ({ imageUrl }: Props) => {
   return (
     <>
       <div className="absolute overflow-hidden w-full h-full z-[-20]">
