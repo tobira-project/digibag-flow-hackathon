@@ -35,6 +35,10 @@ $breakpoint: (
 
   .open-gift-btn {
     @apply btn btn-circle btn-ghost p-[8px];
+
+    & > svg {
+      @apply w-8 h-8;
+    }
   }
 
   // ガラス表現
@@ -68,14 +72,30 @@ $breakpoint: (
 
     &-sm {
       @apply w-14 h-14;
+
+      & > svg {
+        @apply w-10 h-10;
+      }
+    }
+
+    &-sm-nav > svg {
+      @apply w-8 h-8;
     }
 
     &-md {
       @apply w-[68px] h-[68px];
+
+      & > svg {
+        @apply w-12 h-12;
+      }
     }
 
     &-lg {
       @apply w-[76px] h-[76px];
+
+      & > svg {
+        @apply w-14 h-14;
+      }
     }
 
     &-gray {
@@ -279,6 +299,16 @@ $breakpoint: (
       @include mq(tab) {
         @apply w-[400px] h-[60px];
       }
+    }
+  }
+
+  .icon {
+    &-exit > svg {
+      @apply w-10 h-10;
+    }
+
+    &-bottom-bagview > svg {
+      @apply w-8 h-8;
     }
   }
 }

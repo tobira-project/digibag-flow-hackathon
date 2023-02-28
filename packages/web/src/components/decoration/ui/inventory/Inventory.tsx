@@ -13,9 +13,9 @@ const InventoryBag = () => {
 
   return (
     <>
-      <div className={"absolute inset-0 bg-black/50"}>
-        <div className="flex justify-center h-full pt-[400px]">
-          <div className="relative bg-[#414142] h-full w-full rounded-t-[50px]">
+      <div className={"absolute inset-0"}>
+        <div className="flex justify-center h-full pt-[80%]">
+          <div className="relative glass-white h-full w-full rounded-t-[50px]">
             <CloseButton onClick={closeInventoryBag} />
             <GridItems />
           </div>

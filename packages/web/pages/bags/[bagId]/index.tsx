@@ -9,7 +9,7 @@ import useArrangementStore from "@/stores/arrangementStore";
 import OpenGiftButton from "@/components/global/OpenGiftButton";
 import { useEffect, useState } from "react";
 import arrangementData from "@/data/arrangementData.json";
-import PersonalizeBg from "@/components/arrangement/bagDetail/PersonalizeBg";
+import PersonalizeBg from "@/components/arrangement/PersonalizeBg";
 import ItemModal from "@/components/itemModal/ItemModal";
 
 /**
@@ -35,7 +35,7 @@ const BagDetail: NextPage = () => {
     const title = arrangementData.mockBagDataList[id].title;
     setTitle(title);
 
-    const url = arrangementData.mockBagDataList[id].thumbnailUrl;
+    const url = arrangementData.mockBagDataList[id].imageUrl;
     setImageUrl(url);
   }, [router.query.bagId]);
 
@@ -48,7 +48,7 @@ const BagDetail: NextPage = () => {
   return (
     <>
       <div className="page-top-container">
-        <PersonalizeBg />
+        <PersonalizeBg imageUrl={imageUrl} />
         <BackButton onClick={handleBack} className={"back-btn"} />
         <div className="h-full flex flex-col">
           <h1 className="mt-[10%] text-[40px] text-center align-top text-white font-scandia-web-500">

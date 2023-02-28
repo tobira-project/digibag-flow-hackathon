@@ -32,7 +32,7 @@ const BottomNavigation = () => {
           <div className="pt-8">
             <NavButton
               onClick={() => {}}
-              className="bottom-btn-sm bottom-btn-gray p-[12px]"
+              className="bottom-btn-sm bottom-btn-sm-nav bottom-btn-gray p-[12px]"
             >
               <ProfileIcon />
             </NavButton>
@@ -48,7 +48,7 @@ const BottomNavigation = () => {
           <div className="pt-8">
             <NavButton
               onClick={() => {}}
-              className="bottom-btn-sm bottom-btn-gray p-[12.5px]"
+              className="bottom-btn-sm bottom-btn-sm-nav bottom-btn-gray p-[12.5px]"
             >
               <BagView />
             </NavButton>

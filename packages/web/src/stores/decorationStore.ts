@@ -6,6 +6,7 @@ import {
 } from "@/types/decoration/decorationItemType";
 import { Vector, Vector3 } from "three";
 import { create } from "zustand";
+import decorationData from '@/data/decorationData.json'
 
 // ユーザーによるグッズの操作状態
 type InteractState =
@@ -98,7 +99,7 @@ const useDecorationStore = create<DecorationState>((set, get) => ({
         itemType,
         position: new Vector3(Math.random() * 6 - 3, Math.random() * 6 - 3, -7), // 要デフォルト値。バッグの表面というのが少し厄介そう
         lookDir: new Vector3(0, 1, 0), // 要デフォルト値。バッグの表面というのが少し厄介そう
-        scale: 1.0, // 要デフォルト値。
+        scale: 0.4, // 要デフォルト値。
         cropData,
       });
 
@@ -143,7 +144,16 @@ const useDecorationStore = create<DecorationState>((set, get) => ({
     set((state) => {
       const index = state.getPlacedItemIndex(itemId);
       const newItems = state.placedItems;
-      newItems[index].scale = scale;
+
+      // maxScaleとminScaleの間でスケールを設定する
+      let newScale = scale;
+      if (newScale < decorationData.minScale) {
+        newScale = decorationData.minScale;
+      } else if (newScale > decorationData.maxScale) {
+        newScale = decorationData.maxScale;
+      }
+      newItems[index].scale = newScale;
+
       return { placedItems: newItems };
     }),
 

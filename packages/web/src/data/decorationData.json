@@ -24,36 +24,93 @@
       "camPos": [0, 6, -35]
     }
   },
+  "minScale": 0.2,
+  "maxScale": 1.0,
   "scaleRate": {
     "drag": 0.01,
-    "pinch": 0.01,
+    "pinch": 0.005,
     "wheel": 0.001
   },
   "mockItemList": [
     {
       "id": "0",
-      "imageUrl": "/decoration/test/tbr_inutanuki.png",
+      "imageUrl": "/item-images/inutanuki_cbg.png",
       "title": "Gorakuba !",
       "author": "inutanuki",
       "description": "description description description description"
     },
     {
       "id": "1",
-      "imageUrl": "/decoration/test/toruto.png",
+      "imageUrl": "/item-images/inutanuki_cbg.png",
+      "title": "TORUTO",
+      "author": "toruto",
+      "description": "toruto toruto toruto toruto toruto toruto toruto toruto "
+    },
+    {
+      "id": "2",
+      "imageUrl": "/item-images/inutanuki_cbg.png",
       "title": "TORUTO",
       "author": "toruto",
       "description": "toruto toruto toruto toruto toruto toruto toruto toruto "
     },
     {
       "id": "3",
-      "imageUrl": "/decoration/test/toruto.png",
+      "imageUrl": "/item-images/inutanuki_cbg.png",
       "title": "TORUTO",
       "author": "toruto",
       "description": "toruto toruto toruto toruto toruto toruto toruto toruto "
     },
     {
       "id": "4",
-      "imageUrl": "/decoration/test/toruto.png",
+      "imageUrl": "/item-images/chiaki_cbg.png",
+      "title": "TORUTO",
+      "author": "toruto",
+      "description": "toruto toruto toruto toruto toruto toruto toruto toruto "
+    },{
+      "id": "5",
+      "imageUrl": "/item-images/chiaki_cbg.png",
+      "title": "TORUTO",
+      "author": "toruto",
+      "description": "toruto toruto toruto toruto toruto toruto toruto toruto "
+    },
+    {
+      "id": "6",
+      "imageUrl": "/item-images/inutanuki_cbg.png",
+      "title": "TORUTO",
+      "author": "toruto",
+      "description": "toruto toruto toruto toruto toruto toruto toruto toruto "
+    },
+    {
+      "id": "7",
+      "imageUrl": "/item-images/inutanuki_cbg.png",
+      "title": "TORUTO",
+      "author": "toruto",
+      "description": "toruto toruto toruto toruto toruto toruto toruto toruto "
+    },
+    {
+      "id": "8",
+      "imageUrl": "/item-images/inutanuki_cbg.png",
+      "title": "TORUTO",
+      "author": "toruto",
+      "description": "toruto toruto toruto toruto toruto toruto toruto toruto "
+    },
+    {
+      "id": "9",
+      "imageUrl": "/item-images/inutanuki_cbg.png",
+      "title": "TORUTO",
+      "author": "toruto",
+      "description": "toruto toruto toruto toruto toruto toruto toruto toruto "
+    },
+    {
+      "id": "10",
+      "imageUrl": "/item-images/inutanuki_cbg.png",
+      "title": "TORUTO",
+      "author": "toruto",
+      "description": "toruto toruto toruto toruto toruto toruto toruto toruto "
+    },
+    {
+      "id": "11",
+      "imageUrl": "/item-images/inutanuki_cbg.png",
       "title": "TORUTO",
       "author": "toruto",
       "description": "toruto toruto toruto toruto toruto toruto toruto toruto "

@@ -22,7 +22,7 @@ const ExitButton = () => {
       <button
         type="button"
         onClick={handleClick}
-        className="btn btn-ghost btn-square w-16 h-16 p-3 ml-3 text-[10px]"
+        className="btn btn-ghost btn-square w-16 h-16 p-3 ml-3 text-[10px] icon-exit"
       >
         <ExitIcon />
       </button>

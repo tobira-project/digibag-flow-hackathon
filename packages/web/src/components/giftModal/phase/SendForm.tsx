@@ -34,7 +34,7 @@ const SendForm = ({ handleBack }: Props) => {
     <>
       <div className="h-[30vh] pt-12 pb-4">
         <div className="relative h-full">
-          {/* <Image src={arrangementData.mockBagDataList[bagId].thumbnailUrl} alt={'bag'} fill style={{ objectFit: "contain" }} /> */}
+          {/* <Image src={arrangementData.mockBagDataList[bagId].imageUrl} alt={'bag'} fill style={{ objectFit: "contain" }} /> */}
           <Image
             src={"/decoration/test/toruto.png"}
             alt={"bag"}
