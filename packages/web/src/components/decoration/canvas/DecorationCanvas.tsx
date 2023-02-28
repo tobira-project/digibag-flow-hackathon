@@ -69,7 +69,7 @@ const DecorationCanvas = () => {
 
   return (
     <>
-      <div className="w-[100vw] h-[100vh]">
+      <div className="absolute inset-0">
         <Canvas
           raycaster={raycaster}
           flat // テクスチャを元画像に近い色味で表示するための設定

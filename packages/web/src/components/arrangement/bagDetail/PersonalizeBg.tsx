@@ -21,7 +21,7 @@ const PersonalizeBg = () => {
 
   return (
     <>
-      <div className="absolute overflow-hidden w-[100vw] h-[100vh] z-[-20]">
+      <div className="absolute overflow-hidden w-full h-full z-[-20]">
         <div className="flex justify-center grid content-center w-full h-full">
           <div className="relative w-[150vw] h-[150vh]">
             <Image
@@ -31,7 +31,7 @@ const PersonalizeBg = () => {
               style={{ objectFit: "cover" }}
             />
           </div>
-          <div className="absolute w-[100vw] h-[100vh] backdrop-blur-xl" />
+          <div className="absolute w-full h-full backdrop-blur-xl" />
         </div>
       </div>
     </>

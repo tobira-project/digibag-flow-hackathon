@@ -27,7 +27,7 @@ const GiftModal = () => {
   return (
     <>
       <div className="absolute bottom-0 w-full flex justify-center">
-        <div className="relative bg-[#414142] h-full w-full rounded-t-[50px]">
+        <div className="relative h-full w-full rounded-t-[50px] glass-dark">
           {/* 内部 */}
           <div className="mx-12 mb-12">
             <div className="border-b-[2px] mx-[43%]">

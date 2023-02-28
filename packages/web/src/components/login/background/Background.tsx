@@ -13,7 +13,7 @@ type Props = {
  * @returns
  */
 const Background = ({ mode }: Props) => {
-  const { innerWidth, innerHeight } = useWindowSize();
+  const { displayWidth, displayHeight } = useWindowSize();
 
   return (
     <>
@@ -24,24 +24,24 @@ const Background = ({ mode }: Props) => {
           springData={{
             top: {
               pos: {
-                x: innerWidth * -0.55,
-                y: innerHeight * 0.12,
+                x: displayWidth * -0.55,
+                y: displayHeight * 0.12,
               },
               rot: -32,
               scale: 1.8,
             },
             signIn: {
               pos: {
-                x: innerWidth * -0.7,
-                y: innerHeight * 0.03,
+                x: displayWidth * -0.7,
+                y: displayHeight * 0.03,
               },
               rot: -32,
               scale: 1.5,
             },
             signUp: {
               pos: {
-                x: innerWidth * -0.57,
-                y: innerHeight * -0.3,
+                x: displayWidth * -0.57,
+                y: displayHeight * -0.3,
               },
               rot: -32,
               scale: 1,
@@ -54,24 +54,24 @@ const Background = ({ mode }: Props) => {
           springData={{
             top: {
               pos: {
-                x: innerWidth * -0.15,
-                y: innerHeight * 0.6,
+                x: displayWidth * -0.15,
+                y: displayHeight * 0.6,
               },
               rot: -23,
               scale: 1.4,
             },
             signIn: {
               pos: {
-                x: innerWidth * -0.53,
-                y: innerHeight * 0.76,
+                x: displayWidth * -0.53,
+                y: displayHeight * 0.76,
               },
               rot: -23,
               scale: 1.4,
             },
             signUp: {
               pos: {
-                x: innerWidth * 0.25,
-                y: innerHeight * 0.41,
+                x: displayWidth * 0.25,
+                y: displayHeight * 0.41,
               },
               rot: 10,
               scale: 2.7,
@@ -84,24 +84,24 @@ const Background = ({ mode }: Props) => {
           springData={{
             top: {
               pos: {
-                x: innerWidth * 0.52,
-                y: innerHeight * 0.26,
+                x: displayWidth * 0.52,
+                y: displayHeight * 0.26,
               },
               rot: 16,
               scale: 1,
             },
             signIn: {
               pos: {
-                x: innerWidth * 0.08,
-                y: innerHeight * 0.3,
+                x: displayWidth * 0.08,
+                y: displayHeight * 0.3,
               },
               rot: 16,
               scale: 1.3,
             },
             signUp: {
               pos: {
-                x: innerWidth * 0.9,
-                y: innerHeight * -0.2,
+                x: displayWidth * 0.9,
+                y: displayHeight * -0.2,
               },
               rot: 14,
               scale: 1,

@@ -20,7 +20,7 @@ const OpenGiftButton = ({ className }: Props) => {
       <button
         type={"button"}
         onClick={openGiftModal}
-        className={`open-gift-btn ${className}`}
+        className={`open-gift-btn pointer-events-auto ${className}`}
       >
         <GiftIcon />
       </button>

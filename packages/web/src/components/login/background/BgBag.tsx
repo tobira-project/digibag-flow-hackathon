@@ -82,7 +82,7 @@ const BgBag = ({ mode, bagName, width, height, springData }: Props) => {
 
   return (
     <>
-      <div className={"w-[100vw] h-[100vh] absolute overflow-hidden z-[-4]"}>
+      <div className={"w-full h-full absolute overflow-hidden z-[-4]"}>
         <a.div style={{ x, y, scale, rotate: rot.to((v) => `${v}deg`) }}>
           <Image
             src={`/bag-images/${bagName}.png`}

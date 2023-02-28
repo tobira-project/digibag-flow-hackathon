@@ -91,32 +91,33 @@ const Login = () => {
 
   return (
     <>
-      {/* バックグラウンドにバッグ画像を表示 */}
-      <Background mode={mode} />
+      <div className="page-top-container">
+        {/* バックグラウンドにバッグ画像を表示 */}
+        <Background mode={mode} />
 
-      {mode !== "TOP" && (
-        <>
-          <BackButton onClick={back} className={"login-back-btn"} />
-        </>
-      )}
-      <div className="login-title-container">
-        <div className="login-tbr-logo">
-          <TBRLogo />
+        {mode !== "TOP" && (
+          <>
+            <BackButton onClick={back} className={"login-back-btn"} />
+          </>
+        )}
+        <div className="login-title-container">
+          <div className="login-tbr-logo">
+            <TBRLogo />
+          </div>
+          <h1 className="login-title">DIGIBAG</h1>
         </div>
-        <h1 className="login-title">DIGIBAG</h1>
-      </div>
 
-      <div>
+        <div>
           <>
             {mode === "LOADING" && (
-            <>
-              <Loading />
-            </>
+              <>
+                <Loading />
+              </>
             )}
             {mode === "TOP" && (
-            <>
-              <Top moveSignInWithGoogle={moveSignInWithGoogle} moveSignInWithEmail={moveSignInWithEmail} />
-            </>
+              <>
+                <Top moveSignInWithGoogle={moveSignInWithGoogle} moveSignInWithEmail={moveSignInWithEmail} />
+              </>
             )}
             {mode === "SIGN_IN_WITH_GOOGLE" && (
               <>
@@ -134,6 +135,7 @@ const Login = () => {
               </>
             )}
           </>
+        </div>
       </div>
     </>
   );
