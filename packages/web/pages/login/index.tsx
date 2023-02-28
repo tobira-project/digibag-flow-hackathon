@@ -89,56 +89,47 @@ const Login = () => {
       <div className="page-top-container">
         {/* バックグラウンドにバッグ画像を表示 */}
         <Background mode={mode} />
-
-        {mode !== "TOP" && (
-          <>
+        <div className="flex flex-col h-full">
+          {mode !== "TOP" && (
             <BackButton onClick={back} className={"login-back-btn"} />
-          </>
-        )}
-        <div className="login-title-container">
-          {/* <div className="login-tbr-logo">
+          )}
+          <div className="login-title-container">
+            {/* <div className="login-tbr-logo">
             <TBRLogo />
           </div> */}
-          {/* <h1 className="login-title">DIGIBAG</h1> */}
-          <DigibagLogo />
-        </div>
+            {/* <h1 className="login-title">DIGIBAG</h1> */}
+            <DigibagLogo />
+          </div>
 
-        <div>
-          <>
-            {mode === "LOADING" && (
+          <div className="grow mt-[40%]">
+            <div>
               <>
-                <Loading />
+                {mode === "LOADING" && (
+                  <Loading />
+                )}
+                {mode === "TOP" && (
+                  <Top
+                    moveSignInWithGoogle={moveSignInWithGoogle}
+                    moveSignInWithEmail={moveSignInWithEmail}
+                  />
+                )}
+                {mode === "SIGN_IN_WITH_GOOGLE" && (
+                  <Loading />
+                )}
+                {mode === "SIGN_IN_WITH_EMAIL" && (
+                  <SignUp
+                    handleSignUp={handleSignInWithEmail}
+                    value={email}
+                    setValue={setEmail}
+                    checkValue={checkEmail}
+                  />
+                )}
+                {mode === "SUCCESS_SIGN_UP" && (
+                  <SignButton text="Sign out" onClick={handleSignOut} />
+                )}
               </>
-            )}
-            {mode === "TOP" && (
-              <>
-                <Top
-                  moveSignInWithGoogle={moveSignInWithGoogle}
-                  moveSignInWithEmail={moveSignInWithEmail}
-                />
-              </>
-            )}
-            {mode === "SIGN_IN_WITH_GOOGLE" && (
-              <>
-                <Loading />
-              </>
-            )}
-            {mode === "SIGN_IN_WITH_EMAIL" && (
-              <>
-                <SignUp
-                  handleSignUp={handleSignInWithEmail}
-                  value={email}
-                  setValue={setEmail}
-                  checkValue={checkEmail}
-                />
-              </>
-            )}
-            {mode === "SUCCESS_SIGN_UP" && (
-              <>
-                <SignButton text="Sign out" onClick={handleSignOut} />
-              </>
-            )}
-          </>
+            </div>
+          </div>
         </div>
       </div>
     </>

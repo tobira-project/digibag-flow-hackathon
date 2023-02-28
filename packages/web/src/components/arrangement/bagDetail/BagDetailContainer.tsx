@@ -16,18 +16,14 @@ const BagDetailContainer = () => {
               id: 0,
               tabTitle: "Contents",
               tabContent: (
-                <>
-                  <ContentsTab />
-                </>
+                <ContentsTab />
               ),
             },
             {
               id: 1,
               tabTitle: "Attachments",
               tabContent: (
-                <>
-                  <AttachmentsTab />
-                </>
+                <AttachmentsTab />
               ),
             },
             {

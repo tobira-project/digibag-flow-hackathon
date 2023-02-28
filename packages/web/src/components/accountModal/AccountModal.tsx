@@ -72,8 +72,8 @@ const AccountModal = () => {
         ) : (
           <>
           <div className="account-address-container">
-            <p className="account-address-text">
-              Account address: 
+            <p className="account-address-text">Account address:</p>
+            <p className="account-address-text tracking-wide">
               <a href={`https://testnet.flowscan.org/account/${accountAddress}`} target="_blank" rel="noreferrer">
                 {accountAddress} <FontAwesomeIcon icon={faExternalLinkAlt} />
               </a>

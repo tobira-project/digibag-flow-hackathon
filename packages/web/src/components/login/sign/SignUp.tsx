@@ -1,4 +1,3 @@
-import BackButton from "../../global/BackButton";
 import SignButton from "./SignButton";
 import TextBox from "./TextBox";
 
@@ -21,7 +20,7 @@ const SignUp = ({ handleSignUp, value, setValue, checkValue }: Props) => {
         <div className="login-sign-container-inner">
           <TextBox value={value} setValue={setValue} checkValue={checkValue} />
           <div className="mt-4">
-            <SignButton text="Sign up" onClick={handleSignUp} />
+            <SignButton text="Sign in" onClick={handleSignUp} />
           </div>
         </div>
       </div>
