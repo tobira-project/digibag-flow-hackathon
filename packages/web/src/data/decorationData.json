@@ -32,28 +32,28 @@
   "mockItemList": [
     {
       "id": "0",
-      "imageUrl": "/decoration/test/tbr_inutanuki.png",
+      "imageUrl": "/item-images/inutanuki_cbg.png",
       "title": "Gorakuba !",
       "author": "inutanuki",
       "description": "description description description description"
     },
     {
       "id": "1",
-      "imageUrl": "/decoration/test/toruto.png",
+      "imageUrl": "/item-images/inutanuki_cbg.png",
       "title": "TORUTO",
       "author": "toruto",
       "description": "toruto toruto toruto toruto toruto toruto toruto toruto "
     },
     {
       "id": "3",
-      "imageUrl": "/decoration/test/toruto.png",
+      "imageUrl": "/item-images/inutanuki_cbg.png",
       "title": "TORUTO",
       "author": "toruto",
       "description": "toruto toruto toruto toruto toruto toruto toruto toruto "
     },
     {
       "id": "4",
-      "imageUrl": "/decoration/test/toruto.png",
+      "imageUrl": "/item-images/chiaki_cbg.png",
       "title": "TORUTO",
       "author": "toruto",
       "description": "toruto toruto toruto toruto toruto toruto toruto toruto "

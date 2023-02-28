@@ -35,7 +35,7 @@ const BagDetail: NextPage = () => {
     const title = arrangementData.mockBagDataList[id].title;
     setTitle(title);
 
-    const url = arrangementData.mockBagDataList[id].thumbnailUrl;
+    const url = arrangementData.mockBagDataList[id].imageUrl;
     setImageUrl(url);
   }, [router.query.bagId]);
 

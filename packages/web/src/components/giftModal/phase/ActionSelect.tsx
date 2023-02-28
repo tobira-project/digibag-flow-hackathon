@@ -4,6 +4,7 @@ import GiftButton from "../ui/GiftButton";
 import arrangementData from "@/data/arrangementData.json";
 import { useRouter } from "next/router";
 import useArrangementStore from "@/stores/arrangementStore";
+import { useEffect } from "react";
 
 type Props = {
   handleNext: () => void;
@@ -19,7 +20,16 @@ const ActionSelect = ({ handleNext }: Props) => {
     closeGiftModal: state.closeGiftModal,
   }));
 
+  const [imageUrl, setImageUrl] = useState<string>();
   const router = useRouter();
+
+  useEffect(() => {
+    if (!router.query.bagId) return;
+    if (typeof router.query.bagId !== 'string') return;
+    const newUrl = arrangementData.mockBagDataList[parseInt(router.query.bagId)].imageUrl;
+    setImageUrl(newUrl)
+  }, [router.query.bagId])
+
 
   const handleEditContents = () => router.push(`/bags/${router.query.bagId}/`);
   const handleEditAppearance = () =>
@@ -35,13 +45,12 @@ const ActionSelect = ({ handleNext }: Props) => {
 
       <div className="h-[30vh] p-8">
         <div className="relative h-full">
-          {/* <Image src={arrangementData.mockBagDataList[bagId].thumbnailUrl} alt={'bag'} fill style={{ objectFit: "contain" }} /> */}
-          <Image
-            src={"/decoration/test/toruto.png"}
-            alt={"bag"}
+          {imageUrl && <Image
+            src={imageUrl}
+            alt={'bag'}
             fill
             style={{ objectFit: "contain" }}
-          />
+          />}
         </div>
       </div>
       <div className="grid gap-4">

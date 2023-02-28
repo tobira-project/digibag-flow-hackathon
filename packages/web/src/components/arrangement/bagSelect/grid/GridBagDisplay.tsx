@@ -12,7 +12,7 @@ const GridBagDisplay = () => {
   const [imageUrl, setImageUrl] = useState<string>("");
 
   useEffect(() => {
-    setImageUrl(arrangementData.mockBagDataList[0].thumbnailUrl);
+    setImageUrl(arrangementData.mockBagDataList[0].imageUrl);
   }, [arrangementData.mockBagDataList]);
 
   return (
@@ -24,7 +24,7 @@ const GridBagDisplay = () => {
             <>
               <GridBagItem
                 key={v.id}
-                imageUrl={v.thumbnailUrl}
+                imageUrl={v.imageUrl}
                 title={v.title}
                 bagId={v.id}
               />
