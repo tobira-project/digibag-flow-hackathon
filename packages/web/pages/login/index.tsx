@@ -16,7 +16,7 @@ import Loading from "@/components/login/sign/Loading";
  * @returns
  */
 const Login = () => {
-  const { magic } = useFlow();
+  const { magic, fcl } = useFlow();
 
   // モードによって背景の動きが変わるためには、背景移動のspring用に数値の変数を用意する必要があるかも
   // useSpringで使っていたbooleanの数値バージョン
@@ -57,7 +57,7 @@ const Login = () => {
     console.log(email);
     if (!checkEmail(email)) return;
     if (!magic) return;
-    await magic.auth.loginWithEmailOTP({ email: "nagato.kasaki@gmail.com" });
+    await magic.auth.loginWithEmailOTP({ email });
     setMode("SUCCESS_SIGN_UP");
     setTimeout(() => {
       router.push("/");
@@ -70,12 +70,44 @@ const Login = () => {
     setMode("TOP");
   };
 
+  const createCollection = async () => {
+    console.log("createCollection");
+    const AUTHORIZATION_FUNCTION = magic?.flow.authorization
+    const createCollectionTx = `
+    import GoodsNFT from 0x8c361b0c76d7a2f3
+    transaction {
+        prepare(acct: AuthAccount) {
+            if acct.borrow<&GoodsNFT.Collection>(from: GoodsNFT.CollectionStoragePath) == nil {
+                let collection <- GoodsNFT.createEmptyCollection()
+                acct.save<@GoodsNFT.Collection>(<-collection, to: GoodsNFT.CollectionStoragePath)
+                acct.link<&{GoodsNFT.NFTReceiver}>(GoodsNFT.CollectionPublicPath, target: GoodsNFT.CollectionStoragePath)
+            }
+        }
+    }
+  `;
+    if (AUTHORIZATION_FUNCTION) {
+      var response = await fcl.send([
+        fcl.transaction(createCollectionTx),
+        fcl.proposer(AUTHORIZATION_FUNCTION),
+        fcl.authorizations([AUTHORIZATION_FUNCTION]),
+        fcl.payer(AUTHORIZATION_FUNCTION),
+        fcl.limit(9999),
+      ]);
+      console.log("TRANSACTION SENT");
+      console.log("TRANSACTION RESPONSE", response);
+
+      console.log("WAITING FOR TRANSACTION TO BE SEALED");
+      var data = await fcl.tx(response).onceSealed();
+      console.log("TRANSACTION SEALED", data);
+    };
+  }
+
   useEffect(() => {
     if (magic) {
       magic.user.isLoggedIn().then(async (magicIsLoggedIn) => {
         if (magicIsLoggedIn) {
-          const userMetadata = await magic.user.getMetadata();
           setMode("SUCCESS_SIGN_UP");
+          await createCollection();
           router.push("/");
         } else {
           setMode("TOP");

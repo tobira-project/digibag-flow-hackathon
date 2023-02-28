@@ -1,10 +1,4 @@
-// ExampleNFT.cdc
-//
-// This is a complete version of the ExampleNFT contract
-// that includes withdraw and deposit functionality, as well as a
-// collection resource that can be used to bundle NFTs together.
-//
-// Learn more about non-fungible tokens in this tutorial: https://developers.flow.com/cadence/tutorial/05-non-fungible-tokens-2
+// GoodsNFT.cdc
 
 pub contract GoodsNFT {
 
@@ -19,14 +13,22 @@ pub contract GoodsNFT {
     pub var idCount: UInt64
 
     pub resource NFTMetadata {
-        pub let url: String
-        pub(set) var pos: [UInt64]
-        pub(set) var rot: [UInt64]
+        pub let imageUrl: String
+        pub(set) var pos: [UFix64]
+        pub(set) var rot: [UFix64]
+        pub let name: String
+        pub let publisher: String
+        pub let description: String
+        pub let scale: UFix64
 
-        init(url: String, pos: [UInt64], rot: [UInt64]) {
-            self.url = url
+        init(url: String, pos: [UFix64], rot: [UFix64], name: String, publisher: String, description: String, scale: UFix64) {
+            self.imageUrl = url
             self.pos = pos
             self.rot = rot
+            self.name = name
+            self.publisher = publisher
+            self.description = description
+            self.scale = scale
         }
     }
 
@@ -37,16 +39,16 @@ pub contract GoodsNFT {
         pub let metaData: @NFTMetadata
 
         // Initialize both fields in the init function
-        init(initID: UInt64, url: String, pos: [UInt64], rot: [UInt64]) {
+        init(initID: UInt64, url: String, pos: [UFix64], rot: [UFix64], name: String, publisher: String, description: String, scale: UFix64) {
             self.id = initID
-            self.metaData <- create NFTMetadata(url: url, pos: pos, rot: rot)
+            self.metaData <- create NFTMetadata(url: url, pos: pos, rot: rot, name: name, publisher: publisher, description: description, scale: scale)
         }
 
-        pub fun setPos(pos: [UInt64]) {
+        pub fun setPos(pos: [UFix64]) {
             self.metaData.pos = pos
         }
 
-        pub fun setRot(rot: [UInt64]) {
+        pub fun setRot(rot: [UFix64]) {
             self.metaData.rot = rot
         }
 
@@ -77,9 +79,9 @@ pub contract GoodsNFT {
 
         pub fun move(nftId: UInt64, bagId: UInt64, addressId: UInt64)
 
-        pub fun updatePos(bagId: UInt64, nftId: UInt64, pos: [UInt64])
+        pub fun updatePos(bagId: UInt64, nftId: UInt64, pos: [UFix64])
 
-        pub fun updateRot(bagId: UInt64, nftId: UInt64, rot: [UInt64])
+        pub fun updateRot(bagId: UInt64, nftId: UInt64, rot: [UFix64])
 
         pub fun depositNFT(bagId: UInt64, token: @NFT)
 
@@ -87,9 +89,18 @@ pub contract GoodsNFT {
 
         pub fun getUrl(bagId: UInt64, nftId: UInt64): String
 
-        pub fun getPos(bagId: UInt64, nftId: UInt64): [UInt64]
+        pub fun getPos(bagId: UInt64, nftId: UInt64): [UFix64]
 
-        pub fun getRot(bagId: UInt64, nftId: UInt64): [UInt64]
+        pub fun getRot(bagId: UInt64, nftId: UInt64): [UFix64]
+
+        pub fun getName(bagId: UInt64, nftId: UInt64): String
+
+        pub fun getPublisher(bagId: UInt64, nftId: UInt64): String
+
+        pub fun getDescription(bagId: UInt64, nftId: UInt64): String
+
+        pub fun getScale(bagId: UInt64, nftId: UInt64): UFix64
+
     }
 
     // The definition of the Collection resource that
@@ -128,11 +139,11 @@ pub contract GoodsNFT {
             self.ownedNFTs[token.id] <-! token
         }
 
-        pub fun updatePos(id: UInt64, pos: [UInt64]) {
+        pub fun updatePos(id: UInt64, pos: [UFix64]) {
             self.ownedNFTs[id]?.setPos(pos: pos)
         }
 
-        pub fun updateRot(id: UInt64, rot: [UInt64]) {
+        pub fun updateRot(id: UInt64, rot: [UFix64]) {
             self.ownedNFTs[id]?.setRot(rot: rot)
         }
 
@@ -203,7 +214,7 @@ pub contract GoodsNFT {
         pub fun getUrl(bagId: UInt64, nftId: UInt64): String {
             var r = ""
             if let bag <- self.ownedBags[bagId] <- nil {
-                r = bag.ownedNFTs[nftId]?.metaData?.url ?? panic("the specified NFT ID was not found")
+                r = bag.ownedNFTs[nftId]?.metaData?.imageUrl ?? panic("the specified NFT ID was not found")
                 self.ownedBags[bagId] <-! bag
             } else {
                 panic("the specified bag ID was not found")
@@ -211,8 +222,8 @@ pub contract GoodsNFT {
             return r
         }
 
-        pub fun getPos(bagId: UInt64, nftId: UInt64): [UInt64] {
-            var r: [UInt64] = []
+        pub fun getPos(bagId: UInt64, nftId: UInt64): [UFix64] {
+            var r: [UFix64] = []
             if let bag <- self.ownedBags[bagId] <- nil {
                 r = bag.ownedNFTs[nftId]?.metaData?.pos ?? panic("the specified NFT ID was not found")
                 self.ownedBags[bagId] <-! bag
@@ -222,10 +233,54 @@ pub contract GoodsNFT {
             return r
         }
 
-        pub fun getRot(bagId: UInt64, nftId: UInt64): [UInt64] {
-            var r: [UInt64] = []
+        pub fun getRot(bagId: UInt64, nftId: UInt64): [UFix64] {
+            var r: [UFix64] = []
             if let bag <- self.ownedBags[bagId] <- nil {
                 r = bag.ownedNFTs[nftId]?.metaData?.rot ?? panic("the specified NFT ID was not found")
+                self.ownedBags[bagId] <-! bag
+            } else {
+                panic("the specified bag ID was not found")
+            }
+            return r
+        }
+
+        pub fun getName(bagId: UInt64, nftId: UInt64): String {
+            var r: String = ""
+            if let bag <- self.ownedBags[bagId] <- nil {
+                r = bag.ownedNFTs[nftId]?.metaData?.name ?? panic("the specified NFT ID was not found")
+                self.ownedBags[bagId] <-! bag
+            } else {
+                panic("the specified bag ID was not found")
+            }
+            return r
+        }
+
+        pub fun getPublisher(bagId: UInt64, nftId: UInt64): String {
+            var r: String = ""
+            if let bag <- self.ownedBags[bagId] <- nil {
+                r = bag.ownedNFTs[nftId]?.metaData?.publisher ?? panic("the specified NFT ID was not found")
+                self.ownedBags[bagId] <-! bag
+            } else {
+                panic("the specified bag ID was not found")
+            }
+            return r
+        }
+
+        pub fun getDescription(bagId: UInt64, nftId: UInt64): String {
+            var r: String = ""
+            if let bag <- self.ownedBags[bagId] <- nil {
+                r = bag.ownedNFTs[nftId]?.metaData?.description ?? panic("the specified NFT ID was not found")
+                self.ownedBags[bagId] <-! bag
+            } else {
+                panic("the specified bag ID was not found")
+            }
+            return r
+        }
+
+        pub fun getScale(bagId: UInt64, nftId: UInt64): UFix64 {
+            var r: UFix64 = 1.0
+            if let bag <- self.ownedBags[bagId] <- nil {
+                r = bag.ownedNFTs[nftId]?.metaData?.scale ?? panic("the specified NFT ID was not found")
                 self.ownedBags[bagId] <-! bag
             } else {
                 panic("the specified bag ID was not found")
@@ -237,11 +292,11 @@ pub contract GoodsNFT {
             return self.ownedBags[id]?.getIDs() ?? panic("the specified bag ID was not found")
         }
 
-        pub fun updatePos(bagId: UInt64, nftId: UInt64, pos: [UInt64]) {
+        pub fun updatePos(bagId: UInt64, nftId: UInt64, pos: [UFix64]) {
             self.ownedBags[bagId]?.updatePos(id: nftId, pos: pos)
         }
 
-        pub fun updateRot(bagId: UInt64, nftId: UInt64, rot: [UInt64]) {
+        pub fun updateRot(bagId: UInt64, nftId: UInt64, rot: [UFix64]) {
             self.ownedBags[bagId]?.updateRot(id: nftId, rot: rot)
         }
 
@@ -275,10 +330,10 @@ pub contract GoodsNFT {
     //
     // Function that mints a new NFT with a new ID
     // and returns it to the caller
-    pub fun mintNFT(url: String, pos: [UInt64], rot: [UInt64]): @NFT {
+    pub fun mintNFT(url: String, pos: [UFix64], rot: [UFix64], name: String, publisher: String, description: String, scale: UFix64): @NFT {
 
         // create a new NFT
-        var newNFT <- create NFT(initID: self.idCount, url: url, pos: pos, rot: rot)
+        var newNFT <- create NFT(initID: self.idCount, url: url, pos: pos, rot: rot, name: name, publisher: publisher, description: description, scale: scale)
 
         // change the id so that each ID is unique
         self.idCount = self.idCount + 1

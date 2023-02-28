@@ -7,8 +7,33 @@
 	},
 	"accounts": {
 		"emulator-account": {
-			"address": "ba1d680383821b26",
+			"address": "f8d6e0586b0a20c7",
 			"key": "aab44332c5c035e01b503bb25d89691b59cd42910a4582ab7f6e78b8d8f0b1d4"
+		},
+		"testnetAccount1": {
+			"address": "ba1d680383821b26",
+			"keys": "aab44332c5c035e01b503bb25d89691b59cd42910a4582ab7f6e78b8d8f0b1d4"
+		},
+		"testnetAccount2": {
+			"address": "8c361b0c76d7a2f3",
+			"keys": "6d18d80e7267a99621cda99a1c94bdcb882b13f171d161ac8f61a1f75bcce181"
+		}
+	},
+	"contracts": {
+		"GoodsNFT": {
+			"source": "./cadence/contracts/GoodsNFT.cdc",
+			"aliases": {
+				"emulator": "f8d6e0586b0a20c7",
+				"testnet": "8c361b0c76d7a2f3"
+			}
+		}
+	},
+	"deployments": {
+		"emulator": {
+			"emulator-account": ["GoodsNFT"]
+		},
+		"testnet": {
+			"testnetAccount2": ["GoodsNFT"]
 		}
 	}
 }
