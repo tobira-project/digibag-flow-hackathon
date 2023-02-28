@@ -20,14 +20,18 @@ const ActionSelect = ({ handleNext }: Props) => {
     closeGiftModal: state.closeGiftModal,
   }));
 
+  const [title, setTitle] = useState<string>();
   const [imageUrl, setImageUrl] = useState<string>();
   const router = useRouter();
 
+  // dynamic routerのbagIdを利用してデータを取得
   useEffect(() => {
     if (!router.query.bagId) return;
     if (typeof router.query.bagId !== 'string') return;
-    const newUrl = arrangementData.mockBagDataList[parseInt(router.query.bagId)].imageUrl;
-    setImageUrl(newUrl)
+
+    const data = arrangementData.mockBagDataList[parseInt(router.query.bagId)];
+    setTitle(data.title)
+    setImageUrl(data.imageUrl)
   }, [router.query.bagId])
 
 
@@ -40,10 +44,10 @@ const ActionSelect = ({ handleNext }: Props) => {
     <>
       {/* <p>{arrangementData.mockBagDataList[bagId].title}</p> */}
       <p className="text-center text-white text-[36px] pt-6 font-scandia-web-500">
-        {"Bag name"}
+        {title}
       </p>
 
-      <div className="h-[30vh] p-8">
+      <div className="h-[30vh] py-4 ">
         <div className="relative h-full">
           {imageUrl && <Image
             src={imageUrl}

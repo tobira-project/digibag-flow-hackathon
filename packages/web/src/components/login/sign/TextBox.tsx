@@ -1,3 +1,5 @@
+import { useRef } from "react";
+
 type Props = {
   value: string;
   setValue: (value: string) => void;
@@ -18,11 +20,13 @@ const TextBox = ({ value, setValue, checkValue }: Props) => {
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
-        {!checkValue(value) && (
-          <label className="label">
-            <span className="label-text-alt">*invalid email</span>
-          </label>
-        )}
+        <div className="h-[8px]">
+          {value !== '' && !checkValue(value) && (
+            <label className="label mt-[-4px]">
+              <span className="label-text-alt">*invalid email</span>
+            </label>
+          )}
+        </div>
       </div>
     </>
   );

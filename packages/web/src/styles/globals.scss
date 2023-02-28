@@ -20,7 +20,7 @@ $breakpoint: (
     @apply font-scandia-web-400;
     @include mq(tab) {
       @apply absolute w-[390px] h-[844px];
-      @apply rounded-[32px] overflow-hidden border-4 border-[#3c3c3c];
+      @apply rounded-[32px] overflow-hidden border-[6px] border-[#3c3c3c];
     }
   }
 
@@ -141,6 +141,7 @@ $breakpoint: (
     // ログイントップ
     &-top-container {
       @apply px-[10%] w-full;
+      @apply h-full;
       // @include mq(tab) {
       //   @apply max-w-[800px];
       // }
@@ -150,7 +151,7 @@ $breakpoint: (
       @apply btn btn-circle bg-white hover:bg-[#eee];
       @apply text-[#8C8C8C] border-none shadow-xl;
       @apply normal-case font-scandia-web-400;
-      @apply w-full text-xl;
+      @apply w-full text-xl h-[48px];
     }
     // アイコン
     &-icon {
@@ -161,11 +162,11 @@ $breakpoint: (
     &-sign-container {
       // 外側
       &-outer {
-        @apply mt-4 w-full flex justify-center;
+        @apply mt-4 w-full h-full flex justify-center;
       }
       // 内側
       &-inner {
-        @apply mx-[20px] p-[20px] w-full rounded-[30px] glass-white-sm;
+        @apply mx-[40px] p-[30px] w-full rounded-[30px] glass-white-sm;
         // @include mq(tab) {
         //   @apply max-w-[800px] p-[30px];
         // }
@@ -183,33 +184,37 @@ $breakpoint: (
   // アカウントモーダル
   .account {
     &-outer {
-      @apply absolute inset-0 bg-black/20 px-6 h-auto;
+      @apply absolute inset-0 bg-black/20 px-8 h-auto;
       @apply grid content-center
     }
 
     &-container {
-      @apply w-full rounded-[50px] ;
-      @apply px-6 pt-8 pb-10;
+      @apply w-full rounded-[30px] ;
+      @apply px-6 pt-4 pb-8;
       @apply flex flex-col;
       @apply glass-dark;
     }
 
+    &-address-container {
+      @apply mt-2 grid mb-6;
+    }
+
     &-address-text {
-      @apply text-white 
+      @apply text-white flex justify-center;
     }
 
     &-logout-btn {
       @apply btn btn-circle bg-transparent hover:bg-black/20;
       @apply text-white border-white hover:border-[#eee] border-[2px] shadow-xl;
       @apply normal-case font-scandia-web-400;
-      @apply w-full h-[60px] text-[24px];
+      @apply w-full h-[48px] text-[20px];
     }
   }
 
   // グッズ詳細モーダル
   .item-modal {
     &-outer {
-      @apply absolute inset-0 bg-black/20 px-6 py-[10vh];
+      @apply absolute inset-0 bg-black/20 px-6 grid content-center;
     }
 
     &-container {
@@ -233,7 +238,7 @@ $breakpoint: (
     }
 
     &-image {
-      @apply relative grow m-8;
+      @apply relative h-[150px] m-8;
     }
 
     &-description {
@@ -247,7 +252,7 @@ $breakpoint: (
     &-btn {
       @apply btn btn-circle bg-transparent hover:bg-black/20;
       @apply text-white border-white hover:border-[#eee] border-[1px] shadow-xl;
-      @apply w-full h-[50px];
+      @apply w-full h-[48px];
 
       &-inner {
         @apply w-full h-full flex;
@@ -271,14 +276,14 @@ $breakpoint: (
       @apply btn btn-circle bg-white hover:bg-[#eee];
       @apply text-[#717171] border-none shadow-xl;
       @apply normal-case font-scandia-web-400;
-      @apply w-full h-[60px] text-[24px];
+      @apply w-full h-[48px] text-[20px];
     }
     // 透明ボタン
     &-btn-inverse {
       @apply btn btn-circle bg-transparent hover:bg-black/20;
       @apply text-white border-white hover:border-[#eee] border-[2px] shadow-xl;
       @apply normal-case font-scandia-web-400;
-      @apply w-full h-[60px] text-[24px];
+      @apply w-full h-[48px] text-[20px];
     }
     // テキストボックス
     &-input {
@@ -286,7 +291,7 @@ $breakpoint: (
       @apply bg-transparent hover:bg-black/20;
       @apply border-white hover:border-[#eee] rounded-full border-[2px];
       @apply text-white text-xl placeholder:text-xl;
-      @apply w-full h-[60px] px-6;
+      @apply w-full h-[48px] px-6;
     }
   }
 

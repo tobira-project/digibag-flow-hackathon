@@ -40,7 +40,8 @@ const AccountModal = () => {
       >
         <div className="account-address-container">
           <p className="account-address-text">Account address:</p>
-          <p className="account-address-text">{accountAddress}</p>
+          {/* <p className="account-address-text">{accountAddress}</p> */}
+          <p className="account-address-text tracking-wide">{'0x73bf851c8611647e'}</p>
         </div>
         <div
           className="account-logout-btn-container"
