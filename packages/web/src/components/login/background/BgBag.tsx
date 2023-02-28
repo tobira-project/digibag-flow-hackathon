@@ -58,7 +58,7 @@ const BgBag = ({ mode, bagName, width, height, springData }: Props) => {
     let data: PlaceData;
     if (m === "TOP") {
       data = springData.top;
-    } else if (m === "SIGN_IN") {
+    } else if (m === "SIGN_IN_WITH_GOOGLE") {
       data = springData.signIn;
     } else {
       data = springData.signUp;
