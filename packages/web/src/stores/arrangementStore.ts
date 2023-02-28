@@ -11,7 +11,7 @@ type BagData = {
   id: number;
   title: string;
   address: string; // コントラクトアドレス(可能であれば)
-  thumbnailUrl: string; // メニューでの表示
+  imageUrl: string; // メニューでの表示
   modelUrl: string; // 詳細での表示
   itemList: ItemData[]; // 内部のグッズ
 };

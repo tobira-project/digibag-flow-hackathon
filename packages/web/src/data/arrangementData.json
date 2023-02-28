@@ -4,7 +4,7 @@
       "id": 0,
       "title": "bag-title0",
       "address": "0x001",
-      "thumbnailUrl": "/decoration/test/toruto.png",
+      "imageUrl": "/item-images/inutanuki_cbg.png",
       "modelUrl": "/decoration/can-badge/can-badge.glb",
       "itemList": [
         {
@@ -28,7 +28,7 @@
       "id": 1,
       "title": "bag-title1",
       "address": "0x001",
-      "thumbnailUrl": "/decoration/test/tbr_inutanuki.png",
+      "imageUrl": "/item-images/inutanuki_cbg.png",
       "modelUrl": "/decoration/can-badge/can-badge.glb",
       "itemList": [
         {
@@ -47,7 +47,7 @@
       "id": 2,
       "title": "bag-title2",
       "address": "0x001",
-      "thumbnailUrl": "/decoration/test/toruto.png",
+      "imageUrl": "/item-images/chiaki_cbg.png",
       "modelUrl": "/decoration/can-badge/can-badge.glb",
       "itemList": [
         {

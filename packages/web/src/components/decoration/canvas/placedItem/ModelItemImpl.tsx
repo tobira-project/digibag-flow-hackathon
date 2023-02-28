@@ -73,14 +73,16 @@ const ModelItemImpl = ({ itemData, srcModel }: Props) => {
     const srcX = crop.srcW / 2.0;
     const offX = crop.x - srcX;
     const offsetX = offX / crop.srcW;
-    const badgeOffsetX = -0.1025 * cropScale;
+    // 元-0.1025
+    const badgeOffsetX = -0.1325 * cropScale;
     mat.map.offset.x = offsetX + badgeOffsetX;
 
     // offset y
     const srcY = crop.srcH / 2.0;
     const offY = crop.y - srcY;
     const offsetY = offY / crop.srcH;
-    const badgeOffsetY = 0.0915 * cropScale;
+    // 元0.0915
+    const badgeOffsetY = 0.1215 * cropScale;
     mat.map.offset.y = offsetY + badgeOffsetY;
 
     // テクスチャが逆さになるのを修正

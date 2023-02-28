@@ -7,10 +7,11 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import useArrangementStore from "@/stores/arrangementStore";
 import OpenGiftButton from "@/components/global/OpenGiftButton";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import arrangementData from "@/data/arrangementData.json";
-import PersonalizeBg from "@/components/arrangement/bagDetail/PersonalizeBg";
+import PersonalizeBg from "@/components/arrangement/PersonalizeBg";
 import ItemModal from "@/components/itemModal/ItemModal";
+import { disableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock";
 
 /**
  * バッグの詳細ページ
@@ -21,10 +22,10 @@ const BagDetail: NextPage = () => {
     isItemModalOpen: state.isItemModalOpen,
     isGiftModalOpen: state.isGiftModalOpen,
   }));
-
   const [title, setTitle] = useState<string>("");
   const [imageUrl, setImageUrl] = useState<string>("");
   const router = useRouter();
+  const pageRef = useRef<HTMLDivElement>(null);
 
   // dynamic routingを利用してバッグのidを取得し、データをセットする
   useEffect(() => {
@@ -35,9 +36,35 @@ const BagDetail: NextPage = () => {
     const title = arrangementData.mockBagDataList[id].title;
     setTitle(title);
 
-    const url = arrangementData.mockBagDataList[id].thumbnailUrl;
+    const url = arrangementData.mockBagDataList[id].imageUrl;
     setImageUrl(url);
   }, [router.query.bagId]);
+
+  // スクロールのロック
+  useEffect(() => {
+    if (!pageRef.current) return;
+
+    disableBodyScroll(pageRef.current, {
+      allowTouchMove: (el: HTMLElement | Element) => {
+        // dataset-allowscroll="true" を持った要素のみ
+        // スクロールを許可する（torutoによる許可条件の定義）
+        while (el && el !== document.body) {
+          if ("dataset" in el) {
+            if (el.dataset.allowscroll) {
+              return true;
+            }
+          }
+          if (!el.parentElement) break;
+          el = el.parentElement;
+        }
+        return false;
+      },
+    });
+
+    return () => {
+      clearAllBodyScrollLocks();
+    };
+  }, [pageRef.current]);
 
   // バッグ一覧へ戻る
   // （前のページに戻る方がよいかも？）
@@ -47,8 +74,8 @@ const BagDetail: NextPage = () => {
 
   return (
     <>
-      <div className="page-top-container">
-        <PersonalizeBg />
+      <div ref={pageRef} className="page-top-container">
+        <PersonalizeBg imageUrl={imageUrl} />
         <BackButton onClick={handleBack} className={"back-btn"} />
         <div className="h-full flex flex-col">
           <h1 className="mt-[10%] text-[40px] text-center align-top text-white font-scandia-web-500">
