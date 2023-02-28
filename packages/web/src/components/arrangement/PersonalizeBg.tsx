@@ -15,8 +15,8 @@ const PersonalizeBg = ({ imageUrl }: Props) => {
   return (
     <>
       <div className="absolute overflow-hidden w-full h-full z-[-20]">
-        <div className="flex justify-center grid content-center w-full h-full">
-          <div className="relative w-[150vw] h-[150vh]">
+        <div className="relative flex justify-center grid content-center w-full h-full">
+          <div className="relative w-[150vw] h-[150vh] saturate-150">
             <Image
               src={imageUrl}
               alt="bg"
@@ -24,7 +24,7 @@ const PersonalizeBg = ({ imageUrl }: Props) => {
               style={{ objectFit: "cover" }}
             />
           </div>
-          <div className="absolute w-full h-full backdrop-blur-xl" />
+          <div className="absolute w-full h-full bg-white/10 backdrop-blur-[25px]" />
         </div>
       </div>
     </>

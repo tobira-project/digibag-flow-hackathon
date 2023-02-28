@@ -2,9 +2,9 @@
   "mockBagDataList": [
     {
       "id": 0,
-      "title": "bag-title0",
+      "title": "My bag 0",
       "address": "0x001",
-      "imageUrl": "/item-images/inutanuki_cbg.png",
+      "imageUrl": "/bag-images/bag01.png",
       "modelUrl": "/decoration/can-badge/can-badge.glb",
       "itemList": [
         {
@@ -26,9 +26,33 @@
     },
     {
       "id": 1,
-      "title": "bag-title1",
+      "title": "My bag 1",
       "address": "0x001",
-      "imageUrl": "/item-images/inutanuki_cbg.png",
+      "imageUrl": "/bag-images/thumbnails/backpack_wbg.png",
+      "modelUrl": "/decoration/can-badge/can-badge.glb",
+      "itemList": [
+        {
+          "id": 0,
+          "title": "item-title0",
+          "isDecorated": false
+        },
+        {
+          "id": 1,
+          "title": "item-title1",
+          "isDecorated": false
+        },
+        {
+          "id": 2,
+          "title": "item-title2",
+          "isDecorated": true
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "My bag 2",
+      "address": "0x001",
+      "imageUrl": "/bag-images/thumbnails/handbag_wbg.png",
       "modelUrl": "/decoration/can-badge/can-badge.glb",
       "itemList": [
         {
@@ -44,10 +68,39 @@
       ]
     },
     {
-      "id": 2,
-      "title": "bag-title2",
+      "id": 3,
+      "title": "My bag 3",
       "address": "0x001",
-      "imageUrl": "/item-images/chiaki_cbg.png",
+      "imageUrl": "/bag-images/thumbnails/backpack.png",
+      "modelUrl": "/decoration/can-badge/can-badge.glb",
+      "itemList": [
+        {
+          "id": 0,
+          "title": "item-title0",
+          "isDecorated": false
+        },
+        {
+          "id": 1,
+          "title": "item-title1",
+          "isDecorated": true
+        },
+        {
+          "id": 2,
+          "title": "item-title2",
+          "isDecorated": true
+        },
+        {
+          "id": 1,
+          "title": "item-title1",
+          "isDecorated": true
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "My bag 4",
+      "address": "0x001",
+      "imageUrl": "/bag-images/thumbnails/handbag.png",
       "modelUrl": "/decoration/can-badge/can-badge.glb",
       "itemList": [
         {

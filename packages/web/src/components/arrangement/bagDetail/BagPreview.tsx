@@ -11,9 +11,7 @@ type Props = {
  */
 const BagPreview = ({ imageUrl }: Props) => {
   return (
-    <>
-      <Image src={imageUrl} alt={"bag"} fill style={{ objectFit: "contain" }} />
-    </>
+    <Image src={imageUrl} alt={"bag"} fill style={{ objectFit: "contain" }} />
   );
 };
 

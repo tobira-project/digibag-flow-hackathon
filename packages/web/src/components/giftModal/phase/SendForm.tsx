@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import GiftButton from "../ui/GiftButton";
 import arrangementData from "@/data/arrangementData.json";
 import { useRouter } from "next/router";
@@ -19,7 +19,18 @@ const SendForm = ({ handleBack }: Props) => {
   const { closeGiftModal } = useArrangementStore((state) => ({
     closeGiftModal: state.closeGiftModal,
   }));
+  const [imageUrl, setImageUrl] = useState<string>();
+  const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // dynamic routerのbagIdを利用してデータを取得
+  useEffect(() => {
+    if (!router.query.bagId) return;
+    if (typeof router.query.bagId !== 'string') return;
+
+    const data = arrangementData.mockBagDataList[parseInt(router.query.bagId)];
+    setImageUrl(data.imageUrl)
+  }, [router.query.bagId])
 
   const handleSend = () => {
     if (!inputRef.current) return;
@@ -32,15 +43,15 @@ const SendForm = ({ handleBack }: Props) => {
 
   return (
     <>
-      <div className="h-[30vh] pt-12 pb-4">
+      <div className="h-[30vh] pt-8 pb-2">
         <div className="relative h-full">
           {/* <Image src={arrangementData.mockBagDataList[bagId].imageUrl} alt={'bag'} fill style={{ objectFit: "contain" }} /> */}
-          <Image
-            src={"/decoration/test/toruto.png"}
-            alt={"bag"}
+          {imageUrl && <Image
+            src={imageUrl}
+            alt={'bag'}
             fill
             style={{ objectFit: "contain" }}
-          />
+          />}
         </div>
       </div>
       <p className="text-center text-white text-[38px] font-scandia-web-500">
