@@ -18,29 +18,41 @@ pub contract GoodsNFT {
     // Tracks the unique IDs of the NFT
     pub var idCount: UInt64
 
-    // Declare the NFT resource type
-    pub resource NFT {
-        // The unique ID that differentiates each NFT
-        pub let id: UInt64
+    pub resource NFTMetadata {
         pub let url: String
-        pub var pos: [UInt64]
-        pub var rot: [UInt64]
+        pub(set) var pos: [UInt64]
+        pub(set) var rot: [UInt64]
 
-        // Initialize both fields in the init function
-        init(initID: UInt64, url: String, pos: [UInt64], rot: [UInt64]) {
-            self.id = initID
+        init(url: String, pos: [UInt64], rot: [UInt64]) {
             self.url = url
             self.pos = pos
             self.rot = rot
         }
+    }
+
+    // Declare the NFT resource type
+    pub resource NFT {
+        // The unique ID that differentiates each NFT
+        pub let id: UInt64
+        pub let metaData: @NFTMetadata
+
+        // Initialize both fields in the init function
+        init(initID: UInt64, url: String, pos: [UInt64], rot: [UInt64]) {
+            self.id = initID
+            self.metaData <- create NFTMetadata(url: url, pos: pos, rot: rot)
+        }
 
         pub fun setPos(pos: [UInt64]) {
-            self.pos = pos
+            self.metaData.pos = pos
         }
 
         pub fun setRot(rot: [UInt64]) {
-            self.rot = rot
-            }
+            self.metaData.rot = rot
+        }
+
+        destroy() {
+            destroy self.metaData
+        }
     }
 
     // We define this interface purely as a way to allow users
@@ -70,6 +82,14 @@ pub contract GoodsNFT {
         pub fun updateRot(bagId: UInt64, nftId: UInt64, rot: [UInt64])
 
         pub fun depositNFT(bagId: UInt64, token: @NFT)
+
+        pub fun getIDsInBag(id: UInt64): [UInt64]
+
+        pub fun getUrl(bagId: UInt64, nftId: UInt64): String
+
+        pub fun getPos(bagId: UInt64, nftId: UInt64): [UInt64]
+
+        pub fun getRot(bagId: UInt64, nftId: UInt64): [UInt64]
     }
 
     // The definition of the Collection resource that
@@ -161,7 +181,7 @@ pub contract GoodsNFT {
         }
 
         pub fun move(nftId: UInt64, bagId: UInt64, addressId: UInt64) {
-        if let bag <- self.ownedBags[bagId] <- nil {
+            if let bag <- self.ownedBags[bagId] <- nil {
                 self.ownedBags[addressId]?.deposit(token: <- bag.withdraw(withdrawID: nftId))
                 self.ownedBags[bagId] <-! bag
             } else {
@@ -178,6 +198,43 @@ pub contract GoodsNFT {
         // getIDs returns an array of the IDs that are in the collection
         pub fun getIDs(): [UInt64] {
             return self.ownedBags.keys
+        }
+
+        pub fun getUrl(bagId: UInt64, nftId: UInt64): String {
+            var r = ""
+            if let bag <- self.ownedBags[bagId] <- nil {
+                r = bag.ownedNFTs[nftId]?.metaData?.url ?? panic("the specified NFT ID was not found")
+                self.ownedBags[bagId] <-! bag
+            } else {
+                panic("the specified bag ID was not found")
+            }
+            return r
+        }
+
+        pub fun getPos(bagId: UInt64, nftId: UInt64): [UInt64] {
+            var r: [UInt64] = []
+            if let bag <- self.ownedBags[bagId] <- nil {
+                r = bag.ownedNFTs[nftId]?.metaData?.pos ?? panic("the specified NFT ID was not found")
+                self.ownedBags[bagId] <-! bag
+            } else {
+                panic("the specified bag ID was not found")
+            }
+            return r
+        }
+
+        pub fun getRot(bagId: UInt64, nftId: UInt64): [UInt64] {
+            var r: [UInt64] = []
+            if let bag <- self.ownedBags[bagId] <- nil {
+                r = bag.ownedNFTs[nftId]?.metaData?.rot ?? panic("the specified NFT ID was not found")
+                self.ownedBags[bagId] <-! bag
+            } else {
+                panic("the specified bag ID was not found")
+            }
+            return r
+        }
+
+        pub fun getIDsInBag(id: UInt64): [UInt64] {
+            return self.ownedBags[id]?.getIDs() ?? panic("the specified bag ID was not found")
         }
 
         pub fun updatePos(bagId: UInt64, nftId: UInt64, pos: [UInt64]) {
@@ -230,9 +287,9 @@ pub contract GoodsNFT {
     }
 
 	init() {
-        self.CollectionStoragePath = /storage/nftTutorialCollection
-        self.CollectionPublicPath = /public/nftTutorialCollection
-        self.MinterStoragePath = /storage/nftTutorialMinter
+        self.CollectionStoragePath = /storage/nftCollection
+        self.CollectionPublicPath = /public/nftCollection
+        self.MinterStoragePath = /storage/nftMinter
 
         // initialize the ID count to one
         self.idCount = 1
