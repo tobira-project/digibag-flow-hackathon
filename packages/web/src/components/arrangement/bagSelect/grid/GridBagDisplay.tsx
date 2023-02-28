@@ -18,7 +18,10 @@ const GridBagDisplay = () => {
   return (
     <>
       <PersonalizeBg imageUrl={imageUrl} />
-      <div className="h-full overflow-y-scroll px-10 pt-20">
+      <div
+        className="h-full overflow-y-scroll px-10 pt-20"
+        data-allowscroll="true"
+      >
         <div className="grid grid-cols-2 gap-6">
           {arrangementData.mockBagDataList.map((v) => (
             <>
