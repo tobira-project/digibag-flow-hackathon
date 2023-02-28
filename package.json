@@ -1,0 +1,19 @@
+{
+  "name": "digibag-flow-hackathon",
+  "version": "1.0.0",
+  "repository": "git@github.com:tobira-project/digibag-flow-hackathon.git",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:web": "yarn workspace web dev",
+    "build:web": "yarn workspace web build",
+    "start:web": "yarn workspace web start",
+    "lint:web": "yarn workspace web lint",
+    "export:web": "yarn workspace web export",
+    "deploy:firestore": "firebase deploy --only firestore",
+    "deploy:web": "firebase deploy --only hosting"
+  }
+}

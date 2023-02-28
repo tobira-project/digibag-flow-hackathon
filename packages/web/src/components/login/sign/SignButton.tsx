@@ -1,6 +1,9 @@
+import Google from "../../../../public/login/google.svg";
+
 type SignButtonProps = {
   text: string;
   onClick: () => void;
+  withGoogleIcon?: boolean;
 };
 
 /**
@@ -8,8 +11,9 @@ type SignButtonProps = {
  * @param param0
  * @returns
  */
-const SignButton = ({ onClick, text }: SignButtonProps) => (
+const SignButton = ({ onClick, text, withGoogleIcon }: SignButtonProps) => (
   <button onClick={onClick} className={"login-btn"}>
+    {withGoogleIcon && <Google className="login-icon" />}
     {text}
   </button>
 );

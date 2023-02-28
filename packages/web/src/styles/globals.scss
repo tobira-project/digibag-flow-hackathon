@@ -130,6 +130,11 @@ $breakpoint: (
       @apply text-[#8C8C8C] border-none shadow-xl;
       @apply w-full text-xl;
     }
+    // アイコン
+    &-icon {
+      // スペース
+      @apply mr-2;
+    }
     // sign in/upフォームのコンテナ
     &-sign-container {
       // 外側
