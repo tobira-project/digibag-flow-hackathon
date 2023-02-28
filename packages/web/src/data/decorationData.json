@@ -3,21 +3,25 @@
   "itemModelSrc": {
     "CAN_BADGE": "/decoration/can-badge/can-badge.glb"
   },
+  "bagMode": "01",
   "bagModelData": {
     "01": {
       "srcUrl": "/model/bag01/bag01.glb",
       "posY": -9,
-      "scale": 60
+      "scale": 60,
+      "camPos": [35, 6, 0]
     },
     "02": {
       "srcUrl": "/model/bag02/bag02.glb",
       "posY": -2,
-      "scale": 30
+      "scale": 30,
+      "camPos": [0, 6, -35]
     },
     "03": {
       "srcUrl": "/model/bag03/bag03.glb",
       "posY": -2,
-      "scale": 30
+      "scale": 30,
+      "camPos": [0, 6, -35]
     }
   },
   "scaleRate": {

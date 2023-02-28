@@ -2,6 +2,8 @@ import useDecorationStore from "@/stores/decorationStore";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { Camera } from "@react-three/fiber";
 import { RefObject } from "react";
+import decorationData from "@/data/decorationData.json";
+import { BagModelMode } from "@/types/decoration/bagModelMode";
 
 type Props = {
   cameraRef: RefObject<Camera>;
@@ -17,12 +19,20 @@ const CameraContainer = ({ cameraRef }: Props) => {
     isCameraMode: state.isCameraMode,
   }));
 
+  const bagMode = decorationData.bagMode as BagModelMode;
+  const camPos = decorationData.bagModelData[bagMode].camPos;
+
   return (
     <>
       {/* PerspectiveCameraのpositionと、
       OrbitControlsのtargetを同座標にすると、
       方向が計算できなくて詰むので注意 */}
-      <PerspectiveCamera makeDefault ref={cameraRef} position={[0, 6, -35]} />
+      <PerspectiveCamera
+        makeDefault
+        ref={cameraRef}
+        // position={[0, 6, -35]}
+        position={camPos}
+      />
       <OrbitControls
         enableZoom={isCameraMode}
         enableRotate={isCameraMode}

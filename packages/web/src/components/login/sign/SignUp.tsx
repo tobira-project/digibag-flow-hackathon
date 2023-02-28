@@ -14,7 +14,7 @@ type Props = {
  * @param param0
  * @returns
  */
-const SignUp = ({ handleSignUp ,value, setValue, checkValue }: Props) => {
+const SignUp = ({ handleSignUp, value, setValue, checkValue }: Props) => {
   return (
     <>
       <div className="login-sign-container-outer">

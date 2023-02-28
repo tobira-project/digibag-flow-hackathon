@@ -12,10 +12,17 @@ const ModeNone = ({ moveSignInWithGoogle, moveSignInWithEmail }: Props) => {
         <div className="login-top-container">
           <div className="flex flex-col gap-4">
             <div>
-              <SignButton text="Sign in with google" onClick={moveSignInWithGoogle} withGoogleIcon />
+              <SignButton
+                text="Sign in with google"
+                onClick={moveSignInWithGoogle}
+                withGoogleIcon
+              />
             </div>
             <div>
-              <SignButton text="Sign in  with email" onClick={moveSignInWithEmail} />
+              <SignButton
+                text="Sign in  with email"
+                onClick={moveSignInWithEmail}
+              />
             </div>
           </div>
         </div>
