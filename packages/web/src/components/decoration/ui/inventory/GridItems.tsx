@@ -38,7 +38,7 @@ const GridItems = () => {
   return (
     <>
       <div className="contents-grid-contianer mt-14" data-allowscroll="true">
-        <div className="grid grid-cols-3 gap-3 pb-2 px-3">
+        <div className="grid grid-cols-3 gap-6 pb-2 px-6">
           {decorationData.mockItemList
             .filter(
               (v) => placedItems.findIndex((x) => x.srcId === v.id) === -1
