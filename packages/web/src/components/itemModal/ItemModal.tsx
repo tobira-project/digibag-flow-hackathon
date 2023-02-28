@@ -70,7 +70,7 @@ const ItemModal = () => {
           <p className="item-modal-description">{itemData.description}</p>
           <div className="item-modal-btn-container">
             {/* ボタン */}
-            <ItemModalButton onClick={() => {}}>
+            <ItemModalButton onClick={() => { }}>
               <div className="item-modal-btn-icon">
                 <div className="ml-[60%] w-5 aspect-square">
                   <TakeThisOutIcon />
@@ -81,7 +81,7 @@ const ItemModal = () => {
               </div>
             </ItemModalButton>
             {/* ボタン */}
-            <ItemModalButton onClick={() => {}}>
+            <ItemModalButton onClick={() => { }}>
               <div className="item-modal-btn-icon">
                 <div className="w-12 ml-[30%]">
                   <MoveItemIcon />

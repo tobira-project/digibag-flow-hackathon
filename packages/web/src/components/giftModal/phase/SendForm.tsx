@@ -43,7 +43,7 @@ const SendForm = ({ handleBack }: Props) => {
           />
         </div>
       </div>
-      <p className="text-center text-white text-[42px]">{"Send to"}</p>
+      <p className="text-center text-white text-[38px] font-scandia-web-500">{"Send to"}</p>
       <div className="grid gap-4 mt-6">
         <GiftInput inputRef={inputRef} />
         <GiftButton text="Send" isInverse={false} onClick={handleSend} />

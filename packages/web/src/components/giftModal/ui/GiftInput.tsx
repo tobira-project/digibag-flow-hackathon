@@ -16,7 +16,7 @@ const GiftInput = ({ inputRef }: Props) => {
         <input
           type="text"
           placeholder="Address or domain name"
-          className="gift-input"
+          className="gift-input placeholder:text-[18px] placeholder:text-[#ADADAD]"
         />
       </div>
     </>

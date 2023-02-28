@@ -19,12 +19,10 @@ const TabTitle = ({ title, tabId, onClick, isSelected }: Props) => {
           onClick={() => onClick(tabId)}
           className={"w-full h-full"}
         >
-          <div className="text-center">{title}</div>
-          <div
-            className={`mx-2 mt-1 ${
-              isSelected ? "border-b-[2px] border-[#707070]" : ""
-            }`}
-          />
+          <div className="text-center font-scandia-web-500 text-[15px] text-[#6F6F6F]">
+            {title}
+          </div>
+          <div className={`mx-2 mt-1 ${isSelected ? "border-b-[2px] border-[#707070]" : ""}`} />
         </button>
       </div>
     </>

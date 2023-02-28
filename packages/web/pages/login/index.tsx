@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import BackButton from "@/components/global/BackButton";
 import { useRouter } from "next/router";
-import TBRLogo from "../../public/login/tbr-logo.svg";
+// import TBRLogo from "../../public/login/tbr-logo.svg";
+import DigibagLogo from "@/../public/login/digibag-logo.svg"
 import SignButton from "@/components/login/sign/SignButton";
 import SignUp from "@/components/login/sign/SignUp";
 import Top from "@/components/login/Top";
@@ -101,10 +102,11 @@ const Login = () => {
           </>
         )}
         <div className="login-title-container">
-          <div className="login-tbr-logo">
+          {/* <div className="login-tbr-logo">
             <TBRLogo />
-          </div>
-          <h1 className="login-title">DIGIBAG</h1>
+          </div> */}
+          {/* <h1 className="login-title">DIGIBAG</h1> */}
+          <DigibagLogo />
         </div>
 
         <div>

@@ -17,6 +17,7 @@ $breakpoint: (
 @layer components {
   .app-sp-display {
     @apply absolute inset-0 bg-white z-[-30];
+    @apply font-scandia-web-400;
     @include mq(tab) {
       @apply absolute w-[390px] h-[844px];
       @apply rounded-[32px] overflow-hidden border-4 border-[#3c3c3c];
@@ -128,6 +129,7 @@ $breakpoint: (
     &-btn {
       @apply btn btn-circle bg-white hover:bg-[#eee];
       @apply text-[#8C8C8C] border-none shadow-xl;
+      @apply normal-case font-scandia-web-400;
       @apply w-full text-xl;
     }
     // アイコン
@@ -173,6 +175,7 @@ $breakpoint: (
 
     &-title {
       @apply text-center text-white text-[38px];
+      @apply font-scandia-web-500;
     }
 
     &-border {
@@ -180,7 +183,7 @@ $breakpoint: (
     }
 
     &-author {
-      @apply text-center text-[20px] text-white mt-2;
+      @apply text-center text-[22px] text-white mt-2;
     }
 
     &-image {
@@ -188,7 +191,7 @@ $breakpoint: (
     }
 
     &-description {
-      @apply text-center text-sm text-white mx-6 break-words;
+      @apply text-center text-xs text-white mx-6 break-words;
     }
 
     &-btn-container {
@@ -198,7 +201,7 @@ $breakpoint: (
     &-btn {
       @apply btn btn-circle bg-transparent hover:bg-black/20;
       @apply text-white border-white hover:border-[#eee] border-[1px] shadow-xl;
-      @apply w-full h-[50px] text-xl;
+      @apply w-full h-[50px];
 
       &-inner {
         @apply w-full h-full flex;
@@ -209,8 +212,8 @@ $breakpoint: (
       }
 
       &-text {
-        @apply w-[70%] grid content-center pr-4;
-        @apply text-[16px];
+        @apply w-[70%] grid content-center;
+        @apply normal-case font-normal text-[18px];
       }
     }
   }
@@ -221,13 +224,15 @@ $breakpoint: (
     &-btn {
       @apply btn btn-circle bg-white hover:bg-[#eee];
       @apply text-[#717171] border-none shadow-xl;
-      @apply w-full h-[60px] text-xl;
+      @apply normal-case font-scandia-web-400;
+      @apply w-full h-[60px] text-[24px];
     }
     // 透明ボタン
     &-btn-inverse {
       @apply btn btn-circle bg-transparent hover:bg-black/20;
       @apply text-white border-white hover:border-[#eee] border-[2px] shadow-xl;
-      @apply w-full h-[60px] text-xl;
+      @apply normal-case font-scandia-web-400;
+      @apply w-full h-[60px] text-[24px];
     }
     // テキストボックス
     &-input {
@@ -243,6 +248,7 @@ $breakpoint: (
     &-title {
       @apply absolute top-8;
       @apply text-center text-[40px] text-[#A5A5A5];
+      @apply font-scandia-web-500;
       @apply pointer-events-none;
     }
   }
@@ -274,5 +280,18 @@ $breakpoint: (
         @apply w-[400px] h-[60px];
       }
     }
+  }
+}
+
+.font-scandia-web {
+  &-400 {
+    font-family: "scandia-web", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  &-500 {
+    font-family: "scandia-web", sans-serif;
+    font-weight: 500;
+    font-style: normal;
   }
 }

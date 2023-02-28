@@ -51,7 +51,7 @@ const BagDetail: NextPage = () => {
         <PersonalizeBg />
         <BackButton onClick={handleBack} className={"back-btn"} />
         <div className="h-full flex flex-col">
-          <h1 className="mt-[10%] text-[40px] text-center align-top text-white">
+          <h1 className="mt-[10%] text-[40px] text-center align-top text-white font-scandia-web-500">
             {title}
           </h1>
           <div className="relative w-full h-[30%] p-10 pointer-events-none">
