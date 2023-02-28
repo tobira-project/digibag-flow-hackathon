@@ -31,7 +31,7 @@ const CameraContainer = ({ cameraRef }: Props) => {
         makeDefault
         ref={cameraRef}
         // position={[0, 6, -35]}
-        position={camPos}
+        position={[camPos[0], camPos[1], camPos[2]]}
       />
       <OrbitControls
         enableZoom={isCameraMode}

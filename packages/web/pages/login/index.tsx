@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import BackButton from "@/components/global/BackButton";
 import { useRouter } from "next/router";
 // import TBRLogo from "../../public/login/tbr-logo.svg";
-import DigibagLogo from "@/../public/login/digibag-logo.svg"
+import DigibagLogo from "@/../public/login/digibag-logo.svg";
 import SignButton from "@/components/login/sign/SignButton";
 import SignUp from "@/components/login/sign/SignUp";
 import Top from "@/components/login/Top";
@@ -28,7 +28,7 @@ const Login = () => {
   const moveSignInWithGoogle = () => {
     setMode("SIGN_IN_WITH_GOOGLE");
     handleSignInWithGoogle();
-  }
+  };
   // EmailでSign inする
   const moveSignInWithEmail = () => setMode("SIGN_IN_WITH_EMAIL");
   // 初期表示へ戻る
@@ -39,7 +39,7 @@ const Login = () => {
     if (!magic) return;
     await magic.oauth.loginWithRedirect({
       provider: "google",
-      redirectURI: `${window.location.href}`
+      redirectURI: `${window.location.href}`,
     });
   };
 
@@ -54,10 +54,10 @@ const Login = () => {
 
   // EmailでSign inの実行
   const handleSignInWithEmail = async () => {
-    console.log(email)
+    console.log(email);
     if (!checkEmail(email)) return;
     if (!magic) return;
-    await magic.auth.loginWithEmailOTP({ email: 'nagato.kasaki@gmail.com' });
+    await magic.auth.loginWithEmailOTP({ email: "nagato.kasaki@gmail.com" });
     setMode("SUCCESS_SIGN_UP");
     setTimeout(() => {
       router.push("/");
@@ -68,11 +68,11 @@ const Login = () => {
     if (!magic) return;
     await magic.user.logout();
     setMode("TOP");
-  }
+  };
 
   useEffect(() => {
-    console.log(mode)
-  }, [mode])
+    console.log(mode);
+  }, [mode]);
 
   useEffect(() => {
     if (magic) {
@@ -118,7 +118,10 @@ const Login = () => {
             )}
             {mode === "TOP" && (
               <>
-                <Top moveSignInWithGoogle={moveSignInWithGoogle} moveSignInWithEmail={moveSignInWithEmail} />
+                <Top
+                  moveSignInWithGoogle={moveSignInWithGoogle}
+                  moveSignInWithEmail={moveSignInWithEmail}
+                />
               </>
             )}
             {mode === "SIGN_IN_WITH_GOOGLE" && (
@@ -128,7 +131,12 @@ const Login = () => {
             )}
             {mode === "SIGN_IN_WITH_EMAIL" && (
               <>
-                <SignUp handleSignUp={handleSignInWithEmail} value={email} setValue={setEmail} checkValue={checkEmail} />
+                <SignUp
+                  handleSignUp={handleSignInWithEmail}
+                  value={email}
+                  setValue={setEmail}
+                  checkValue={checkEmail}
+                />
               </>
             )}
             {mode === "SUCCESS_SIGN_UP" && (

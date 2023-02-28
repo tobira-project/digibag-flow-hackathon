@@ -1,7 +1,7 @@
 import DecorationWindow from "@/components/decoration/DecorationWindow";
 import { NextPage } from "next";
 import { useEffect, useRef, useState } from "react";
-import { clearAllBodyScrollLocks, disableBodyScroll } from "body-scroll-lock"
+import { clearAllBodyScrollLocks, disableBodyScroll } from "body-scroll-lock";
 
 /**
  * バッグの装飾ページ
@@ -34,7 +34,7 @@ const DecorationPage: NextPage = () => {
     return () => {
       clearAllBodyScrollLocks();
     };
-  }, [pageRef.current])
+  }, [pageRef.current]);
 
   return (
     <>

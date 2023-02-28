@@ -7,7 +7,8 @@ import Head from "next/head";
 import Script from "next/script";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const { innerWidth, innerHeight, displayWidth, displayHeight } = useWindowSize();
+  const { innerWidth, innerHeight, displayWidth, displayHeight } =
+    useWindowSize();
   const { mediaBorder, pcWidth, pcHeight } = globalData;
 
   return (
@@ -16,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>DigiBag</title>
       </Head>
       {/* フォントのロード */}
-      <Script>
+      <Script id="font-load">
         {`(function(d) {
           var config = {
             kitId: 'ysy1ycw',
@@ -33,9 +34,10 @@ export default function App({ Component, pageProps }: AppProps) {
             className="app-sp-display"
             style={{
               left: innerWidth > mediaBorder ? (innerWidth - pcWidth) / 2.0 : 0,
-              top: innerWidth > mediaBorder ? (innerHeight - pcHeight) / 2.0 : 0,
+              top:
+                innerWidth > mediaBorder ? (innerHeight - pcHeight) / 2.0 : 0,
               width: displayWidth,
-              height: displayHeight
+              height: displayHeight,
             }}
           >
             <Component {...pageProps} />
