@@ -17,7 +17,7 @@ export default function Home() {
       magic.user.isLoggedIn().then(async (magicIsLoggedIn) => {
         if (magicIsLoggedIn) {
           const userMetadata = await magic.user.getMetadata();
-          console.log(userMetadata)
+          console.log(userMetadata);
           setPublicAddress(userMetadata.publicAddress || "");
           setEmail(userMetadata.email || "");
           setMagicLoaded(true);
@@ -33,7 +33,7 @@ export default function Home() {
     if (!magic) return;
     await magic.oauth.loginWithRedirect({
       provider: "google",
-      redirectURI: `${window.location.origin}`
+      redirectURI: `${window.location.origin}`,
     });
   };
 
@@ -45,7 +45,6 @@ export default function Home() {
 
   const verify = async () => {
     try {
-
       console.log("SENDING TRANSACTION");
       setVerifying(true);
       const sampleTx = `
@@ -61,33 +60,33 @@ export default function Home() {
         }
       }
     `;
-    const AUTHORIZATION_FUNCTION = magic?.flow.authorization;
-    if (AUTHORIZATION_FUNCTION) {
-      var response = await fcl.send([
-        fcl.transaction(sampleTx),
-        fcl.proposer(AUTHORIZATION_FUNCTION),
-        fcl.authorizations([AUTHORIZATION_FUNCTION]),
-        fcl.payer(AUTHORIZATION_FUNCTION),
-        fcl.limit(9999)
-      ]);
-      console.log("TRANSACTION SENT");
-      console.log("TRANSACTION RESPONSE", response);
+      const AUTHORIZATION_FUNCTION = magic?.flow.authorization;
+      if (AUTHORIZATION_FUNCTION) {
+        var response = await fcl.send([
+          fcl.transaction(sampleTx),
+          fcl.proposer(AUTHORIZATION_FUNCTION),
+          fcl.authorizations([AUTHORIZATION_FUNCTION]),
+          fcl.payer(AUTHORIZATION_FUNCTION),
+          fcl.limit(9999),
+        ]);
+        console.log("TRANSACTION SENT");
+        console.log("TRANSACTION RESPONSE", response);
 
-      console.log("WAITING FOR TRANSACTION TO BE SEALED");
-      var data = await fcl.tx(response).onceSealed();
-      console.log("TRANSACTION SEALED", data);
-      setVerifying(false);
+        console.log("WAITING FOR TRANSACTION TO BE SEALED");
+        var data = await fcl.tx(response).onceSealed();
+        console.log("TRANSACTION SEALED", data);
+        setVerifying(false);
 
-      if (data.status === 4 && data.statusCode === 0) {
-        setMessage("Congrats!!! I Think It Works");
-      } else {
-        setMessage(`Oh No: ${data.errorMessage}`);
+        if (data.status === 4 && data.statusCode === 0) {
+          setMessage("Congrats!!! I Think It Works");
+        } else {
+          setMessage(`Oh No: ${data.errorMessage}`);
+        }
       }
+    } catch (error) {
+      console.error("FAILED TRANSACTION", error);
     }
-  } catch (error) {
-    console.error("FAILED TRANSACTION", error);
-  }
-};
+  };
 
   return (
     <>
@@ -103,40 +102,40 @@ export default function Home() {
         <div className="container">
           <h1>Loading...</h1>
         </div>
-      ): !isLoggedIn ? (
+      ) : !isLoggedIn ? (
         <div className="container">
           <h1>Please sign up or login</h1>
           <button id="btn-send" className="google" onClick={login}>
-              <img src="./sign-in-with-google.svg" />
+            <img src="./sign-in-with-google.svg" />
           </button>
         </div>
       ) : (
-            <div>
-              <div>
-                <div className="container">
-                  <h1>Current user: {email}</h1>
-                  <button onClick={logout}>Logout</button>
-                </div>
-              </div>
-              <div className="container">
-                <h1>Flow address</h1>
-                <div className="info">{publicAddress}</div>
-              </div>
-              <div className="container">
-                <h1>Verify Transaction</h1>
-                {verifying ? (
-                    <div className="sending-status">Verifying Transaction</div>
-                ) : (
-                    ""
-                )}
-                <div className="info">
-                  <div>{message}</div>
-                </div>
-                <button id="btn-deploy" onClick={verify}>
-                  Verify
-                </button>
-              </div>
+        <div>
+          <div>
+            <div className="container">
+              <h1>Current user: {email}</h1>
+              <button onClick={logout}>Logout</button>
             </div>
+          </div>
+          <div className="container">
+            <h1>Flow address</h1>
+            <div className="info">{publicAddress}</div>
+          </div>
+          <div className="container">
+            <h1>Verify Transaction</h1>
+            {verifying ? (
+              <div className="sending-status">Verifying Transaction</div>
+            ) : (
+              ""
+            )}
+            <div className="info">
+              <div>{message}</div>
+            </div>
+            <button id="btn-deploy" onClick={verify}>
+              Verify
+            </button>
+          </div>
+        </div>
       )}
     </>
   );

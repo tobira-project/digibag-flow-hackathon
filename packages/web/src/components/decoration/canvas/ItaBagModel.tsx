@@ -18,7 +18,7 @@ type ModelMode = 1 | 2 | 3;
  * @returns jsx
  */
 const ItaBagModel = ({ itaBagRef }: Props) => {
-  const modelMode: BagModelMode = "01";
+  const modelMode = decorationData.bagMode as BagModelMode;
   const { srcUrl, posY, scale } = decorationData.bagModelData[modelMode];
   const { scene: srcModel } = useGLTF(srcUrl);
 
@@ -63,11 +63,9 @@ const ItaBagModel = ({ itaBagRef }: Props) => {
   return (
     <>
       {srcModel && (
-        // 一旦meshで表示。後で痛バッグに差し替える
-        // <mesh ref={itaBagRef as RefObject<Mesh>} position={[0, 0, 0]}>
-        //   <sphereGeometry args={[10, 10, 10]} />
-        //   <meshStandardMaterial color={"blue"} />
-        // </mesh>
+        // バッグの向きについて、初期値をgroupのrotationで変更すると、
+        // 法線方向はそのままにモデルが回転され、バッジの向きがおかしくなるので、
+        // とりあえずカメラの初期位置を変更することで対応する。
         <group position={[0, posY, 0]} scale={scale}>
           <primitive ref={itaBagRef} object={srcModel} />
         </group>

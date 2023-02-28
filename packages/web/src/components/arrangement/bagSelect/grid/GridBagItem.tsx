@@ -17,7 +17,7 @@ const GridBagItem = ({ imageUrl, title, bagId }: Props) => {
     <>
       <div className="aspect-[3/3.7] rounded-[30px] glass-light-dark">
         <Link href={`/bags/${bagId}/`}>
-          <div className="h-full flex flex-col p-3">
+          <div className="h-full flex flex-col px-3 pt-3 pb-2">
             <div className="relative grow">
               <Image
                 src={imageUrl}
@@ -26,7 +26,9 @@ const GridBagItem = ({ imageUrl, title, bagId }: Props) => {
                 style={{ objectFit: "contain" }}
               />
             </div>
-            <div className="text-center">{title}</div>
+            <div className="text-center text-white font-scandia-web-500 text-[21px]">
+              {title}
+            </div>
           </div>
         </Link>
       </div>

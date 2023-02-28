@@ -29,7 +29,9 @@ const ActionSelect = ({ handleNext }: Props) => {
   return (
     <>
       {/* <p>{arrangementData.mockBagDataList[bagId].title}</p> */}
-      <p className="text-center text-white text-[42px] pt-6">{"bag name"}</p>
+      <p className="text-center text-white text-[36px] pt-6 font-scandia-web-500">
+        {"Bag name"}
+      </p>
 
       <div className="h-[30vh] p-8">
         <div className="relative h-full">
