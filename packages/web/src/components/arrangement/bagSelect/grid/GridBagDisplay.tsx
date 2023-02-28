@@ -1,4 +1,6 @@
+import AccountModal from "@/components/accountModal/AccountModal";
 import arrangementData from "@/data/arrangementData.json";
+import useArrangementStore from "@/stores/arrangementStore";
 import { useState } from "react";
 import { useEffect } from "react";
 import PersonalizeBg from "../../PersonalizeBg";
@@ -9,6 +11,9 @@ import GridBagItem from "./GridBagItem";
  * @returns
  */
 const GridBagDisplay = () => {
+  const { isAccountModalOpen } = useArrangementStore((state) => ({
+    isAccountModalOpen: state.isAccountModalOpen
+  }))
   const [imageUrl, setImageUrl] = useState<string>("");
 
   useEffect(() => {
@@ -35,6 +40,7 @@ const GridBagDisplay = () => {
           ))}
         </div>
       </div>
+      {isAccountModalOpen && <AccountModal />}
     </>
   );
 };

@@ -10,9 +10,10 @@ import useWindowSize from "@/hooks/useWindowSize";
  * @returns
  */
 const BottomNavigation = () => {
-  const { isGridBags, toggleIsGridBags } = useArrangementStore((state) => ({
+  const { isGridBags, toggleIsGridBags, openAccountModal } = useArrangementStore((state) => ({
     isGridBags: state.isGridBags,
     toggleIsGridBags: state.toggleIsGridBags,
+    openAccountModal: state.openAccountModal,
   }));
 
   const { innerHeight, displayWidth, displayHeight } = useWindowSize();
@@ -31,7 +32,7 @@ const BottomNavigation = () => {
         >
           <div className="pt-8">
             <NavButton
-              onClick={() => {}}
+              onClick={openAccountModal}
               className="bottom-btn-sm bottom-btn-sm-nav bottom-btn-gray p-[12px]"
             >
               <ProfileIcon />
@@ -39,7 +40,7 @@ const BottomNavigation = () => {
           </div>
           <div className="">
             <NavButton
-              onClick={() => {}}
+              onClick={() => { }}
               className="bottom-btn-md bottom-btn-gray "
             >
               <TfiPlus size={45} />
@@ -47,7 +48,7 @@ const BottomNavigation = () => {
           </div>
           <div className="pt-8">
             <NavButton
-              onClick={() => {}}
+              onClick={() => { }}
               className="bottom-btn-sm bottom-btn-sm-nav bottom-btn-gray p-[12.5px]"
             >
               <BagView />

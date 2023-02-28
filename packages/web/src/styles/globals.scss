@@ -180,6 +180,32 @@ $breakpoint: (
     }
   }
 
+  // アカウントモーダル
+  .account {
+    &-outer {
+      @apply absolute inset-0 bg-black/20 px-6 h-auto;
+      @apply grid content-center
+    }
+
+    &-container {
+      @apply w-full rounded-[50px] ;
+      @apply px-6 pt-8 pb-10;
+      @apply flex flex-col;
+      @apply glass-dark;
+    }
+
+    &-address-text {
+      @apply text-white 
+    }
+
+    &-logout-btn {
+      @apply btn btn-circle bg-transparent hover:bg-black/20;
+      @apply text-white border-white hover:border-[#eee] border-[2px] shadow-xl;
+      @apply normal-case font-scandia-web-400;
+      @apply w-full h-[60px] text-[24px];
+    }
+  }
+
   // グッズ詳細モーダル
   .item-modal {
     &-outer {
