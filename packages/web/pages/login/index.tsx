@@ -71,18 +71,12 @@ const Login = () => {
   };
 
   useEffect(() => {
-    console.log(mode);
-  }, [mode]);
-
-  useEffect(() => {
     if (magic) {
       magic.user.isLoggedIn().then(async (magicIsLoggedIn) => {
         if (magicIsLoggedIn) {
           const userMetadata = await magic.user.getMetadata();
           setMode("SUCCESS_SIGN_UP");
-          setTimeout(() => {
-            router.push("/");
-          }, 5000);
+          router.push("/");
         } else {
           setMode("TOP");
         }
