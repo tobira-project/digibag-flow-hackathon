@@ -17,6 +17,10 @@
 		"testnetAccount2": {
 			"address": "8c361b0c76d7a2f3",
 			"keys": "6d18d80e7267a99621cda99a1c94bdcb882b13f171d161ac8f61a1f75bcce181"
+		},
+		"testnetAccount3": {
+			"address": "5e9ccdb91ff7ad93",
+			"keys": "7adf7c83a3eb630f3eb2e162172d9f0dda8516f6ce446e8d4a4108fc9d406e38"
 		}
 	},
 	"contracts": {
@@ -24,7 +28,7 @@
 			"source": "./cadence/contracts/GoodsNFT.cdc",
 			"aliases": {
 				"emulator": "f8d6e0586b0a20c7",
-				"testnet": "8c361b0c76d7a2f3"
+				"testnet": "5e9ccdb91ff7ad93"
 			}
 		}
 	},
@@ -33,7 +37,7 @@
 			"emulator-account": ["GoodsNFT"]
 		},
 		"testnet": {
-			"testnetAccount2": ["GoodsNFT"]
+			"testnetAccount3": ["GoodsNFT"]
 		}
 	}
 }

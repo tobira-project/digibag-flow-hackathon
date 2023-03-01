@@ -1,4 +1,4 @@
-import GoodsNFT from ./GoodsNFT.cdc
+import GoodsNFT from "../contracts/GoodsNFT.cdc"
 
 // This transaction allows the Minter account to mint an NFT
 // and deposit it into its collection.

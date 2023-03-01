@@ -1,4 +1,4 @@
-import GoodsNFT from ./GoodsNFT.cdc
+import GoodsNFT from "../contracts/GoodsNFT.cdc"
 
 // This transaction configures a user's account
 // to use the NFT contract by creating a new empty collection,
@@ -9,7 +9,7 @@ transaction {
         // check if the account already has a collection
         if acct.borrow<&GoodsNFT.Collection>(from: GoodsNFT.CollectionStoragePath) == nil {
             // Create a new empty collection
-            let collection <- GoodsNFT.createEmptyCollection()
+            let collection <- GoodsNFT.createEmptyCollection(name:"default bag")
 
             // store the empty NFT Collection in account storage
             acct.save<@GoodsNFT.Collection>(<-collection, to: GoodsNFT.CollectionStoragePath)

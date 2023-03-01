@@ -59,6 +59,7 @@ const Login = () => {
     if (!magic) return;
     await magic.auth.loginWithEmailOTP({ email });
     setMode("SUCCESS_SIGN_UP");
+    await createCollection();
     setTimeout(() => {
       router.push("/");
     }, 5000);
@@ -74,11 +75,11 @@ const Login = () => {
     console.log("createCollection");
     const AUTHORIZATION_FUNCTION = magic?.flow.authorization
     const createCollectionTx = `
-    import GoodsNFT from 0x8c361b0c76d7a2f3
+    import GoodsNFT from 0x5e9ccdb91ff7ad93
     transaction {
         prepare(acct: AuthAccount) {
             if acct.borrow<&GoodsNFT.Collection>(from: GoodsNFT.CollectionStoragePath) == nil {
-                let collection <- GoodsNFT.createEmptyCollection()
+                let collection <- GoodsNFT.createEmptyCollection(name:"default bag")
                 acct.save<@GoodsNFT.Collection>(<-collection, to: GoodsNFT.CollectionStoragePath)
                 acct.link<&{GoodsNFT.NFTReceiver}>(GoodsNFT.CollectionPublicPath, target: GoodsNFT.CollectionStoragePath)
             }
