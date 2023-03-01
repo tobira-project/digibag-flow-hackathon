@@ -101,6 +101,7 @@ pub contract GoodsNFT {
 
         pub fun getScale(bagId: UInt64, nftId: UInt64): UFix64
 
+        pub fun getBagName(bagId: UInt64): String
     }
 
     // The definition of the Collection resource that
@@ -110,11 +111,13 @@ pub contract GoodsNFT {
         // NFT is a resource type with an `UInt64` ID field
         pub var ownedNFTs: @{UInt64: NFT}
         pub var id: UInt64
+        pub let name: String
 
         // Initialize the NFTs field to an empty collection
-        init (initID: UInt64) {
+        init (initID: UInt64, name: String) {
             self.ownedNFTs <- {}
             self.id = initID
+            self.name = name
         }
 
         // withdraw
@@ -288,6 +291,17 @@ pub contract GoodsNFT {
             return r
         }
 
+        pub fun getBagName(bagId: UInt64): String {
+            var r = ""
+            if let bag <- self.ownedBags[bagId] <- nil {
+                r = bag.name
+                self.ownedBags[bagId] <-! bag
+            } else {
+                panic("the specified bag ID was not found")
+            }
+            return r
+        }
+
         pub fun getIDsInBag(id: UInt64): [UInt64] {
             return self.ownedBags[id]?.getIDs() ?? panic("the specified bag ID was not found")
         }
@@ -315,8 +329,8 @@ pub contract GoodsNFT {
     }
 
     // creates a new empty Collection resource and returns it
-    pub fun createEmptyCollection(): @Collection {
-        var newBag <- create Bag(initID: self.idCount)
+    pub fun createEmptyCollection(name: String): @Collection {
+        var newBag <- create Bag(initID: self.idCount, name: name)
 
         self.idCount = self.idCount + 1
 
@@ -350,7 +364,7 @@ pub contract GoodsNFT {
         self.idCount = 1
 
         // store an empty NFT Collection in account storage
-        self.account.save(<-self.createEmptyCollection(), to: self.CollectionStoragePath)
+        self.account.save(<-self.createEmptyCollection(name:"default bag"), to: self.CollectionStoragePath)
 
         // publish a reference to the Collection in storage
         self.account.link<&{NFTReceiver}>(self.CollectionPublicPath, target: self.CollectionStoragePath)
