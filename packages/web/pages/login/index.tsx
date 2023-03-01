@@ -158,7 +158,12 @@ const Login = () => {
                   />
                 )}
                 {mode === "SUCCESS_SIGN_UP" && (
-                  <SignButton text="Sign out" onClick={handleSignOut} />
+                  <div className="flex justify-center">
+                    <div className="absolute bottom-40 w-[50%] ">
+
+                      <SignButton text="Sign out" onClick={handleSignOut} />
+                    </div>
+                  </div>
                 )}
               </>
             </div>
