@@ -27,7 +27,7 @@ const GridBagDisplay = () => {
         className="h-full overflow-y-scroll px-10 pt-20"
         data-allowscroll="true"
       >
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 gap-6 ">
           {arrangementData.mockBagDataList.map((v) => (
             <>
               <GridBagItem

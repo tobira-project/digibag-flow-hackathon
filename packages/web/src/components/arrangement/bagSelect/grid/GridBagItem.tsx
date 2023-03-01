@@ -15,9 +15,9 @@ type Props = {
 const GridBagItem = ({ imageUrl, title, bagId }: Props) => {
   return (
     <>
-      <div className="aspect-[3/3.7] rounded-[30px] glass-light-dark">
-        <Link href={`/bags/${bagId}/`}>
-          <div className="h-full flex flex-col px-3 pt-3 pb-2">
+      <div className="btn w-full h-full border-none aspect-[3/3.7] rounded-[30px] glass-light-dark px-0 pb-2 normal-case hover:bg-black/40">
+        <Link className="w-full h-full" href={`/bags/${bagId}/`}>
+          <div className="h-full flex flex-col px-3 pt-3 pb-2 w-full">
             <div className="relative grow">
               <Image
                 src={imageUrl}

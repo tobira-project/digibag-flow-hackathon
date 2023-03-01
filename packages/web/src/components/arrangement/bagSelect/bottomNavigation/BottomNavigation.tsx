@@ -1,5 +1,5 @@
 import useArrangementStore from "@/stores/arrangementStore";
-import NavButton from "./NavButton";
+import NavButton, { DisableNavButton } from "./NavButton";
 import BagView from "@/../public/icon/bagview-icon.svg";
 import { TfiPlus } from "react-icons/tfi";
 import ProfileIcon from "@/../public/icon/profile-icon.svg";
@@ -39,20 +39,20 @@ const BottomNavigation = () => {
             </NavButton>
           </div>
           <div className="">
-            <NavButton
+            <DisableNavButton
               onClick={() => { }}
               className="bottom-btn-md bottom-btn-gray "
             >
               <TfiPlus size={45} />
-            </NavButton>
+            </DisableNavButton>
           </div>
           <div className="pt-8">
-            <NavButton
+            <DisableNavButton
               onClick={() => { }}
               className="bottom-btn-sm bottom-btn-sm-nav bottom-btn-gray p-[12.5px]"
             >
               <BagView />
-            </NavButton>
+            </DisableNavButton>
           </div>
         </div>
       </div>
