@@ -25,4 +25,17 @@ const NavButton = ({ onClick, children, className }: Props) => {
   );
 };
 
+export const DisableNavButton = ({ children, className }: Props) => {
+  return (
+    <>
+      <button
+        type="button"
+        className={`rounded-full text-white pointer-events-none p-[8px] flex justify-center pt-[10px] ${className}`}
+      >
+        {children}
+      </button>
+    </>
+  )
+}
+
 export default NavButton;

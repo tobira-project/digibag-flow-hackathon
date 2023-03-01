@@ -28,7 +28,7 @@
       "id": 1,
       "title": "My bag 1",
       "address": "0x001",
-      "imageUrl": "/bag-images/thumbnails/backpack_wbg.png",
+      "imageUrl": "/bag-images/thumbnails/backpack.png",
       "modelUrl": "/decoration/can-badge/can-badge.glb",
       "itemList": [
         {
@@ -52,7 +52,7 @@
       "id": 2,
       "title": "My bag 2",
       "address": "0x001",
-      "imageUrl": "/bag-images/thumbnails/handbag_wbg.png",
+      "imageUrl": "/bag-images/thumbnails/handbag.png",
       "modelUrl": "/decoration/can-badge/can-badge.glb",
       "itemList": [
         {
