@@ -137,7 +137,9 @@ const useDecorationStore = create<DecorationState>((set, get) => ({
     set((state) => {
       const index = state.getPlacedItemIndex(itemId);
       const newItems = state.placedItems;
-      newItems[index].lookDir = dir.clone();
+      newItems[index].lookDir
+        // = dir.clone();
+        = new Vector3(dir.x, dir.y, dir.z)
       return { placedItems: newItems };
     }),
   setItemScale: (itemId, scale) =>
