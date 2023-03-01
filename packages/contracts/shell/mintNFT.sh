@@ -1,0 +1,1 @@
+flow transactions send ./cadence/transactions/mintNFT.cdc

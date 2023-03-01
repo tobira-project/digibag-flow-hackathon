@@ -1,10 +1,4 @@
-// ExampleNFT.cdc
-//
-// This is a complete version of the ExampleNFT contract
-// that includes withdraw and deposit functionality, as well as a
-// collection resource that can be used to bundle NFTs together.
-//
-// Learn more about non-fungible tokens in this tutorial: https://developers.flow.com/cadence/tutorial/05-non-fungible-tokens-2
+// GoodsNFT.cdc
 
 pub contract GoodsNFT {
 
